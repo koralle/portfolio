@@ -7,6 +7,6 @@ export default defineConfig({
   output: 'static',
   vite: {
     // @ts-ignore
-    plugins: [tailwindcss()]
-  }
+    plugins: [tailwindcss()],
+  },
 });
