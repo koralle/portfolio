@@ -1,0 +1,24 @@
+{
+	"name": "@koralle/portfolio",
+	"private": true,
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev --port 6666",
+		"build": "astro build",
+		"preview": "astro build && wrangler pages dev --port 6666",
+		"astro": "astro",
+		"deploy": "astro build && wrangler pages deploy",
+		"cf-typegen": "wrangler types"
+	},
+	"dependencies": {
+		"@astrojs/cloudflare": "^12.2.3",
+		"astro": "^5.4.1"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20250224.0",
+		"@tsconfig/strictest": "^2.0.5",
+		"typescript": "^5.8.2",
+		"wrangler": "^3.111.0"
+	}
+}

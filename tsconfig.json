@@ -1,0 +1,17 @@
+{
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "types": [
+      "@cloudflare/workers-types/2023-07-01"
+    ]
+  }
+}
