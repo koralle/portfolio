@@ -24,6 +24,7 @@
     "@tsconfig/strictest": "^2.0.5",
     "prettier": "^3.5.2",
     "prettier-plugin-astro": "^0.14.1",
+    "rollup-plugin-visualizer": "^5.14.0",
     "typescript": "^5.8.2",
     "wrangler": "^3.111.0"
   }
