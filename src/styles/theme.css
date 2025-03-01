@@ -3,6 +3,12 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 @import './preflight.css' layer(base);
 
+@layer theme {
+  :root, body {
+    color-scheme: dark;
+  }
+}
+
 @theme {
   --*: initial;
 
