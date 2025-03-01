@@ -4,7 +4,8 @@
 @import './preflight.css' layer(base);
 
 @layer theme {
-  :root, body {
+  :root,
+  body {
     color-scheme: dark;
   }
 }

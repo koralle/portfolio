@@ -22,7 +22,8 @@
   padding: 0;
 }
 
-:root, body {
+:root,
+body {
   overflow-inline: clip;
 
   @supports not (overflow-inline: clip) {
@@ -31,7 +32,9 @@
 }
 
 :root {
-  font-family: 'Helvetica Neue', arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'BIZ UDPGothic', meiryo, sans-serif;
+  font-family:
+    'Helvetica Neue', arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'BIZ UDPGothic', meiryo,
+    sans-serif;
   font-style: unset;
   font-weight: 400;
   line-height: 1.5;
@@ -57,7 +60,12 @@ body {
   margin: unset;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-block: unset;
   font-size: unset;
   font-weight: unset;
@@ -67,11 +75,19 @@ search {
   display: block flow;
 }
 
-p, blockquote, figure, pre, address, ul, ol, dl {
+p,
+blockquote,
+figure,
+pre,
+address,
+ul,
+ol,
+dl {
   margin-block: unset;
 }
 
-blockquote, figure {
+blockquote,
+figure {
   margin-inline: unset;
 }
 
@@ -79,7 +95,9 @@ address:lang(ja) {
   font-style: unset;
 }
 
-ul, ol, menu {
+ul,
+ol,
+menu {
   padding-inline-start: unset;
   list-style: unset;
 }
@@ -104,7 +122,8 @@ pre {
   }
 }
 
-b, strong {
+b,
+strong {
   font-weight: 700;
 }
 
@@ -112,7 +131,11 @@ em:lang(ja) {
   font-weight: 700;
 }
 
-i, cite, em, dfn, var:lang(ja) {
+i,
+cite,
+em,
+dfn,
+var:lang(ja) {
   font-style: unset;
 }
 
@@ -121,12 +144,16 @@ small {
   font-weight: 400;
 }
 
-code, kbd, samp {
-	font-family: ui-monospace, sfmono-regular, menlo, monaco, consolas, 'Liberation Mono', 'Courier New', serif;
-	font-size: unset;
+code,
+kbd,
+samp {
+  font-family:
+    ui-monospace, sfmono-regular, menlo, monaco, consolas, 'Liberation Mono', 'Courier New', serif;
+  font-size: unset;
 }
 
-cite, dfn {
+cite,
+dfn {
   --_quotation-start: '"';
   --_quotation-end: '"';
 
@@ -183,7 +210,15 @@ del {
   text-decoration-style: double;
 }
 
-img, picture, svg, video, canvas, audio, iframe, embed, object {
+img,
+picture,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
   display: block flow;
   max-inline-size: 100%;
   block-size: auto;
@@ -197,7 +232,8 @@ caption {
   text-align: start;
 }
 
-td, th {
+td,
+th {
   padding: unset;
   vertical-align: top;
 }
@@ -207,7 +243,10 @@ th {
   text-align: start;
 }
 
-button, input, select, textarea,
+button,
+input,
+select,
+textarea,
 ::file-selector-button {
   padding: unset;
   border: 1px solid transparent;
@@ -221,7 +260,8 @@ button, input, select, textarea,
   text-transform: unset;
 }
 
-[type='radio' i], [type='checkbox' i] {
+[type='radio' i],
+[type='checkbox' i] {
   margin: unset;
 }
 
@@ -244,7 +284,12 @@ button::-moz-focus-inner {
   padding: unset;
 }
 
-button, label[for], select, [role='tab'], [role='button'], [role='option'],
+button,
+label[for],
+select,
+[role='tab'],
+[role='button'],
+[role='option'],
 ::file-selector-button {
   cursor: pointer;
 }
@@ -284,7 +329,8 @@ summary {
   display: none;
 }
 
-dialog, [popover] {
+dialog,
+[popover] {
   overflow: unset;
   inline-size: unset;
   block-size: unset;
@@ -295,7 +341,8 @@ dialog, [popover] {
   color: unset;
 }
 
-dialog:not([open], [popover]), [popover]:not(:popover-open) {
+dialog:not([open], [popover]),
+[popover]:not(:popover-open) {
   display: none !important;
 }
 
@@ -319,7 +366,8 @@ dialog:not([open], [popover]), [popover]:not(:popover-open) {
   outline: none !important;
 }
 
-:disabled, [aria-disabled='true'] {
+:disabled,
+[aria-disabled='true'] {
   cursor: default;
 }
 
