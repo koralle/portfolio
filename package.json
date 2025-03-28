@@ -3,6 +3,16 @@
   "private": true,
   "type": "module",
   "version": "0.0.1",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": ">=10"
+    },
+    "runtime": {
+      "name": "node",
+      "version": ">=22"
+    }
+  },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
