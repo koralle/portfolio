@@ -9,11 +9,7 @@
  * while respecting the terms of the original MIT License.
  */
 
-*,
-::before,
-::after,
-::backdrop,
-::file-selector-button {
+:where(*, ::before, ::after, ::backdrop, ::file-selector-button) {
   box-sizing: border-box;
   min-inline-size: 0;
   border-width: 0;
@@ -22,8 +18,7 @@
   padding: 0;
 }
 
-:root,
-body {
+:where(:root, body) {
   overflow-inline: clip;
 
   @supports not (overflow-inline: clip) {
@@ -31,7 +26,7 @@ body {
   }
 }
 
-:root {
+:where(:root) {
   font-family:
     'Helvetica Neue', arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'BIZ UDPGothic', meiryo,
     sans-serif;
@@ -55,66 +50,51 @@ body {
   }
 }
 
-body {
+:where(body) {
   min-block-size: 100svb;
   margin: unset;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1, h2, h3, h4, h5, h6) {
   margin-block: unset;
   font-size: unset;
   font-weight: unset;
 }
 
-search {
+:where(search) {
   display: block flow;
 }
 
-p,
-blockquote,
-figure,
-pre,
-address,
-ul,
-ol,
-dl {
+:where(p, blockquote, figure, pre, address, ul, ol, dl) {
   margin-block: unset;
 }
 
-blockquote,
-figure {
+:where(blockquote, figure) {
   margin-inline: unset;
 }
 
-address:lang(ja) {
+:where(address:lang(ja)) {
   font-style: unset;
 }
 
-ul,
-ol,
-menu {
+:where(ul, ol, menu) {
   padding-inline-start: unset;
   list-style: unset;
 }
 
-dt {
+:where(dt) {
   font-weight: 700;
 }
 
-dd {
+:where(dd) {
   margin-inline-start: unset;
 }
 
-hr {
+:where(hr) {
   border-block-start-width: 1px;
 }
 
-pre {
+:where(pre) {
   tab-size: 2;
 
   @media print {
@@ -122,64 +102,56 @@ pre {
   }
 }
 
-b,
-strong {
+:where(b, strong) {
   font-weight: 700;
 }
 
-em:lang(ja) {
+:where(em:lang(ja)) {
   font-weight: 700;
 }
 
-i,
-cite,
-em,
-dfn,
-var:lang(ja) {
+:where(i, cite, em, dfn, var:lang(ja)) {
   font-style: unset;
 }
 
-small {
+:where(small) {
   font-size: 1em;
   font-weight: 400;
 }
 
-code,
-kbd,
-samp {
+:where(code, kbd, samp) {
   font-family:
     ui-monospace, sfmono-regular, menlo, monaco, consolas, 'Liberation Mono', 'Courier New', serif;
   font-size: unset;
 }
 
-cite,
-dfn {
+:where(cite, dfn) {
   --_quotation-start: '"';
   --_quotation-end: '"';
 
-  &::before {
+  :where(&::before) {
     content: var(--_quotation-start);
   }
 
-  &::after {
+  :where(&::after) {
     content: var(--_quotation-end);
   }
 
-  &:lang(ja) {
+  :where(&:lang(ja)) {
     --_quotation-start: '「';
     --_quotation-end: '」';
   }
 }
 
-var {
+:where(var) {
   font-family: serif;
 
-  &:lang(ja) {
+  :where(&:lang(ja)) {
     font-family: unset;
   }
 }
 
-mark {
+:where(mark) {
   @media (forced-colors: none) {
     background-color: unset;
     color: unset;
@@ -191,7 +163,7 @@ mark {
   }
 }
 
-:any-link {
+:where(:any-link) {
   background-color: unset;
   color: unset;
   text-decoration-line: none;
@@ -200,54 +172,41 @@ mark {
   text-decoration-skip-ink: auto;
 }
 
-ins:not(.adsbygoogle) {
+:where(ins:not(.adsbygoogle)) {
   text-decoration-style: dashed;
   text-underline-offset: 0.4em;
   text-decoration-skip-ink: auto;
 }
 
-del {
+:where(:del) {
   text-decoration-style: double;
 }
 
-img,
-picture,
-svg,
-video,
-canvas,
-audio,
-iframe,
-embed,
-object {
+:where(img, picture, svg, video, canvas, audio, iframe, embed, object) {
   display: block flow;
   max-inline-size: 100%;
   block-size: auto;
 }
 
-table {
+:where(table) {
   border-collapse: collapse;
 }
 
-caption {
+:where(caption) {
   text-align: start;
 }
 
-td,
-th {
+:where(td, th) {
   padding: unset;
   vertical-align: top;
 }
 
-th {
+:where(th) {
   font-weight: 700;
   text-align: start;
 }
 
-button,
-input,
-select,
-textarea,
-::file-selector-button {
+:where(button, input, select, textarea, ::file-selector-button) {
   padding: unset;
   border: 1px solid transparent;
   border-radius: unset;
@@ -260,77 +219,76 @@ textarea,
   text-transform: unset;
 }
 
-[type='radio' i],
-[type='checkbox' i] {
+:where([type='radio' i], [type='checkbox' i]) {
   margin: unset;
 }
 
-[type='file' i] {
+:where([type='file' i]) {
   cursor: unset;
 }
 
-textarea {
+:where(textarea) {
   margin-block: unset;
   resize: block;
 }
 
-button,
-::file-selector-button {
+:where(button, ::file-selector-button) {
   inline-size: fit-content;
   touch-action: manipulation;
 }
 
-button::-moz-focus-inner {
+:where(button::-moz-focus-inner) {
   padding: unset;
 }
 
-button,
-label[for],
-select,
-[role='tab'],
-[role='button'],
-[role='option'],
-::file-selector-button {
+:where(
+  button,
+  label[for],
+  select,
+  [role='tab'],
+  [role='button'],
+  [role='option'],
+  ::file-selector-button
+) {
   cursor: pointer;
 }
 
-select:disabled {
+:where(select:disabled) {
   opacity: inherit;
 }
 
-fieldset {
+:where(fieldset) {
   margin-inline: unset;
   padding: unset;
 }
 
-legend {
+:where(legend) {
   padding-inline: unset;
 }
 
-optgroup {
+:where(optgroup) {
   font: unset;
 }
 
-::placeholder {
+:where(::placeholder) {
   opacity: unset;
 }
 
-::picker(select) {
+:where(::picker(select)) {
   display: block flow;
   padding: unset;
 }
 
-summary {
+:where(summary) {
   display: block flow;
   cursor: pointer;
 }
 
-::-webkit-details-marker {
+:where(::-webkit-details-marker) {
   display: none;
 }
 
-dialog,
-[popover] {
+:where(dialog, [popover]) {
   overflow: unset;
   inline-size: unset;
   block-size: unset;
@@ -341,45 +299,40 @@ dialog,
   color: unset;
 }
 
-dialog:not([open], [popover]),
-[popover]:not(:popover-open) {
+:where(dialog:not([open]), [popover]:not(:popover-open)) {
   display: none !important;
 }
 
-::backdrop {
+:where(::backdrop) {
   background-color: unset;
 }
 
-:-moz-focusring {
+:where(:-moz-focusring) {
   outline: auto;
 }
 
-:focus-visible {
+:where(:focus-visible) {
   outline-offset: 2px;
 }
 
-:focus:not(:focus-visible) {
+:where(:focus:not(:focus-visible)) {
   outline: none;
 }
 
-[tabindex='-1']:focus-visible {
+:where([tabindex='-1']:focus-visible) {
   outline: none !important;
 }
 
-:disabled,
-[aria-disabled='true'] {
+:where(:disabled, [aria-disabled='true']) {
   cursor: default;
 }
 
-[hidden]:not([hidden='until-found']) {
+:where([hidden]:not([hidden='until-found'])) {
   display: none !important;
 }
 
-:not([data-safe-animation]) {
-  &,
-  &::before,
-  &::after,
-  &::backdrop {
+:where(:not([data-safe-animation])) {
+  :where(&, &::before, &::after, &::backdrop) {
     @media (prefers-reduced-motion: reduce) {
       background-attachment: unset !important;
       scroll-behavior: unset !important;
