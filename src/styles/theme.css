@@ -20,6 +20,8 @@
   --color-black: #000;
   --color-white: #fff;
 
+  --color-brand: #ec93a1;
+
   /* Breakpoints */
   --breakpoint-xs: 375px;
   --breakpoint-sm: 480px;
