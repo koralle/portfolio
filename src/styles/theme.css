@@ -22,6 +22,11 @@
 
   --color-brand: #ec93a1;
 
+  --color-base: #1a2a4f;
+  --color-main: #a8d8ff;
+  --color-sub: #f8f0c1;
+  --color-accent: var(--color-brand);
+
   /* Breakpoints */
   --breakpoint-xs: 375px;
   --breakpoint-sm: 480px;
