@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.11.0",
   "devEngines": {
     "packageManager": {
       "name": "pnpm",
@@ -25,19 +25,19 @@
     "format:fix": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.5.2",
-    "@tailwindcss/vite": "^4.1.6",
-    "astro": "^5.7.12",
-    "tailwindcss": "^4.1.6"
+    "@astrojs/cloudflare": "^12.5.3",
+    "@tailwindcss/vite": "^4.1.7",
+    "astro": "^5.7.13",
+    "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250517.0",
     "@tsconfig/strictest": "^2.0.5",
-    "pnpm": "^10.10.0",
+    "pnpm": "^10.11.0",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "rollup-plugin-visualizer": "^5.14.0",
     "typescript": "^5.8.3",
-    "wrangler": "^4.14.4"
+    "wrangler": "^4.15.2"
   }
 }
