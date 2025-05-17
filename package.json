@@ -37,6 +37,8 @@
     "@astrojs/react": "^4.2.7",
     "@cloudflare/workers-types": "^4.20250517.0",
     "@tsconfig/strictest": "^2.0.5",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
     "pnpm": "^10.11.0",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",

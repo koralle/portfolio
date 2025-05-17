@@ -39,6 +39,12 @@ importers:
       '@tsconfig/strictest':
         specifier: ^2.0.5
         version: 2.0.5
+      '@types/react':
+        specifier: ^19.1.4
+        version: 19.1.4
+      '@types/react-dom':
+        specifier: ^19.1.5
+        version: 19.1.5(@types/react@19.1.4)
       pnpm:
         specifier: ^10.11.0
         version: 10.11.0
