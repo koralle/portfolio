@@ -34,6 +34,7 @@
     "tailwindcss": "^4.1.7"
   },
   "devDependencies": {
+    "@astrojs/react": "^4.2.7",
     "@cloudflare/workers-types": "^4.20250517.0",
     "@tsconfig/strictest": "^2.0.5",
     "pnpm": "^10.11.0",
