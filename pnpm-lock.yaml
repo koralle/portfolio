@@ -45,6 +45,9 @@ importers:
       eslint-typegen:
         specifier: ^2.2.0
         version: 2.2.0(eslint@9.28.0(jiti@2.4.2))
+      jiti:
+        specifier: ^2.4.2
+        version: 2.4.2
       lefthook:
         specifier: ^1.11.13
         version: 1.11.13
