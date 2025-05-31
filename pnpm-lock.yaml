@@ -24,6 +24,9 @@ importers:
       '@cloudflare/workers-types':
         specifier: ^4.20250519.0
         version: 4.20250519.0
+      '@eslint/css':
+        specifier: ^0.8.1
+        version: 0.8.1
       '@pandacss/dev':
         specifier: ^0.53.7
         version: 0.53.7(typescript@5.8.3)
@@ -366,6 +369,14 @@ packages:
 
   '@eslint/core@0.14.0':
     resolution: {integrity: sha512-qIbV0/JZr7iSDjqAc60IqbLdsj9GDt16xQtWD+B78d/HAlvysGdZZ6rpJHGAc2T0FQx1X6thsSPdnoiGKdNtdg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/css-tree@3.5.4':
+    resolution: {integrity: sha512-n+YfV26/+xZzOUen8IewwmB4A7uqBo2uaahFv8lqF1sIBsSG8BW4u98EW38xFUsvYz2N6p9yWqpqxuZAkm7CKw==}
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
+
+  '@eslint/css@0.8.1':
+    resolution: {integrity: sha512-674JJD1q8sDlJORLep+gGnm3VRCQo/qLmKQgCIf2LnUK/tHf96StWjLX2IF3yyp3yeU9npZ6ixySMr2G256eiQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/eslintrc@3.3.1':
@@ -1935,6 +1946,9 @@ packages:
   mdn-data@2.12.2:
     resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
 
+  mdn-data@2.20.0:
+    resolution: {integrity: sha512-/d3otgvmquUkAN2RVxSg6lIbQrYX7isR4aC5Hvw8JuHvzctR3eUG50WmsAZjb9MkbJ5LbijPSy7uIxEtQDGI0w==}
+
   memorystream@0.3.1:
     resolution: {integrity: sha512-S3UwM3yj5mtUSEfP41UZmt/0SCoVYUcU1rkXv+BQ5Ig8ndL4sPoJNBUJERafdPb5jjHJGuMgytgKvKIf58XNBw==}
     engines: {node: '>= 0.10.0'}
@@ -3243,6 +3257,17 @@ snapshots:
   '@eslint/core@0.14.0':
     dependencies:
       '@types/json-schema': 7.0.15
+
+  '@eslint/css-tree@3.5.4':
+    dependencies:
+      mdn-data: 2.20.0
+      source-map-js: 1.2.1
+
+  '@eslint/css@0.8.1':
+    dependencies:
+      '@eslint/core': 0.14.0
+      '@eslint/css-tree': 3.5.4
+      '@eslint/plugin-kit': 0.3.1
 
   '@eslint/eslintrc@3.3.1':
     dependencies:
@@ -5050,6 +5075,8 @@ snapshots:
       '@types/mdast': 4.0.4
 
   mdn-data@2.12.2: {}
+
+  mdn-data@2.20.0: {}
 
   memorystream@0.3.1: {}
 
