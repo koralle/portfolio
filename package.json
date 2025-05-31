@@ -22,7 +22,10 @@
     "deploy": "astro build && wrangler pages deploy",
     "cf-typegen": "wrangler types",
     "format": "prettier --check .",
-    "format:fix": "prettier --write ."
+    "format:fix": "prettier --write .",
+    "typecheck:app": "tsc -p tsconfig.app.json --noEmit",
+    "typecheck:node": "tsc -p tsconfig.node.json --noEmit",
+    "typecheck": "run-p typecheck:*"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.3",
@@ -33,6 +36,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250519.0",
     "@tsconfig/strictest": "^2.0.5",
+    "npm-run-all2": "^8.0.4",
     "pnpm": "^10.11.0",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
