@@ -7,6 +7,6 @@
     "target": "es2022",
     "module": "nodenext",
     "lib": ["esnext"],
-    "allowJs": true,
+    "allowJs": true
   }
 }

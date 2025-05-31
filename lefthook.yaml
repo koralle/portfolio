@@ -1,0 +1,15 @@
+pre-commit:
+  parallel: true
+  jobs:
+    - name: Format with Prettier
+      glob:
+        - '*.ts'
+        - '*.mts'
+        - '*.mjs'
+        - '*.cjs'
+        - '*.astro'
+        - 'lefthook.yaml'
+        - '*.json'
+        - '*.jsonc'
+      run: pnpm prettier {staged_files} --write --config .prettierrc.mjs
+      stage_fixed: true
