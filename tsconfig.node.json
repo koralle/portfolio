@@ -1,0 +1,12 @@
+{
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "include": [".prettierrc.mjs"],
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "tsconfig.node.tsbuildinfo",
+    "target": "es2022",
+    "module": "nodenext",
+    "lib": ["esnext"],
+    "allowJs": true,
+  }
+}
