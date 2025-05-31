@@ -30,3 +30,7 @@ pnpm-debug.log*
 .vscode
 
 *.tsbuildinfo
+
+## Panda
+styled-system
+styled-system-studio

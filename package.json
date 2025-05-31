@@ -15,6 +15,7 @@
     }
   },
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro build && wrangler pages dev",
