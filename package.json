@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250519.0",
+    "@pandacss/dev": "^0.53.7",
     "@tsconfig/strictest": "^2.0.5",
     "npm-run-all2": "^8.0.4",
     "pnpm": "^10.11.0",
