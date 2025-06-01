@@ -13,7 +13,13 @@ export default defineConfig({
   // Useful for theme customization
   theme: {
     tokens: {},
-    semanticTokens: {},
+    semanticTokens: {
+      colors: {
+        primary: {
+          value: '#ec93a1',
+        },
+      },
+    },
     extend: {},
   },
 
