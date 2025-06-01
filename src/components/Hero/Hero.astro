@@ -1,0 +1,61 @@
+---
+import { css } from '../../../styled-system/css';
+import { Image } from 'astro:assets'
+import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp'
+---
+
+<section
+  class={css({
+    display: "grid",
+    placeItems: 'center',
+    width: '100svi',
+    height: '100svb',
+    backgroundColor: '#1a1a1a',
+    paddingInline: { base: '16px', sm: '24px', md: '32px' },
+    paddingBlock: '64px'
+  })}
+>
+  <div class={
+    css({
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: '100%',
+      maxWidth: '1440px',
+      height: '100%'
+    })
+  }>
+    <hgroup>
+      <h1
+        class={css({
+          fontSize: { base: '1.75em', sm: '3em', md: '3.5em' },
+          fontWeight: 700,
+        })}
+      >
+        Hi! I'm <span
+        class={css({
+          background: 'linear-gradient(to right, #FF8A8A, #D32F2F)',
+          backgroundClip: 'text',
+          color: 'transparent',
+        })}>koralle</span
+      >!
+      </h1>
+      <p
+        class={css({
+          fontSize: { base: '1em', sm: '1.5em' },
+          color: 'oklch(0.872 0.01 258.338)',
+          fontWeight: 400,
+        })}
+      >
+        A seal and a front-end developer.
+      </p>
+    </hgroup>
+    <div class={css({
+      display: 'grid',
+      placeItems: 'center',
+      width: { base: '192px', md: '320px', lg: '480px', xl: '640px' }
+    })}>
+      <Image src={SleepingMugicha} alt="" />
+    </div>
+  </div>
+</section>
