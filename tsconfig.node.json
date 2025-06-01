@@ -1,12 +1,6 @@
 {
   "extends": "@tsconfig/strictest/tsconfig.json",
-  "include": [
-    ".prettierrc.mjs",
-    "panda.config.ts",
-    "eslint.config.ts",
-    "eslint-typegen.d.ts",
-    "astro.config.mts"
-  ],
+  "include": [".prettierrc.mjs", "panda.config.ts", "eslint.config.ts", "eslint-typegen.d.ts"],
   "compilerOptions": {
     "composite": true,
     "tsBuildInfoFile": "tsconfig.node.tsbuildinfo",
