@@ -1,4 +1,10 @@
-import { defineConfig } from '@pandacss/dev';
+import { defineConfig, defineGlobalStyles } from '@pandacss/dev';
+
+const globalStyles = defineGlobalStyles({
+  ':root, body': {
+    color: '#e0e0e0',
+  },
+});
 
 export default defineConfig({
   // Whether to use css reset
@@ -23,6 +29,7 @@ export default defineConfig({
     extend: {},
   },
 
+  globalCss: globalStyles,
   // The output directory for your css system
   outdir: 'styled-system',
 });
