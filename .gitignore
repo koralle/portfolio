@@ -34,3 +34,7 @@ pnpm-debug.log*
 ## Panda
 styled-system
 styled-system-studio
+
+# eslint-typegen
+# https://github.com/antfu/eslint-typegen
+eslint-typegen.d.ts

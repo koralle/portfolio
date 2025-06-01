@@ -11,5 +11,42 @@ pre-commit:
         - 'lefthook.yaml'
         - '*.json'
         - '*.jsonc'
-      run: pnpm prettier {staged_files} --write --config .prettierrc.mjs
+      run: |
+        pnpm prettier {staged_files} --write --config .prettierrc.mjs
       stage_fixed: true
+
+    - name: Lint with ESLint
+      glob:
+        - 'src/**/*.ts'
+        - 'src/**/*.astro'
+        - '.prettierrc.mjs'
+        - 'panda.config.ts'
+        - 'eslint.config.ts'
+        - 'astro.config.mts'
+        - 'postcss.config.cjs'
+        - 'src/**/*.css'
+        - 'package.json'
+        - 'tsconfig.json'
+        - 'tsconfig.app.json'
+        - 'tsconfig.node.json'
+        - 'wrangler.jsonc'
+      run: |
+        pnpm eslint {staged_files} --fix --config eslint.config.ts
+      stage_fixed: true
+
+    - name: Typecheck with tsc (app)
+      glob:
+        - 'src/**/*.ts'
+        - 'src/**/*.astro'
+      run: |
+        pnpm tsc -p tsconfig.app.json --noEmit
+
+    - name: Typecheck with tsc (node)
+      glob:
+        - '.prettierrc.mjs'
+        - 'panda.config.ts'
+        - 'eslint.config.ts'
+        - 'astro.config.mts'
+        - 'postcss.config.cjs'
+      run: |
+        pnpm tsc -p tsconfig.node.json --noEmit
