@@ -9,339 +9,341 @@
  * while respecting the terms of the original MIT License.
  */
 
-:where(*, ::before, ::after, ::backdrop, ::file-selector-button) {
-  box-sizing: border-box;
-  min-inline-size: 0;
-  border-width: 0;
-  border-style: solid;
-  margin: 0;
-  padding: 0;
-}
-
-:where(:root, body) {
-  overflow-inline: clip;
-
-  @supports not (overflow-inline: clip) {
-    overflow-x: clip;
-  }
-}
-
-:where(:root) {
-  font-family:
-    'Helvetica Neue', arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'BIZ UDPGothic', meiryo,
-    sans-serif;
-  font-style: unset;
-  font-weight: 400;
-  line-height: 1.5;
-  text-align: start;
-  text-spacing-trim: trim-start;
-  word-break: initial;
-  line-break: strict;
-  overflow-wrap: anywhere;
-  hyphens: auto;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-  scrollbar-gutter: stable;
-  interpolate-size: allow-keywords;
-  -webkit-tap-highlight-color: transparent;
-
-  &:has(:modal) {
-    overflow: hidden;
-  }
-}
-
-:where(body) {
-  min-block-size: 100svb;
-  margin: unset;
-}
-
-:where(h1, h2, h3, h4, h5, h6) {
-  margin-block: unset;
-  font-size: unset;
-  font-weight: unset;
-}
-
-:where(search) {
-  display: block flow;
-}
-
-:where(p, blockquote, figure, pre, address, ul, ol, dl) {
-  margin-block: unset;
-}
-
-:where(blockquote, figure) {
-  margin-inline: unset;
-}
-
-:where(address:lang(ja)) {
-  font-style: unset;
-}
-
-:where(ul, ol, menu) {
-  padding-inline-start: unset;
-  list-style: unset;
-}
-
-:where(dt) {
-  font-weight: 700;
-}
-
-:where(dd) {
-  margin-inline-start: unset;
-}
-
-:where(hr) {
-  border-block-start-width: 1px;
-}
-
-:where(pre) {
-  tab-size: 2;
-
-  @media print {
-    white-space: pre-wrap;
-  }
-}
-
-:where(b, strong) {
-  font-weight: 700;
-}
-
-:where(em:lang(ja)) {
-  font-weight: 700;
-}
-
-:where(i, cite, em, dfn, var:lang(ja)) {
-  font-style: unset;
-}
-
-:where(small) {
-  font-size: 1em;
-  font-weight: 400;
-}
-
-:where(code, kbd, samp) {
-  font-family:
-    ui-monospace, sfmono-regular, menlo, monaco, consolas, 'Liberation Mono', 'Courier New', serif;
-  font-size: unset;
-}
-
-:where(cite, dfn) {
-  --_quotation-start: '"';
-  --_quotation-end: '"';
-
-  :where(&::before) {
-    content: var(--_quotation-start);
+@layer reset {
+  :where(*, ::before, ::after, ::backdrop, ::file-selector-button) {
+    box-sizing: border-box;
+    min-inline-size: 0;
+    border-width: 0;
+    border-style: solid;
+    margin: 0;
+    padding: 0;
   }
 
-  :where(&::after) {
-    content: var(--_quotation-end);
+  :where(:root, body) {
+    overflow-inline: clip;
+
+    @supports not (overflow-inline: clip) {
+      overflow-x: clip;
+    }
   }
 
-  :where(&:lang(ja)) {
-    --_quotation-start: '「';
-    --_quotation-end: '」';
+  :where(:root) {
+    font-family:
+      'Helvetica Neue', arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'BIZ UDPGothic',
+      meiryo, sans-serif;
+    font-style: unset;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: start;
+    text-spacing-trim: trim-start;
+    word-break: initial;
+    line-break: strict;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scrollbar-gutter: stable;
+    interpolate-size: allow-keywords;
+    -webkit-tap-highlight-color: transparent;
+
+    &:has(:modal) {
+      overflow: hidden;
+    }
   }
-}
 
-:where(var) {
-  font-family: serif;
-
-  :where(&:lang(ja)) {
-    font-family: unset;
+  :where(body) {
+    min-block-size: 100svb;
+    margin: unset;
   }
-}
 
-:where(mark) {
-  @media (forced-colors: none) {
+  :where(h1, h2, h3, h4, h5, h6) {
+    margin-block: unset;
+    font-size: unset;
+    font-weight: unset;
+  }
+
+  :where(search) {
+    display: block flow;
+  }
+
+  :where(p, blockquote, figure, pre, address, ul, ol, dl) {
+    margin-block: unset;
+  }
+
+  :where(blockquote, figure) {
+    margin-inline: unset;
+  }
+
+  :where(address:lang(ja)) {
+    font-style: unset;
+  }
+
+  :where(ul, ol, menu) {
+    padding-inline-start: unset;
+    list-style: unset;
+  }
+
+  :where(dt) {
+    font-weight: 700;
+  }
+
+  :where(dd) {
+    margin-inline-start: unset;
+  }
+
+  :where(hr) {
+    border-block-start-width: 1px;
+  }
+
+  :where(pre) {
+    tab-size: 2;
+
+    @media print {
+      white-space: pre-wrap;
+    }
+  }
+
+  :where(b, strong) {
+    font-weight: 700;
+  }
+
+  :where(em:lang(ja)) {
+    font-weight: 700;
+  }
+
+  :where(i, cite, em, dfn, var:lang(ja)) {
+    font-style: unset;
+  }
+
+  :where(small) {
+    font-size: 1em;
+    font-weight: 400;
+  }
+
+  :where(code, kbd, samp) {
+    font-family:
+      ui-monospace, sfmono-regular, menlo, monaco, consolas, 'Liberation Mono', 'Courier New', serif;
+    font-size: unset;
+  }
+
+  :where(cite, dfn) {
+    --_quotation-start: '"';
+    --_quotation-end: '"';
+
+    :where(&::before) {
+      content: var(--_quotation-start);
+    }
+
+    :where(&::after) {
+      content: var(--_quotation-end);
+    }
+
+    :where(&:lang(ja)) {
+      --_quotation-start: '「';
+      --_quotation-end: '」';
+    }
+  }
+
+  :where(var) {
+    font-family: serif;
+
+    :where(&:lang(ja)) {
+      font-family: unset;
+    }
+  }
+
+  :where(mark) {
+    @media (forced-colors: none) {
+      background-color: unset;
+      color: unset;
+      text-decoration-line: underline;
+      text-decoration-color: oklch(from #ff0 l c h / 50%);
+      text-decoration-thickness: 0.4em;
+      text-underline-offset: -0.2em;
+      text-decoration-skip-ink: none;
+    }
+  }
+
+  :where(:any-link) {
     background-color: unset;
     color: unset;
-    text-decoration-line: underline;
-    text-decoration-color: oklch(from #ff0 l c h / 50%);
-    text-decoration-thickness: 0.4em;
-    text-underline-offset: -0.2em;
-    text-decoration-skip-ink: none;
+    text-decoration-line: none;
+    text-decoration-thickness: from-font;
+    text-underline-offset: 0.25em;
+    text-decoration-skip-ink: auto;
   }
-}
 
-:where(:any-link) {
-  background-color: unset;
-  color: unset;
-  text-decoration-line: none;
-  text-decoration-thickness: from-font;
-  text-underline-offset: 0.25em;
-  text-decoration-skip-ink: auto;
-}
+  :where(ins:not(.adsbygoogle)) {
+    text-decoration-style: dashed;
+    text-underline-offset: 0.4em;
+    text-decoration-skip-ink: auto;
+  }
 
-:where(ins:not(.adsbygoogle)) {
-  text-decoration-style: dashed;
-  text-underline-offset: 0.4em;
-  text-decoration-skip-ink: auto;
-}
+  :where(:del) {
+    text-decoration-style: double;
+  }
 
-:where(:del) {
-  text-decoration-style: double;
-}
+  :where(img, picture, svg, video, canvas, audio, iframe, embed, object) {
+    display: block flow;
+    max-inline-size: 100%;
+    block-size: auto;
+  }
 
-:where(img, picture, svg, video, canvas, audio, iframe, embed, object) {
-  display: block flow;
-  max-inline-size: 100%;
-  block-size: auto;
-}
+  :where(table) {
+    border-collapse: collapse;
+  }
 
-:where(table) {
-  border-collapse: collapse;
-}
+  :where(caption) {
+    text-align: start;
+  }
 
-:where(caption) {
-  text-align: start;
-}
+  :where(td, th) {
+    padding: unset;
+    vertical-align: top;
+  }
 
-:where(td, th) {
-  padding: unset;
-  vertical-align: top;
-}
+  :where(th) {
+    font-weight: 700;
+    text-align: start;
+  }
 
-:where(th) {
-  font-weight: 700;
-  text-align: start;
-}
+  :where(button, input, select, textarea, ::file-selector-button) {
+    padding: unset;
+    border: 1px solid transparent;
+    border-radius: unset;
+    background-color: unset;
+    color: unset;
+    font: unset;
+    vertical-align: middle;
+    letter-spacing: unset;
+    text-align: unset;
+    text-transform: unset;
+  }
 
-:where(button, input, select, textarea, ::file-selector-button) {
-  padding: unset;
-  border: 1px solid transparent;
-  border-radius: unset;
-  background-color: unset;
-  color: unset;
-  font: unset;
-  vertical-align: middle;
-  letter-spacing: unset;
-  text-align: unset;
-  text-transform: unset;
-}
+  :where([type='radio' i], [type='checkbox' i]) {
+    margin: unset;
+  }
 
-:where([type='radio' i], [type='checkbox' i]) {
-  margin: unset;
-}
+  :where([type='file' i]) {
+    cursor: unset;
+  }
 
-:where([type='file' i]) {
-  cursor: unset;
-}
+  :where(textarea) {
+    margin-block: unset;
+    resize: block;
+  }
 
-:where(textarea) {
-  margin-block: unset;
-  resize: block;
-}
+  :where(button, ::file-selector-button) {
+    inline-size: fit-content;
+    touch-action: manipulation;
+  }
 
-:where(button, ::file-selector-button) {
-  inline-size: fit-content;
-  touch-action: manipulation;
-}
+  :where(button::-moz-focus-inner) {
+    padding: unset;
+  }
 
-:where(button::-moz-focus-inner) {
-  padding: unset;
-}
+  :where(
+    button,
+    label[for],
+    select,
+    [role='tab'],
+    [role='button'],
+    [role='option'],
+    ::file-selector-button
+  ) {
+    cursor: pointer;
+  }
 
-:where(
-  button,
-  label[for],
-  select,
-  [role='tab'],
-  [role='button'],
-  [role='option'],
-  ::file-selector-button
-) {
-  cursor: pointer;
-}
+  :where(select:disabled) {
+    opacity: inherit;
+  }
 
-:where(select:disabled) {
-  opacity: inherit;
-}
+  :where(fieldset) {
+    margin-inline: unset;
+    padding: unset;
+  }
 
-:where(fieldset) {
-  margin-inline: unset;
-  padding: unset;
-}
+  :where(legend) {
+    padding-inline: unset;
+  }
 
-:where(legend) {
-  padding-inline: unset;
-}
+  :where(optgroup) {
+    font: unset;
+  }
 
-:where(optgroup) {
-  font: unset;
-}
+  :where(::placeholder) {
+    opacity: unset;
+  }
 
-:where(::placeholder) {
-  opacity: unset;
-}
+  :where(::picker(select)) {
+    display: block flow;
+    padding: unset;
+  }
 
-:where(::picker(select)) {
-  display: block flow;
-  padding: unset;
-}
+  :where(summary) {
+    display: block flow;
+    cursor: pointer;
+  }
 
-:where(summary) {
-  display: block flow;
-  cursor: pointer;
-}
+  :where(::-webkit-details-marker) {
+    display: none;
+  }
 
-:where(::-webkit-details-marker) {
-  display: none;
-}
+  :where(dialog, [popover]) {
+    overflow: unset;
+    inline-size: unset;
+    block-size: unset;
+    max-inline-size: unset;
+    max-block-size: unset;
+    padding: unset;
+    background-color: unset;
+    color: unset;
+  }
 
-:where(dialog, [popover]) {
-  overflow: unset;
-  inline-size: unset;
-  block-size: unset;
-  max-inline-size: unset;
-  max-block-size: unset;
-  padding: unset;
-  background-color: unset;
-  color: unset;
-}
+  :where(dialog:not([open]), [popover]:not(:popover-open)) {
+    display: none !important;
+  }
 
-:where(dialog:not([open]), [popover]:not(:popover-open)) {
-  display: none !important;
-}
+  :where(::backdrop) {
+    background-color: unset;
+  }
 
-:where(::backdrop) {
-  background-color: unset;
-}
+  :where(:-moz-focusring) {
+    outline: auto;
+  }
 
-:where(:-moz-focusring) {
-  outline: auto;
-}
+  :where(:focus-visible) {
+    outline-offset: 2px;
+  }
 
-:where(:focus-visible) {
-  outline-offset: 2px;
-}
+  :where(:focus:not(:focus-visible)) {
+    outline: none;
+  }
 
-:where(:focus:not(:focus-visible)) {
-  outline: none;
-}
+  :where([tabindex='-1']:focus-visible) {
+    outline: none !important;
+  }
 
-:where([tabindex='-1']:focus-visible) {
-  outline: none !important;
-}
+  :where(:disabled, [aria-disabled='true']) {
+    cursor: default;
+  }
 
-:where(:disabled, [aria-disabled='true']) {
-  cursor: default;
-}
+  :where([hidden]:not([hidden='until-found'])) {
+    display: none !important;
+  }
 
-:where([hidden]:not([hidden='until-found'])) {
-  display: none !important;
-}
-
-:where(:not([data-safe-animation])) {
-  :where(&, &::before, &::after, &::backdrop) {
-    @media (prefers-reduced-motion: reduce) {
-      background-attachment: unset !important;
-      scroll-behavior: unset !important;
-      transition-delay: unset !important;
-      transition-duration: 1ms !important;
-      animation-duration: 1ms !important;
-      animation-delay: unset !important;
-      animation-iteration-count: unset !important;
-      view-transition-name: none !important;
+  :where(:not([data-safe-animation])) {
+    :where(&, &::before, &::after, &::backdrop) {
+      @media (prefers-reduced-motion: reduce) {
+        background-attachment: unset !important;
+        scroll-behavior: unset !important;
+        transition-delay: unset !important;
+        transition-duration: 1ms !important;
+        animation-duration: 1ms !important;
+        animation-delay: unset !important;
+        animation-iteration-count: unset !important;
+        view-transition-name: none !important;
+      }
     }
   }
 }
