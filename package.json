@@ -36,8 +36,7 @@
     "@astrojs/cloudflare": "^12.5.3",
     "@lucide/astro": "^0.513.0",
     "astro": "^5.8.1",
-    "gsap": "^3.13.0",
-    "simple-icons-astro": "^15.0.0"
+    "gsap": "^3.13.0"
   },
   "devDependencies": {
     "@astrojs/ts-plugin": "^1.10.4",
