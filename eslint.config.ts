@@ -43,7 +43,7 @@ const config: ConfigArray = await typegen([
   },
   {
     name: '@koralle-portfolio/typescript (app)',
-    files: ['src/**/*.ts', 'src/**/*.astro', 'astro.config.mts'],
+    files: ['src/**/*.ts', 'astro.config.mts'],
     languageOptions: {
       parser: tseslint.parser as Linter.Parser,
       parserOptions: {
