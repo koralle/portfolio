@@ -27,20 +27,27 @@ import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
   >
     <hgroup>
       <h1
+        id="greeting"
         class={css({
-          fontSize: { base: '1.75em', sm: '3em', md: '3.5em' },
+          fontSize: { base: '1.5em', sm: '2.75em', md: '3.25em' },
           fontWeight: 700,
         })}
       >
-        Hi! I'm <span
-          class={css({
-            background: 'linear-gradient(to right, #FF8A8A, #D32F2F)',
-            backgroundClip: 'text',
-            color: 'transparent',
-          })}>koralle</span
-        >!
+        Hi! I'm
+        <span
+          id="my-name"
+          class={
+            css({
+              color: 'primary',
+            })
+          }
+        >
+          koralle
+        </span>
+        !
       </h1>
       <p
+        id="self-introduction"
         class={css({
           fontSize: { base: '1em', sm: '1.5em' },
           color: 'oklch(0.872 0.01 258.338)',
@@ -51,6 +58,7 @@ import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
       </p>
     </hgroup>
     <div
+      id="sleeping-mugicha"
       class={css({
         display: 'grid',
         placeItems: 'center',
@@ -61,3 +69,18 @@ import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
     </div>
   </div>
 </section>
+
+<script>
+import { gsap } from 'gsap'
+import { SplitText } from 'gsap/SplitText'
+
+gsap.registerPlugin(SplitText)
+
+const splitGreeting = SplitText.create("#greeting", { type: "words,chars" })
+
+gsap.timeline()
+  .from('#sleeping-mugicha', { opacity: 0, x: 50, duration: 1 })
+  .from(splitGreeting.chars, { opacity: 0, y: 20, stagger: 0.05, duration: 1 })
+  .from("#self-introduction", { opacity: 0, x: -20, duration: 0.5 })
+
+</script>
