@@ -7,7 +7,6 @@ import tseslint from 'typescript-eslint';
 import { ESLint, Linter } from 'eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import eslintPluginAstro from 'eslint-plugin-astro';
-import eslintPluginJson from '@eslint/json';
 
 const strictTypeCheckedRules = tseslint.configs.strictTypeChecked
   .map(config => config.rules)
@@ -92,114 +91,6 @@ const config: ConfigArray = await typegen([
     plugins: { css },
     rules: {
       ...css.configs.recommended.rules,
-
-      // astro/recommended
-      'astro/missing-client-only-directive-value': 'off',
-      'astro/no-conflict-set-directives': 'off',
-      'astro/no-deprecated-astro-canonicalurl': 'off',
-      'astro/no-deprecated-astro-fetchcontent': 'off',
-      'astro/no-deprecated-astro-resolve': 'off',
-      'astro/no-deprecated-getentrybyslug': 'off',
-      'astro/no-unused-define-vars-in-style': 'off',
-      'astro/valid-compile': 'off',
-
-      // astro/jsx-a11y-strict
-      'astro/jsx-a11y/alt-text': 'off',
-      'astro/jsx-a11y/anchor-has-content': 'off',
-      'astro/jsx-a11y/anchor-is-valid': 'off',
-      'astro/jsx-a11y/aria-activedescendant-has-tabindex': 'off',
-      'astro/jsx-a11y/aria-props': 'off',
-      'astro/jsx-a11y/aria-proptypes': 'off',
-      'astro/jsx-a11y/aria-role': 'off',
-      'astro/jsx-a11y/aria-unsupported-elements': 'off',
-      'astro/jsx-a11y/autocomplete-valid': 'off',
-      'astro/jsx-a11y/click-events-have-key-events': 'off',
-      'astro/jsx-a11y/control-has-associated-label': 'off',
-      'astro/jsx-a11y/heading-has-content': 'off',
-      'astro/jsx-a11y/html-has-lang': 'off',
-      'astro/jsx-a11y/iframe-has-title': 'off',
-      'astro/jsx-a11y/img-redundant-alt': 'off',
-      'astro/jsx-a11y/interactive-supports-focus': 'off',
-      'astro/jsx-a11y/label-has-for': 'off',
-      'astro/jsx-a11y/label-has-associated-control': 'off',
-      'astro/jsx-a11y/media-has-caption': 'off',
-      'astro/jsx-a11y/mouse-events-have-key-events': 'off',
-      'astro/jsx-a11y/no-access-key': 'off',
-      'astro/jsx-a11y/no-autofocus': 'off',
-      'astro/jsx-a11y/no-distracting-elements': 'off',
-      'astro/jsx-a11y/no-interactive-element-to-noninteractive-role': 'off',
-      'astro/jsx-a11y/no-noninteractive-element-interactions': 'off',
-      'astro/jsx-a11y/no-noninteractive-element-to-interactive-role': 'off',
-      'astro/jsx-a11y/no-noninteractive-tabindex': 'off',
-      'astro/jsx-a11y/no-redundant-roles': 'off',
-      'astro/jsx-a11y/no-static-element-interactions': 'off',
-      'astro/jsx-a11y/role-has-required-aria-props': 'off',
-      'astro/jsx-a11y/role-supports-aria-props': 'off',
-      'astro/jsx-a11y/scope': 'off',
-      'astro/jsx-a11y/tabindex-no-positive': 'off',
-    },
-  },
-  {
-    name: '@koralle-portfolio/json',
-    files: ['package.json', 'tsconfig.json', 'tsconfig.app.json', 'tsconfig.node.json'],
-    language: 'json/json',
-    plugins: { json: eslintPluginJson },
-    rules: {
-      ...eslintPluginJson.configs.recommended.rules,
-
-      // astro/recommended
-      'astro/missing-client-only-directive-value': 'off',
-      'astro/no-conflict-set-directives': 'off',
-      'astro/no-deprecated-astro-canonicalurl': 'off',
-      'astro/no-deprecated-astro-fetchcontent': 'off',
-      'astro/no-deprecated-astro-resolve': 'off',
-      'astro/no-deprecated-getentrybyslug': 'off',
-      'astro/no-unused-define-vars-in-style': 'off',
-      'astro/valid-compile': 'off',
-
-      // astro/jsx-a11y-strict
-      'astro/jsx-a11y/alt-text': 'off',
-      'astro/jsx-a11y/anchor-has-content': 'off',
-      'astro/jsx-a11y/anchor-is-valid': 'off',
-      'astro/jsx-a11y/aria-activedescendant-has-tabindex': 'off',
-      'astro/jsx-a11y/aria-props': 'off',
-      'astro/jsx-a11y/aria-proptypes': 'off',
-      'astro/jsx-a11y/aria-role': 'off',
-      'astro/jsx-a11y/aria-unsupported-elements': 'off',
-      'astro/jsx-a11y/autocomplete-valid': 'off',
-      'astro/jsx-a11y/click-events-have-key-events': 'off',
-      'astro/jsx-a11y/control-has-associated-label': 'off',
-      'astro/jsx-a11y/heading-has-content': 'off',
-      'astro/jsx-a11y/html-has-lang': 'off',
-      'astro/jsx-a11y/iframe-has-title': 'off',
-      'astro/jsx-a11y/img-redundant-alt': 'off',
-      'astro/jsx-a11y/interactive-supports-focus': 'off',
-      'astro/jsx-a11y/label-has-for': 'off',
-      'astro/jsx-a11y/label-has-associated-control': 'off',
-      'astro/jsx-a11y/media-has-caption': 'off',
-      'astro/jsx-a11y/mouse-events-have-key-events': 'off',
-      'astro/jsx-a11y/no-access-key': 'off',
-      'astro/jsx-a11y/no-autofocus': 'off',
-      'astro/jsx-a11y/no-distracting-elements': 'off',
-      'astro/jsx-a11y/no-interactive-element-to-noninteractive-role': 'off',
-      'astro/jsx-a11y/no-noninteractive-element-interactions': 'off',
-      'astro/jsx-a11y/no-noninteractive-element-to-interactive-role': 'off',
-      'astro/jsx-a11y/no-noninteractive-tabindex': 'off',
-      'astro/jsx-a11y/no-redundant-roles': 'off',
-      'astro/jsx-a11y/no-static-element-interactions': 'off',
-      'astro/jsx-a11y/role-has-required-aria-props': 'off',
-      'astro/jsx-a11y/role-supports-aria-props': 'off',
-      'astro/jsx-a11y/scope': 'off',
-      'astro/jsx-a11y/tabindex-no-positive': 'off',
-    },
-  },
-  {
-    name: '@koralle-portfolio/jsonc',
-    files: ['wrangler.jsonc'],
-    language: 'json/jsonc',
-    plugins: { json: eslintPluginJson },
-    rules: {
-      ...eslintPluginJson.configs.recommended.rules,
 
       // astro/recommended
       'astro/missing-client-only-directive-value': 'off',
