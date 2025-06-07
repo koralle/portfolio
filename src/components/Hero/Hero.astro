@@ -37,11 +37,9 @@ import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
         Hi! I'm
         <span
           id="my-name"
-          class={
-            css({
-              color: 'primary',
-            })
-          }
+          class={css({
+            color: 'primary',
+          })}
         >
           koralle
         </span>
@@ -72,14 +70,14 @@ import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
 </section>
 
 <script>
-import { gsap } from 'gsap'
-import { SplitText } from 'gsap/SplitText'
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
 
-const splitGreeting = SplitText.create("#greeting", { type: "words,chars" })
+  const splitGreeting = SplitText.create('#greeting', { type: 'words,chars' });
 
-gsap.timeline()
-  .from('#sleeping-mugicha', { opacity: 0, x: 50, duration: 1 })
-  .from(splitGreeting.chars, { opacity: 0, y: 20, stagger: 0.05, duration: 1 })
-  .from("#self-introduction", { opacity: 0, x: -20, duration: 0.5 })
-
+  gsap
+    .timeline()
+    .from('#sleeping-mugicha', { opacity: 0, x: 50, duration: 1 })
+    .from(splitGreeting.chars, { opacity: 0, y: 20, stagger: 0.05, duration: 1 })
+    .from('#self-introduction', { opacity: 0, x: -20, duration: 0.5 });
 </script>
