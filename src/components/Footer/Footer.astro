@@ -1,8 +1,12 @@
 ---
 import { css } from '../../../styled-system/css';
+import GitHubLogo from '../../../public/images/github-mark-white.webp';
+import XLogo from '../../../public/images/x-logo-white.webp';
+import { Image } from 'astro:assets';
 ---
 
 <footer
+  id="#footer"
   class={css({
     position: 'relative',
     display: 'grid',
@@ -14,6 +18,67 @@ import { css } from '../../../styled-system/css';
     paddingBlock: '64px',
   })}
 >
+  <div
+    class={css({
+      display: 'flex',
+      flexDir: 'column',
+      gap: '32px',
+    })}
+  >
+    <h1
+      class={css({
+        display: 'inline flex',
+        justifyContent: 'center',
+        alignItems: 'start',
+        color: 'primary',
+        fontWeight: 700,
+        fontSize: {
+          base: '1.5em',
+          md: '2.5em',
+          lg: '3em',
+        },
+      })}
+    >
+      Feel free to contact me!
+    </h1>
+    <div
+      class={css({
+        display: 'flex',
+        alignItems: 'start',
+        flexDir: { base: 'column', md: 'row' },
+        gap: '16px',
+      })}
+    >
+      <a
+        href="https://github.com/koralle"
+        target="_blank"
+        class={css({
+          display: 'inline flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '8px',
+          fontWeight: 700,
+        })}
+      >
+        <Image src={GitHubLogo} alt="" width={20} height={20} decoding="async" loading="lazy" />
+        GitHub
+      </a>
+      <a
+        href="https://github.com/koralle"
+        target="_blank"
+        class={css({
+          display: 'inline flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '8px',
+          fontWeight: 700,
+        })}
+      >
+        <Image src={XLogo} alt="" width={20} height={20} decoding="async" loading="lazy" />
+        X (Twitter)
+      </a>
+    </div>
+  </div>
   <p
     class={css({
       position: 'absolute',
