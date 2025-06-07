@@ -1,7 +1,27 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Hero } from '../components/Hero';
+import { About } from '../components/About';
+import { Skills } from '../components/Skills';
+import { Projects } from '../components/Projects';
+import { GetInTouch } from '../components/GetInTouch';
+import { Footer } from '../components/Footer';
 ---
 
 <Layout>
-  <h1>Hello World</h1>
+  <Hero />
+  <About />
+  <Skills />
+  <Projects />
+  <GetInTouch />
+  <Footer />
 </Layout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(SplitText);
+  gsap.registerPlugin(ScrollTrigger);
+</script>

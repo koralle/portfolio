@@ -1,1 +1,25 @@
 @layer reset, base, tokens, recipes, utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Rounded M Plus 1c';
+    src: url(/fonts/MPLUSRounded1c-Regular.woff2) format('woff2');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Rounded M Plus 1c';
+    src: url(/fonts/MPLUSRounded1c-Bold.woff2) format('woff2');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  :where(:host, :root) {
+    font-family: 'Rounded M Plus 1c', sans-serif;
+    letter-spacing: 0.025em;
+    font-feature-settings: 'palt' 1;
+  }
+}

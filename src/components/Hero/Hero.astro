@@ -1,0 +1,83 @@
+---
+import { css } from '../../../styled-system/css';
+import { Image } from 'astro:assets';
+import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
+---
+
+<section
+  id="hero"
+  class={css({
+    display: 'grid',
+    placeItems: 'center',
+    width: '100svi',
+    height: '100svb',
+    backgroundColor: '#1a1a1a',
+    paddingInline: { base: '16px', sm: '24px', md: '32px' },
+    paddingBlock: '64px',
+  })}
+>
+  <div
+    class={css({
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: '100%',
+      maxWidth: '1440px',
+      height: '100%',
+    })}
+  >
+    <hgroup>
+      <h1
+        id="greeting"
+        class={css({
+          fontSize: { base: '1.5em', sm: '2.75em', md: '3.25em' },
+          fontWeight: 700,
+        })}
+      >
+        Hi! I'm
+        <span
+          id="my-name"
+          class={css({
+            color: 'primary',
+          })}
+        >
+          koralle
+        </span>
+        !
+      </h1>
+      <p
+        id="self-introduction"
+        class={css({
+          fontSize: { base: '1em', sm: '1.5em' },
+          color: 'oklch(0.872 0.01 258.338)',
+          fontWeight: 400,
+        })}
+      >
+        A seal and a front-end developer.
+      </p>
+    </hgroup>
+    <div
+      id="sleeping-mugicha"
+      class={css({
+        display: 'grid',
+        placeItems: 'center',
+        width: { base: '192px', md: '320px', lg: '480px', xl: '640px' },
+      })}
+    >
+      <Image src={SleepingMugicha} alt="" />
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
+
+  const splitGreeting = SplitText.create('#greeting', { type: 'words,chars' });
+
+  gsap
+    .timeline()
+    .from('#sleeping-mugicha', { opacity: 0, x: 50, duration: 1 })
+    .from(splitGreeting.chars, { opacity: 0, y: 20, stagger: 0.05, duration: 1 })
+    .from('#self-introduction', { opacity: 0, x: -20, duration: 0.5 });
+</script>
