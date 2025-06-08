@@ -2,6 +2,8 @@
 import Loader from '../components/Loader.astro';
 import '../styles/index.css';
 import '../styles/preflight.css';
+
+const description = 'White seal, frontend engineer. Surfing the endless waves of evolving web technologies and design trends, always swimming forward with curiosity.'
 ---
 
 <!doctype html>
@@ -10,8 +12,21 @@ import '../styles/preflight.css';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <meta name="colorscheme" content="dark light" />
+    <meta property="og:site_name" content="koralle's Portfolio" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="koralle's Portfolio" />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://me.koralle-mgmg.com" />
+    <meta property="og:image" content="https://me.koralle-mgmg.com/images/ogp-card.webp" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:site" content="@koralle_tech" />
+    <meta property="twitter:title" content="koralle's Portfolio" />
+    <meta property="twitter:url" content="https://me.koralle-mgmg.com" />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="https://me.koralle-mgmg.com/images/ogp-card.webp" />
     <title>koralle's Portfolio</title>
   </head>
   <body>
