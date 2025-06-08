@@ -33,9 +33,9 @@
     "typecheck": "run-p typecheck:*"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.5.3",
+    "@astrojs/cloudflare": "12.5.4",
     "@lucide/astro": "^0.513.0",
-    "astro": "^5.8.1",
+    "astro": "5.9.1",
     "gsap": "^3.13.0"
   },
   "devDependencies": {

@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@astrojs/cloudflare':
-        specifier: ^12.5.3
+        specifier: 12.5.4
         version: 12.5.4(@types/node@22.15.30)(astro@5.9.1(@types/node@22.15.30)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(typescript@5.8.3)(yaml@2.8.0))(jiti@2.4.2)(lightningcss@1.30.1)(yaml@2.8.0)
       '@lucide/astro':
         specifier: ^0.513.0
         version: 0.513.0(astro@5.9.1(@types/node@22.15.30)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(typescript@5.8.3)(yaml@2.8.0))
       astro:
-        specifier: ^5.8.1
+        specifier: 5.9.1
         version: 5.9.1(@types/node@22.15.30)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.41.1)(typescript@5.8.3)(yaml@2.8.0)
       gsap:
         specifier: ^3.13.0
