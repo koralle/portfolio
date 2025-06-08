@@ -1,4 +1,5 @@
 ---
+import Loader from '../components/Loader.astro';
 import '../styles/index.css';
 import '../styles/preflight.css';
 ---
@@ -14,6 +15,64 @@ import '../styles/preflight.css';
     <title>koralle's Portfolio</title>
   </head>
   <body>
-    <slot />
+    <Loader />
+    <main id="main-content">
+      <slot />
+    </main>
   </body>
 </html>
+
+<script>
+  import { gsap } from 'gsap';
+  import { SplitText } from 'gsap/SplitText';
+
+  gsap.registerPlugin(SplitText);
+
+  const onDomContentsLoaded = () => {
+    const loaderText = document.querySelector('#loader-text-inner');
+    if (!loaderText) return;
+
+    const split = new SplitText(loaderText, { type: 'words,chars' });
+
+    gsap
+      .timeline({
+        repeat: -1,
+        repeatDelay: 1
+      })
+      .from(split.chars, {
+        y: '100%',
+        stagger: 0.05,
+        duration: 1,
+        ease: 'power4.out',
+      })
+      .to(loaderText, {
+        y: -20,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power4.in',
+        delay: 0.5,
+        onComplete: () => {
+          document.dispatchEvent(new CustomEvent('loader-animation-finished'));
+        },
+      },
+      '-=0.5',
+    )
+      .to(
+        '#loader',
+        {
+          opacity: 0,
+          duration: 1,
+          ease: 'power4.inOut',
+          onComplete: () => {
+            const loader = document.querySelector<HTMLElement>('#loader');
+            if (loader) {
+              loader.style.display = 'none';
+            }
+          },
+        },
+        '-=0.5',
+      );
+  };
+
+  document.addEventListener('DOMContentLoaded', onDomContentsLoaded);
+</script>

@@ -14,6 +14,8 @@ import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
     backgroundColor: '#1a1a1a',
     paddingInline: { base: '16px', sm: '24px', md: '32px' },
     paddingBlock: '64px',
+    visibility: 'hidden',
+    opacity: 0,
   })}
 >
   <div
@@ -73,11 +75,28 @@ import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
   import { gsap } from 'gsap';
   import { SplitText } from 'gsap/SplitText';
 
-  const splitGreeting = SplitText.create('#greeting', { type: 'words,chars' });
+  gsap.registerPlugin(SplitText);
 
-  gsap
-    .timeline()
-    .from('#sleeping-mugicha', { opacity: 0, x: 50, duration: 1 })
-    .from(splitGreeting.chars, { opacity: 0, y: 20, stagger: 0.05, duration: 1 })
-    .from('#self-introduction', { opacity: 0, x: -20, duration: 0.5 });
+  const startHeroAnimation = () => {
+    const splitGreeting = SplitText.create('#greeting', {
+      type: 'words,chars',
+    });
+
+    gsap.set('#hero', { visibility: 'visible' });
+    gsap
+      .timeline()
+      .to('#hero', { opacity: 1, duration: 0.4, ease: 'power2.inOut' })
+      .from('#sleeping-mugicha', { opacity: 0, x: 50, duration: 1 })
+      .from(splitGreeting.chars, {
+        opacity: 0,
+        y: 20,
+        stagger: 0.05,
+        duration: 1,
+      })
+      .from('#self-introduction', { opacity: 0, x: -20, duration: 0.5 });
+  };
+
+  document.addEventListener('loader-animation-finished', startHeroAnimation, {
+    once: true,
+  });
 </script>
