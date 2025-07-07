@@ -33,7 +33,7 @@
     "typecheck": "run-p typecheck:*"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "12.5.4",
+    "@astrojs/cloudflare": "12.6.0",
     "@lucide/astro": "^0.513.0",
     "astro": "5.9.1",
     "gsap": "^3.13.0"
