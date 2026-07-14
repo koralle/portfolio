@@ -63,5 +63,6 @@
     "typescript": "catalog:typescript",
     "typescript-eslint": "catalog:eslint",
     "wrangler": "catalog:cloudflare"
-  }
+  },
+  "packageManager": "pnpm@11.13.0"
 }
