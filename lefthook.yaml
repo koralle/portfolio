@@ -12,14 +12,14 @@ pre-commit:
         - '*.json'
         - '*.jsonc'
       run: |
-        pnpm prettier {staged_files} --write --config .prettierrc.mjs
+        pnpm prettier {staged_files} --write --config prettier.config.ts
       stage_fixed: true
 
     - name: Lint with ESLint
       glob:
         - 'src/**/*.ts'
         - 'src/**/*.astro'
-        - '.prettierrc.mjs'
+        - 'prettier.config.ts'
         - 'panda.config.ts'
         - 'eslint.config.ts'
         - 'astro.config.mts'

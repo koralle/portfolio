@@ -22,7 +22,7 @@
     "src",
     ".astro/types.d.ts",
     "astro.config.mts",
-    ".prettierrc.mjs",
+    "prettier.config.ts",
     "panda.config.ts",
     "eslint.config.ts"
   ]
