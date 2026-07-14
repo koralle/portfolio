@@ -25,3 +25,18 @@ jobs:
           pnpm eslint . \
             --max-warnings 0 \
             --concurrency auto
+
+  format:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup
+        uses: ./.github/composite-actions/cache-and-install
+
+      - name: Format
+        shell: bash
+        run: |
+          pnpm prettier . --check
