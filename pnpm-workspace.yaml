@@ -1,0 +1,12 @@
+allowBuilds:
+  esbuild: true
+  lefthook: true
+  sharp: true
+  workerd: true
+overrides:
+  '@pandacss/node>picomatch': 4.0.5
+  postcss: 8.5.19
+  esbuild: 0.28.1
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types@5.20260713.1'
+  - postcss@8.5.19

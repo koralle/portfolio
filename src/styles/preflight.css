@@ -179,7 +179,7 @@
     text-decoration-skip-ink: auto;
   }
 
-  :where(:del) {
+  :where(del) {
     text-decoration-style: double;
   }
 

@@ -3,7 +3,8 @@ import Loader from '../components/Loader.astro';
 import '../styles/index.css';
 import '../styles/preflight.css';
 
-const description = 'White seal, frontend engineer. Surfing the endless waves of evolving web technologies and design trends, always swimming forward with curiosity.'
+const description =
+  'White seal, frontend engineer. Surfing the endless waves of evolving web technologies and design trends, always swimming forward with curiosity.';
 ---
 
 <!doctype html>
@@ -52,7 +53,7 @@ const description = 'White seal, frontend engineer. Surfing the endless waves of
     gsap
       .timeline({
         repeat: -1,
-        repeatDelay: 1
+        repeatDelay: 1,
       })
       .from(split.chars, {
         y: '100%',
@@ -60,18 +61,20 @@ const description = 'White seal, frontend engineer. Surfing the endless waves of
         duration: 1,
         ease: 'power4.out',
       })
-      .to(loaderText, {
-        y: -20,
-        opacity: 0,
-        duration: 0.5,
-        ease: 'power4.in',
-        delay: 0.5,
-        onComplete: () => {
-          document.dispatchEvent(new CustomEvent('loader-animation-finished'));
+      .to(
+        loaderText,
+        {
+          y: -20,
+          opacity: 0,
+          duration: 0.5,
+          ease: 'power4.in',
+          delay: 0.5,
+          onComplete: () => {
+            document.dispatchEvent(new CustomEvent('loader-animation-finished'));
+          },
         },
-      },
-      '-=0.5',
-    )
+        '-=0.5',
+      )
       .to(
         '#loader',
         {

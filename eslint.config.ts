@@ -4,7 +4,7 @@ import js from '@eslint/js';
 import { ConfigArray } from 'typescript-eslint';
 import css from '@eslint/css';
 import tseslint from 'typescript-eslint';
-import { ESLint, Linter } from 'eslint';
+import { ESLint } from 'eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import eslintPluginAstro from 'eslint-plugin-astro';
 
@@ -33,7 +33,9 @@ const config: ConfigArray = await typegen([
     name: '@koralle-portfolio/js',
     files: [
       'src/**/*.ts',
-      'src/**/*.astro, .prettierrc.mjs, panda.config.ts, eslint.config.ts',
+      '.prettierrc.mjs',
+      'panda.config.ts',
+      'eslint.config.ts',
       'astro.config.mts',
       'postcss.config.cjs',
     ],
@@ -44,8 +46,9 @@ const config: ConfigArray = await typegen([
   {
     name: '@koralle-portfolio/typescript (app)',
     files: ['src/**/*.ts', 'astro.config.mts'],
+    ignores: ['**/*.astro/*.ts'],
     languageOptions: {
-      parser: tseslint.parser as Linter.Parser,
+      parser: tseslint.parser,
       parserOptions: {
         project: './tsconfig.app.json',
         sourceType: 'module',
@@ -53,7 +56,7 @@ const config: ConfigArray = await typegen([
       },
     },
     plugins: {
-      '@typescript-eslint': tseslint.plugin as ESLint.Plugin,
+      '@typescript-eslint': tseslint.plugin,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -65,7 +68,7 @@ const config: ConfigArray = await typegen([
     name: '@koralle-portfolio/typescript (node)',
     files: ['.prettierrc.mjs', 'panda.config.ts', 'eslint.config.ts', 'postcss.config.cjs'],
     languageOptions: {
-      parser: tseslint.parser as Linter.Parser,
+      parser: tseslint.parser,
       parserOptions: {
         project: './tsconfig.node.json',
         sourceType: 'module',
@@ -73,7 +76,7 @@ const config: ConfigArray = await typegen([
       },
     },
     plugins: {
-      '@typescript-eslint': tseslint.plugin as ESLint.Plugin,
+      '@typescript-eslint': tseslint.plugin,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -88,7 +91,7 @@ const config: ConfigArray = await typegen([
     files: ['src/**/*.css'],
     ignores: ['src/styles/preflight.css'],
     language: 'css/css',
-    plugins: { css },
+    plugins: { css: css as unknown as ESLint.Plugin },
     rules: {
       ...css.configs.recommended.rules,
 

@@ -34,12 +34,17 @@ pre-commit:
         pnpm eslint {staged_files} --fix --config eslint.config.ts
       stage_fixed: true
 
-    - name: Typecheck with tsc (app)
+    - name: Typecheck with Astro (app)
       glob:
         - 'src/**/*.ts'
         - 'src/**/*.astro'
+        - 'astro.config.mts'
+        - 'tsconfig.app.json'
+        - 'worker-configuration.d.ts'
+        - 'package.json'
+        - 'pnpm-lock.yaml'
       run: |
-        pnpm tsc -p tsconfig.app.json --noEmit
+        pnpm astro check
 
     - name: Typecheck with tsc (node)
       glob:
