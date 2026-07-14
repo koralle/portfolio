@@ -4,7 +4,6 @@ import js from '@eslint/js';
 import { ConfigArray } from 'typescript-eslint';
 import css from '@eslint/css';
 import tseslint from 'typescript-eslint';
-import { ESLint } from 'eslint';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import eslintPluginAstro from 'eslint-plugin-astro';
 
@@ -91,7 +90,7 @@ const config: ConfigArray = await typegen([
     files: ['src/**/*.css'],
     ignores: ['src/styles/preflight.css'],
     language: 'css/css',
-    plugins: { css: css as unknown as ESLint.Plugin },
+    plugins: { css },
     rules: {
       ...css.configs.recommended.rules,
 

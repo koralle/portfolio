@@ -17,20 +17,20 @@ catalogs:
     '@astrojs/ts-plugin': 1.10.10
     '@lucide/astro': 1.24.0
     astro: 7.0.7
-    astro-eslint-parser: 1.4.0
-    eslint-plugin-astro: 1.7.0
+    astro-eslint-parser: 3.0.0
+    eslint-plugin-astro: 3.0.0
   cloudflare:
     '@cloudflare/workers-types': 5.20260713.1
     wrangler: 4.110.0
   eslint:
-    '@eslint/config-inspector': 1.5.0
-    '@eslint/css': 0.9.0
-    '@eslint/js': 9.39.5
-    eslint: 9.39.5
+    '@eslint/config-inspector': 3.0.4
+    '@eslint/css': 1.4.0
+    '@eslint/js': 10.0.1
+    eslint: 10.7.0
     eslint-config-prettier: 10.1.8
     eslint-plugin-jsx-a11y: 6.10.2
     eslint-typegen: 2.3.1
-    globals: 16.5.0
+    globals: 17.7.0
     typescript-eslint: 8.63.0
   typescript:
     '@tsconfig/strictest': 2.0.8
