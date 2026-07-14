@@ -1,17 +1,12 @@
 {
-  "extends": "@tsconfig/strictest/tsconfig.json",
+  "extends": "astro/tsconfigs/strictest",
   "exclude": ["dist"],
   "compilerOptions": {
-    "composite": true,
     "tsBuildInfoFile": "tsconfig.tsbuildinfo",
     "target": "es2022",
     "module": "preserve",
-    "moduleResolution": "bundler",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
     "types": ["./worker-configuration.d.ts", "node"],
-    "verbatimModuleSyntax": true,
-    "jsx": "preserve",
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"
