@@ -2,92 +2,99 @@
 
 ## Goal
 
-Replace every direct dependency version in the root `package.json` with a named pnpm catalog reference. Define the exact resolved versions in a new root `pnpm-workspace.yaml`.
-
-The repository is a single-package workspace. Catalogs provide a single place to review and update dependency versions as the project grows.
+Move every direct dependency version in the root `package.json` to named pnpm catalogs. Use the exact versions currently resolved in `node_modules`, so the migration removes caret ranges without changing the installed direct-dependency graph.
 
 ## Scope
 
-- Create `pnpm-workspace.yaml` with six named catalogs.
-- Replace all 30 root dependency specifiers with `catalog:<name>` references.
-- Use the root importer versions currently resolved in `pnpm-lock.yaml`, without caret ranges.
-- Regenerate `pnpm-lock.yaml` to reflect the catalog references.
-- Verify installation, linting, formatting, TypeScript checking, and production build.
+- Extend the existing root `pnpm-workspace.yaml`; do not remove its build-script policy, overrides, or release-age exclusions.
+- Define six named catalogs for all 30 root dependencies.
+- Replace every root dependency specifier with `catalog:<name>`.
+- Use exact versions from `pnpm list --depth 0 --json`.
+- Regenerate `pnpm-lock.yaml` using pnpm 11.12.0.
+- Run the existing install, lint, format, typecheck, and build checks.
 
 ## Non-goals
 
-- Upgrade or downgrade any dependency.
-- Change `packageManager: "pnpm@10.11.0"` or runtime engine constraints.
-- Set `catalogMode`, because the pinned pnpm version is 10.11.0 and the setting was added in pnpm 10.12.1.
+- Upgrade or downgrade a direct dependency.
+- Change the pnpm v11 or Node v24+ policies in `devEngines`.
+- Change the existing allowlisted lifecycle scripts, non-catalog overrides, or release-age exclusions.
 - Restructure the project into a multi-package workspace.
 
 ## Catalog Layout
 
-`pnpm-workspace.yaml` will contain the following named catalogs. Every value is exact and comes from the current root importer entry in `pnpm-lock.yaml`.
+`pnpm-workspace.yaml` retains its existing top-level settings and adds the following named catalogs. The `postcss` override uses the same styling catalog value, eliminating a duplicated version declaration.
 
 ```yaml
+allowBuilds:
+  esbuild: true
+  lefthook: true
+  sharp: true
+  workerd: true
+overrides:
+  '@pandacss/node>picomatch': 4.0.5
+  postcss: catalog:styling
+  esbuild: 0.28.1
+minimumReleaseAgeExclude:
+  - '@cloudflare/workers-types@5.20260713.1'
+  - postcss@8.5.19
 catalogs:
   astro:
-    '@astrojs/cloudflare': 12.5.4
-    '@astrojs/ts-plugin': 1.10.4
-    '@lucide/astro': 0.513.0
-    astro: 5.9.1
-    astro-eslint-parser: 1.2.2
-    eslint-plugin-astro: 1.3.1
+    '@astrojs/check': 0.9.9
+    '@astrojs/cloudflare': 14.1.2
+    '@astrojs/ts-plugin': 1.10.10
+    '@lucide/astro': 1.24.0
+    astro: 7.0.7
+    astro-eslint-parser: 1.4.0
+    eslint-plugin-astro: 1.7.0
   cloudflare:
-    '@cloudflare/workers-types': 4.20250614.0
-    wrangler: 4.20.0
+    '@cloudflare/workers-types': 5.20260713.1
+    wrangler: 4.110.0
   eslint:
-    '@eslint/config-inspector': 1.1.0
+    '@eslint/config-inspector': 1.5.0
     '@eslint/css': 0.9.0
-    '@eslint/js': 9.29.0
-    '@eslint/json': 0.12.0
-    eslint: 9.29.0
-    eslint-config-prettier: 10.1.5
+    '@eslint/js': 9.39.5
+    eslint: 9.39.5
+    eslint-config-prettier: 10.1.8
     eslint-plugin-jsx-a11y: 6.10.2
-    eslint-typegen: 2.2.0
-    globals: 16.2.0
-    typescript-eslint: 8.34.0
+    eslint-typegen: 2.3.1
+    globals: 16.5.0
+    typescript-eslint: 8.63.0
   typescript:
-    '@tsconfig/strictest': 2.0.5
-    '@types/node': 22.15.31
-    typescript: 5.8.3
+    '@tsconfig/strictest': 2.0.8
+    '@types/node': 26.1.1
+    typescript: 5.9.3
   styling:
     '@pandacss/dev': 0.53.7
-    prettier: 3.5.3
+    postcss: 8.5.19
+    prettier: 3.9.5
     prettier-plugin-astro: 0.14.1
   tooling:
-    gsap: 3.13.0
-    jiti: 2.4.2
-    lefthook: 1.11.13
+    gsap: 3.15.0
+    jiti: 2.7.0
+    lefthook: 1.13.6
     npm-run-all2: 8.0.4
-    pnpm: 10.12.1
-    rollup-plugin-visualizer: 6.0.3
+    rollup-plugin-visualizer: 6.0.11
 ```
 
 ## Dependency Flow
 
 1. `package.json` references each dependency with its catalog protocol, such as `"astro": "catalog:astro"`.
-2. pnpm resolves the protocol through the matching value in `pnpm-workspace.yaml`.
-3. `pnpm-lock.yaml` records the catalog protocol as the importer specifier and preserves the resolved package versions.
-4. Future version upgrades edit the catalog value first, then update the lockfile through pnpm.
+2. pnpm 11 resolves the protocol through the named value in `pnpm-workspace.yaml`.
+3. The `postcss` direct dependency and its workspace override use the shared `styling` catalog value.
+4. `pnpm install --lockfile-only` records catalog protocols in `pnpm-lock.yaml`. The `postcss` importer is normalized to the exact workspace override value (`8.5.19`) instead of retaining `catalog:styling`.
+5. Future direct-dependency upgrades edit one catalog value and regenerate the lockfile.
 
-## Compatibility and Error Handling
+## Error Handling and Verification
 
-- Exact catalog versions prevent range-based resolution drift for direct dependencies.
-- `pnpm install --frozen-lockfile` must succeed after regeneration. A failure indicates that the committed lockfile does not match the catalog references and blocks the change.
-- The `pnpm` devDependency remains at its currently resolved 10.12.1, while the Corepack `packageManager` field remains at 10.11.0. This existing difference is intentionally preserved because it is outside the dependency-catalog scope.
+- Before the migration, a structural assertion must confirm that the manifest still has non-catalog references; this demonstrates the assertion can detect an incomplete migration.
+- After the migration, the same assertion must confirm all 30 root dependency specifiers begin with `catalog:` and none of the catalog values begins with `^`.
+- `pnpm install --frozen-lockfile` must succeed after lockfile generation. A failure blocks the change because the lockfile and catalog references are inconsistent.
+- Run `pnpm lint`, `pnpm format`, `pnpm typecheck`, and `pnpm build`. All commands must exit with status 0.
 
-## Verification
+## Version Source
 
-Run the following commands after the migration:
+The current lockfile root importer does not list direct dependencies, so it cannot map each direct specifier to a resolved version. `pnpm list --depth 0 --json` provides that mapping from the current pnpm 11 installation. Its output is the source for the exact catalog values above.
 
-```sh
-pnpm install --frozen-lockfile
-pnpm lint
-pnpm format
-pnpm typecheck
-pnpm build
-```
+## Source
 
-The migration is successful only if all commands exit with status 0 and the package manager does not report unresolved catalog references.
+- https://pnpm.io/catalogs
