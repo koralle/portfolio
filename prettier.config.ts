@@ -1,5 +1,5 @@
-// .prettierrc.mjs
-/** @type {import("prettier").Config} */
+import type { Config } from 'prettier';
+
 export default {
   plugins: ['prettier-plugin-astro'],
   printWidth: 100,
@@ -20,4 +20,4 @@ export default {
       },
     },
   ],
-};
+} as const satisfies Config;

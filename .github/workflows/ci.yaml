@@ -25,5 +25,3 @@ jobs:
           pnpm eslint . \
             --max-warnings 0 \
             --concurrency auto
-
-
