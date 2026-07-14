@@ -22,15 +22,13 @@
     "astro": "astro",
     "deploy": "astro build && wrangler pages deploy",
     "cf-typegen": "wrangler types",
-    "lint:check": "eslint . --config eslint.config.ts --cache --cache-location node_modules/.cache/eslint --cache-strategy content",
-    "lint:fix": "eslint . --config eslint.config.ts --cache  --cache-location node_modules/.cache/eslint --cache-strategy content",
+    "lint:check": "eslint . --config eslint.config.ts --cache --cache-location node_modules/.cache/eslint --cache-strategy content --concurrency auto",
+    "lint:fix": "eslint . --config eslint.config.ts --cache  --cache-location node_modules/.cache/eslint --cache-strategy content --concurrency auto",
     "lint:inspect": "eslint-config-inspector",
     "lint": "pnpm run lint:check",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
-    "typecheck:app": "astro check",
-    "typecheck:node": "tsc -p tsconfig.node.json --noEmit",
-    "typecheck": "run-p typecheck:*"
+    "typecheck": "astro check"
   },
   "dependencies": {
     "@astrojs/cloudflare": "catalog:astro",

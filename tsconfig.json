@@ -1,11 +1,29 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "tsconfig.app.json"
-    },
-    {
-      "path": "tsconfig.node.json"
-    }
+  "extends": "@tsconfig/strictest/tsconfig.json",
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "tsconfig.tsbuildinfo",
+    "target": "es2022",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "types": ["./worker-configuration.d.ts", "node"],
+    "verbatimModuleSyntax": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "@astrojs/ts-plugin"
+      }
+    ]
+  },
+  "include": [
+    "src",
+    ".astro/types.d.ts",
+    "astro.config.mts",
+    ".prettierrc.mjs",
+    "panda.config.ts",
+    "eslint.config.ts"
   ]
 }
