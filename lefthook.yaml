@@ -27,8 +27,6 @@ pre-commit:
         - 'src/**/*.css'
         - 'package.json'
         - 'tsconfig.json'
-        - 'tsconfig.app.json'
-        - 'tsconfig.node.json'
         - 'wrangler.jsonc'
       run: |
         pnpm eslint {staged_files} --fix --config eslint.config.ts
@@ -39,19 +37,8 @@ pre-commit:
         - 'src/**/*.ts'
         - 'src/**/*.astro'
         - 'astro.config.mts'
-        - 'tsconfig.app.json'
         - 'worker-configuration.d.ts'
         - 'package.json'
         - 'pnpm-lock.yaml'
       run: |
         pnpm astro check
-
-    - name: Typecheck with tsc (node)
-      glob:
-        - '.prettierrc.mjs'
-        - 'panda.config.ts'
-        - 'eslint.config.ts'
-        - 'astro.config.mts'
-        - 'postcss.config.cjs'
-      run: |
-        pnpm tsc -p tsconfig.node.json --noEmit
