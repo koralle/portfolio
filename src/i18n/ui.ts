@@ -17,10 +17,10 @@ export const ui = {
     siteTitle: 'koralle のポートフォリオ',
     description:
       '白いアザラシで、フロントエンドエンジニア。変化し続けるWeb技術とデザインの波を、好奇心を持って泳ぎ続けています。',
-    heroGreetingPrefix: 'こんにちは、',
+    heroGreetingPrefix: "Hi! I'm",
     heroName: 'koralle',
-    heroGreetingSuffix: 'です！',
-    heroLead: 'アザラシ、そしてフロントエンドエンジニアです。',
+    heroGreetingSuffix: '!',
+    heroLead: 'A seal and a front-end developer.',
     footerHeading: 'お気軽にご連絡ください！',
     copyright: '© Copyright 2025, koralle. All Rights Reserved.',
     languageSwitcherLabel: '言語',
