@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "catalog:astro",
+    "@astrojs/mdx": "catalog:astro",
     "@lucide/astro": "catalog:astro",
     "astro": "catalog:astro",
     "gsap": "catalog:tooling"

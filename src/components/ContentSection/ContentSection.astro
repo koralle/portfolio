@@ -1,0 +1,41 @@
+---
+import { css } from '../../../styled-system/css';
+import { render, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'home'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<section
+  id={entry.data.section}
+  class={css({
+    display: 'grid',
+    placeItems: 'center',
+    width: '100svi',
+    minHeight: '100svb',
+    backgroundColor: entry.data.tone === 'darker' ? '#1a1a1a' : '#212121',
+    paddingInline: { base: '16px', sm: '24px', md: '32px' },
+    paddingBlock: '64px',
+  })}
+>
+  <article
+    class={css({
+      display: 'flex',
+      flexDir: 'column',
+      gap: '24px',
+      width: '100%',
+      maxWidth: '960px',
+      '& h2': { color: 'primary', fontSize: { base: '2em', md: '3em' }, fontWeight: 700 },
+      '& h3': { color: 'oklch(0.872 0.01 258.338)', fontSize: { base: '1.25em', md: '1.5em' }, fontWeight: 700 },
+      '& p, & li': { color: 'oklch(0.872 0.01 258.338)', lineHeight: 1.8, fontSize: { base: '1em', md: '1.125em' } },
+      '& ul': { display: 'grid', gap: '12px', paddingInlineStart: '1.25em' },
+      '& a': { color: 'primary', textDecoration: 'underline', textUnderlineOffset: '0.2em' },
+    })}
+  >
+    <Content />
+  </article>
+</section>

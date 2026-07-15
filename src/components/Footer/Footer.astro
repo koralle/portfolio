@@ -3,6 +3,15 @@ import { css } from '../../../styled-system/css';
 import GitHubLogo from '../../../public/images/github-mark-white.webp';
 import XLogo from '../../../public/images/x-logo-white.webp';
 import { Image } from 'astro:assets';
+import { localeLabels, pathForLocale, type Locale } from '../../i18n/config';
+import type { getUi } from '../../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  messages: ReturnType<typeof getUi>;
+}
+
+const { locale, messages } = Astro.props;
 ---
 
 <footer
@@ -39,7 +48,7 @@ import { Image } from 'astro:assets';
         },
       })}
     >
-      Feel free to contact me!
+      {messages.footerHeading}
     </h1>
     <div
       class={css({
@@ -78,6 +87,24 @@ import { Image } from 'astro:assets';
         X (Twitter)
       </a>
     </div>
+
+    <nav aria-label={messages.languageSwitcherLabel} class={css({ display: 'flex', gap: '12px' })}>
+      {
+        Object.entries(localeLabels).map(([targetLocale, label]) => (
+          <a
+            href={pathForLocale(targetLocale as Locale)}
+            aria-current={targetLocale === locale ? 'page' : undefined}
+            class={css({
+              color: targetLocale === locale ? 'primary' : 'oklch(0.872 0.01 258.338)',
+              textDecoration: 'underline',
+              textUnderlineOffset: '0.2em',
+            })}
+          >
+            {label}
+          </a>
+        ))
+      }
+    </nav>
   </div>
   <p
     class={css({
@@ -86,6 +113,6 @@ import { Image } from 'astro:assets';
       bottom: { base: '12px', md: '32px' },
     })}
   >
-    © Copyright 2025, koralle. All Rights Reserved.
+    {messages.copyright}
   </p>
 </footer>
