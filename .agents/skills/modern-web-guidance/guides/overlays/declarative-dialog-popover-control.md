@@ -143,7 +143,7 @@ If you prefer not to use a polyfill, you can use a combination of **event delega
 const commandRegistry = {
   '--spin': target => target.classList.toggle('is-spun'),
   '--grow': target => target.classList.toggle('is-grown'),
-  '--reset': target => target.classList.remove('is-spun', 'is-grown'),
+  '--reset': target => target.classList.remove('is-spun', 'is-grown')
 };
 
 // 2. If CommandEvent doesn't exist, we assume no native support and provide the fallback
@@ -169,8 +169,8 @@ document.addEventListener('click', event => {
     target.dispatchEvent(
       new CommandEvent('command', {
         command,
-        source: button,
-      }),
+        source: button
+      })
     );
   }
 });
@@ -216,7 +216,7 @@ For projects without a bundler, dynamically import the polyfill directly from a 
     import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover-fn.js').then(
       ({ apply }) => {
         apply();
-      },
+      }
     );
   }
 </script>

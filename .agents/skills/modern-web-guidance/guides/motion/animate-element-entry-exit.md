@@ -77,7 +77,7 @@ if (animations.length > 0) {
   await Promise.race([
     // Promise.allSettled ensures we wait even if some animations fail
     Promise.allSettled(animations.map(a => a.finished)),
-    new Promise(r => setTimeout(r, 2000)),
+    new Promise(r => setTimeout(r, 2000))
   ]);
 }
 
@@ -129,6 +129,6 @@ el.addEventListener(
   () => {
     if (el.classList.contains('hidden')) el.style.display = 'none';
   },
-  { once: true },
+  { once: true }
 );
 ```

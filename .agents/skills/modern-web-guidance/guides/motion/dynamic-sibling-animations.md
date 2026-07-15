@@ -41,7 +41,7 @@ To support stagger animations in older browsers, use JavaScript to add a `--sibl
 if (!CSS.supports('animation-delay: calc(sibling-index() * 0.1s)')) {
   const staggerList = document.getElementById('stagger-list');
   [...staggerList.children].forEach((el, index) =>
-    el.style.setProperty('--sibling-index', index + 1),
+    el.style.setProperty('--sibling-index', index + 1)
   );
 }
 ```

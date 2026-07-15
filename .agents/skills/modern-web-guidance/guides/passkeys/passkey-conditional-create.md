@@ -70,7 +70,7 @@ async function triggerConditionalCreate(loginAbortController) {
     // 3. Invoke silent credentials creation prompt
     credential = await navigator.credentials.create({
       publicKey,
-      mediation: 'conditional', // Silent background creation mediation
+      mediation: 'conditional' // Silent background creation mediation
     });
   } catch (e) {
     // 4. Silently swallow common WebAuthn browser exceptions
@@ -90,7 +90,7 @@ async function triggerConditionalCreate(loginAbortController) {
       if (PublicKeyCredential.signalUnknownCredential) {
         await PublicKeyCredential.signalUnknownCredential({
           rpId, // RP ID must match the one defined on the server
-          credentialId: encodedResponse.id,
+          credentialId: encodedResponse.id
         });
       }
     }
@@ -99,7 +99,7 @@ async function triggerConditionalCreate(loginAbortController) {
     if (PublicKeyCredential.signalUnknownCredential) {
       await PublicKeyCredential.signalUnknownCredential({
         rpId, // RP ID must match the one defined on the server
-        credentialId: encodedResponse.id,
+        credentialId: encodedResponse.id
       });
     }
   }

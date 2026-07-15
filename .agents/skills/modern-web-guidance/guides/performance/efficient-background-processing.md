@@ -79,7 +79,7 @@ document.addEventListener(
       }
     }
   },
-  { capture: true },
+  { capture: true }
 );
 ```
 
@@ -117,8 +117,8 @@ if (!isSupported) {
     },
     {
       // Use rootMargin to start rendering before it hits the screen
-      rootMargin: '200px',
-    },
+      rootMargin: '200px'
+    }
   );
 
   observer.observe(target);

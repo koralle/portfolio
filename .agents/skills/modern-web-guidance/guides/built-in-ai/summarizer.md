@@ -27,7 +27,7 @@ Check if the model is ready, needs downloading, or is unavailable.
 const options = {
   type: 'key-points',
   format: 'plain-text',
-  length: 'medium',
+  length: 'medium'
 };
 
 const availability = await Summarizer.availability(options);
@@ -44,7 +44,7 @@ if (availability === 'available') {
         m.addEventListener('downloadprogress', e => {
           console.log(`Downloaded ${Math.round((e.loaded / e.total) * 100)}%`);
         });
-      },
+      }
     });
   });
 }
@@ -69,7 +69,7 @@ const options = {
   sharedContext: 'This is a scientific article',
   type: 'key-points',
   format: 'markdown',
-  length: 'medium',
+  length: 'medium'
 };
 
 if (navigator.userActivation.isActive) {
@@ -86,7 +86,7 @@ summary request.
 const summarizer = await Summarizer.create({
   type: 'key-points',
   expectedInputLanguages: ['en', 'ja'],
-  outputLanguage: 'es',
+  outputLanguage: 'es'
 });
 ```
 
@@ -99,7 +99,7 @@ Processes the entire text at once and returns the result.
 ```javascript
 const longText = document.querySelector('article').innerText;
 const summary = await summarizer.summarize(longText, {
-  context: 'This article is intended for a tech-savvy audience.',
+  context: 'This article is intended for a tech-savvy audience.'
 });
 console.log(summary);
 ```

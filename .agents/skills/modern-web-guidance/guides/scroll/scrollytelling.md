@@ -196,7 +196,7 @@ const observer = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {
       const sectionIndex = Array.from(document.querySelectorAll('#tracked section')).indexOf(
-        entry.target,
+        entry.target
       );
       if (sectionIndex !== -1) {
         const animatedSection = animatedSections[sectionIndex];
@@ -215,7 +215,7 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: Array.from({ length: 101 }, (_, i) => i / 100) },
+  { threshold: Array.from({ length: 101 }, (_, i) => i / 100) }
 );
 
 document.querySelectorAll('#tracked section').forEach(section => {

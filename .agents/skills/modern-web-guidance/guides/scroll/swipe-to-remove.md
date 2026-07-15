@@ -294,8 +294,8 @@ function setupItem(item) {
     },
     {
       root: track,
-      threshold: [commitThreshold, activateThreshold],
-    },
+      threshold: [commitThreshold, activateThreshold]
+    }
   );
 
   // Return the handle without starting observation; the outer viewport observer

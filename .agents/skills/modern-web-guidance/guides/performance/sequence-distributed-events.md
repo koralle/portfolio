@@ -21,7 +21,7 @@ function recordEvent(eventType, nodeId) {
   return {
     nodeId,
     eventType,
-    timestamp: Temporal.Now.instant(), // Nanosecond resolution
+    timestamp: Temporal.Now.instant() // Nanosecond resolution
   };
 }
 

@@ -26,8 +26,8 @@ router.post('/api/reauth/options', enforceActiveSession, async (req, res) => {
     allowCredentials: userPasskeys.map(cred => ({
       type: 'public-key',
       id: cred.id,
-      transports: cred.transports, // Speeds up resolution by indicating platform transports
-    })),
+      transports: cred.transports // Speeds up resolution by indicating platform transports
+    }))
   };
   return res.json(options);
 });
@@ -60,7 +60,7 @@ async function triggerButtonReauth() {
   reauthAbortController = new AbortController();
 
   const optionsResponse = await fetch('/api/reauth/options', {
-    method: 'POST',
+    method: 'POST'
   });
   const optionsJSON = await optionsResponse.json();
   const publicKey = PublicKeyCredential.parseRequestOptionsFromJSON(optionsJSON);
@@ -68,7 +68,7 @@ async function triggerButtonReauth() {
   try {
     const credential = await navigator.credentials.get({
       publicKey,
-      signal: reauthAbortController.signal,
+      signal: reauthAbortController.signal
     });
 
     if (credential) {
@@ -76,7 +76,7 @@ async function triggerButtonReauth() {
       const verifyResponse = await fetch('/api/reauth/verify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(encodedCredential),
+        body: JSON.stringify(encodedCredential)
       });
 
       if (verifyResponse.ok) {
@@ -84,7 +84,7 @@ async function triggerButtonReauth() {
       } else if (verifyResponse.status === 404 && PublicKeyCredential.signalUnknownCredential) {
         await PublicKeyCredential.signalUnknownCredential({
           rpId, // RP ID must match the one defined on the server
-          credentialId: encodedCredential.id,
+          credentialId: encodedCredential.id
         });
       }
     }

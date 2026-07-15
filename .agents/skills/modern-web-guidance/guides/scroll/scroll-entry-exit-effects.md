@@ -165,8 +165,8 @@ For this use-case specifically, the following script applies the fallback for br
         }
       },
       {
-        threshold: Array.from({ length: 101 }, (_, i) => i / 100),
-      },
+        threshold: Array.from({ length: 101 }, (_, i) => i / 100)
+      }
     );
 
     document.querySelectorAll('.scroller > *').forEach(el => {

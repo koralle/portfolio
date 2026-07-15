@@ -155,12 +155,12 @@ if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) 
   entries.forEach(entry => {
     const animation = entry.animate(
       {
-        scale: ['0.5', '1', '0.5'],
+        scale: ['0.5', '1', '0.5']
       },
       {
         duration: 1, // We'll control the time ourselves
-        fill: 'both',
-      },
+        fill: 'both'
+      }
     );
     animation.pause();
     animations.set(entry, animation);

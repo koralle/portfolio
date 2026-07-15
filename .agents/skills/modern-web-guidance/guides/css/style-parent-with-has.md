@@ -170,7 +170,7 @@ form.addEventListener(
     const hasError = container.querySelector('.user-invalid-fallback');
     container.classList.toggle('has-error-fallback', !!hasError);
   },
-  true,
+  true
 ); // Capture phase to ensure we run after the fallback's blur listener
 
 // Also handle input events for immediate cleanup

@@ -43,7 +43,7 @@ For custom, application-specific actions, you can define your own command names.
       document.querySelectorAll(`button[commandfor="${target.id}"]`).forEach(btn => {
         btn.setAttribute('aria-pressed', 'false');
       });
-    },
+    }
   };
 
   // 2. **Mandatory:** Listen for the 'command' event directly on the target element
@@ -123,7 +123,7 @@ If you prefer not to use a polyfill, you can use a combination of **event delega
 const commandRegistry = {
   '--spin': target => target.classList.toggle('is-spun'),
   '--grow': target => target.classList.toggle('is-grown'),
-  '--reset': target => target.classList.remove('is-spun', 'is-grown'),
+  '--reset': target => target.classList.remove('is-spun', 'is-grown')
 };
 
 // 2. If CommandEvent doesn't exist, we assume no native support and provide the fallback
@@ -149,8 +149,8 @@ document.addEventListener('click', event => {
     target.dispatchEvent(
       new CommandEvent('command', {
         command,
-        source: button,
-      }),
+        source: button
+      })
     );
   }
 });

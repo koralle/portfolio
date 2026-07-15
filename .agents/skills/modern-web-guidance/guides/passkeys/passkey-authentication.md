@@ -20,7 +20,7 @@ const options = {
   challenge: serverGeneratedBase64UrlChallenge, // High-entropy random challenge stored in session
   rpId: 'example.com',
   allowCredentials: [], // Request discoverable passkeys
-  userVerification: 'preferred',
+  userVerification: 'preferred'
 };
 
 // Persist expected UV level to user session
@@ -95,7 +95,7 @@ async function initializeConditionalAutofill() {
       const credential = await navigator.credentials.get({
         publicKey,
         signal: autofillAbortController.signal,
-        mediation: 'conditional',
+        mediation: 'conditional'
       });
 
       // Segregated verification fetch
@@ -106,7 +106,7 @@ async function initializeConditionalAutofill() {
         if (PublicKeyCredential.signalUnknownCredential) {
           await PublicKeyCredential.signalUnknownCredential({
             rpId, // RP ID must match the one defined on the server
-            credentialId: encoded.id,
+            credentialId: encoded.id
           });
         }
       }
@@ -133,7 +133,7 @@ async function triggerButtonAuthentication() {
     // Passkey explicit prompt trigger
     credential = await navigator.credentials.get({
       publicKey,
-      signal: autofillAbortController.signal,
+      signal: autofillAbortController.signal
     });
   } catch (err) {
     if (err.name === 'NotAllowedError') {
@@ -154,7 +154,7 @@ async function triggerButtonAuthentication() {
       // Note: this code path runs pre-authentication, satisfying the unauth precondition
       await PublicKeyCredential.signalUnknownCredential({
         rpId, // RP ID must match the one defined on the server
-        credentialId: encoded.id, // Base64URL-encoded credential ID
+        credentialId: encoded.id // Base64URL-encoded credential ID
       });
     }
   } catch (serverErr) {

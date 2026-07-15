@@ -15,7 +15,7 @@ scheduler.postTask(
     // DO: Handle critical updates that impact user interaction
     handleCriticalUpdate();
   },
-  { priority: 'user-blocking' },
+  { priority: 'user-blocking' }
 );
 
 // Schedule a default priority task
@@ -30,7 +30,7 @@ scheduler.postTask(
     // DO: Perform heavy background work that is not time-critical
     sendAnalytics();
   },
-  { priority: 'background' },
+  { priority: 'background' }
 );
 ```
 
@@ -63,7 +63,7 @@ function runScheduledTasks() {
     () => {
       console.log('Task with priority support');
     },
-    { priority: 'background' },
+    { priority: 'background' }
   );
 }
 ```

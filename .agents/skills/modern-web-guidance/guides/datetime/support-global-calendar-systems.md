@@ -57,7 +57,7 @@ console.log(`Timeline: ${relative}`);
 const localizedDisplay = targetDate.toLocaleString('en-u-ca-hebrew', {
   day: 'numeric',
   month: 'long',
-  year: 'numeric',
+  year: 'numeric'
 });
 ```
 

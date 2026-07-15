@@ -260,7 +260,7 @@ const observer = new IntersectionObserver(
   // root: drawer makes the popover element the intersection root,
   // so the ratio reflects the sheet's visibility within the popover
   // (i.e. how much of it has been swiped on-screen).
-  { root: drawer, threshold: [visibleThreshold, 1] },
+  { root: drawer, threshold: [visibleThreshold, 1] }
 );
 observer.observe(sheet);
 ```

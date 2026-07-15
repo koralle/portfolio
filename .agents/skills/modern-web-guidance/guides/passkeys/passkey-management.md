@@ -83,7 +83,7 @@ async function syncAcceptedCredentials(currentCredentialsList) {
     await PublicKeyCredential.signalAllAcceptedCredentials({
       rpId, // RP ID must match the one defined on the server
       userId: base64UrlUserId, // User ID Base64URL-encoded string
-      allAcceptedCredentialIds: credentialIds,
+      allAcceptedCredentialIds: credentialIds
     });
   } catch (e) {
     console.error('SignalAllAcceptedCredentials sync failure:', e);
@@ -119,7 +119,7 @@ async function performRename(rpId, userId, updatedName, updatedDisplayName) {
         rpId, // RP ID must match the one defined on the server
         userId, // Base64URL-encoded user ID
         name: updatedName, // Updated username
-        displayName: updatedDisplayName, // Updated display name
+        displayName: updatedDisplayName // Updated display name
       });
     } catch (e) {
       console.error('SignalCurrentUserDetails sync failure:', e);
@@ -174,7 +174,7 @@ if (aaguid === '00000000-0000-0000-0000-000000000000') {
     // ...other fields
     aaguid,
     name: provider?.name || 'Unknown passkey provider',
-    providerIcon: provider?.icon_light,
+    providerIcon: provider?.icon_light
   };
 }
 ```
