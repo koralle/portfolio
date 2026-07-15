@@ -129,8 +129,8 @@ if (!CSS.supports('container-type', 'scroll-state')) {
     {
       root: document.querySelector('.carousel'),
       // Carousel item intersects if any part of the carousel item is in the middle 2% of the carousel.
-      rootMargin: '0px -49%',
-    },
+      rootMargin: '0px -49%'
+    }
   );
 
   document.querySelectorAll('.carousel-item').forEach(item => {

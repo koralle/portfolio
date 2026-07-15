@@ -148,7 +148,7 @@ if ('onscrollsnapchanging' in Element.prototype) {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(promotePendingToActive, 100);
     },
-    { passive: true },
+    { passive: true }
   );
 
   // Fallback: use Baseline `scrollend` event to promote pending to active cleanly where supported

@@ -72,7 +72,7 @@ window.addEventListener('pagereveal', async e => {
     // Use application-specific logic to compute a transition type
     const transitionType = yourTransitionTypeLogic(
       navigation.activation.from,
-      navigation.activation.entry,
+      navigation.activation.entry
     );
     e.viewTransition.types.add(transitionType);
   }

@@ -35,7 +35,7 @@ function getVisibilityInfo() {
 
     return {
       initiallyBackgrounded,
-      timeBackgrounded,
+      timeBackgrounded
     };
   }
 }
@@ -81,7 +81,7 @@ function getFallbackVisibilityInfo() {
     },
     get timeBackgrounded() {
       return timeBackgrounded;
-    },
+    }
   };
 }
 

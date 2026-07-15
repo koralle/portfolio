@@ -59,7 +59,7 @@ function trackEvent(eventData) {
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(eventQueue),
       signal: fetchLaterController.signal,
-      activateAfter: BATCH_WINDOW,
+      activateAfter: BATCH_WINDOW
     });
   } catch (error) {
     // Handle errors as needed.
@@ -144,7 +144,7 @@ globalThis.fetchLater ??= function fetchLater(url, init = {}) {
   return {
     get activated() {
       return activated;
-    },
+    }
   };
 };
 ```

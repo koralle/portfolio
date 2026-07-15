@@ -87,7 +87,7 @@ form.addEventListener(
       syncAriaInvalid(e.target);
     }
   },
-  true,
+  true
 );
 
 // Sync all required fields when submission is attempted

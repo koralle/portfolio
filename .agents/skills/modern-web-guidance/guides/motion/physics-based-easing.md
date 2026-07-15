@@ -165,10 +165,10 @@ if (!supportsLinearEasing) {
         '.element',
         { transform: 'scale(1.2)' },
         {
-          easing: spring({ stiffness: 100, damping: 10 }),
-        },
+          easing: spring({ stiffness: 100, damping: 10 })
+        }
       );
-    },
+    }
   );
 }
 ```

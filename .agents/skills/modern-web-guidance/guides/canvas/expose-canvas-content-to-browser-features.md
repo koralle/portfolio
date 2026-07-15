@@ -79,7 +79,7 @@ canvas.onpaint = () => {
       const destDict = {
         destination: { texture: targetTexture },
         width: 512,
-        height: 128,
+        height: 128
       };
       root.device.queue.copyElementImageToTexture(sourceDict, destDict);
     } catch (err) {
@@ -305,7 +305,7 @@ targetHTMLElement.style.transform = computedTransform.toString();
         const destDict = {
           destination: { texture: targetTexture },
           width: width,
-          height: height,
+          height: height
         };
         device.queue.copyElementImageToTexture(sourceDict, destDict);
       } catch (err) {

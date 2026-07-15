@@ -185,10 +185,10 @@ try {
         {
           configURL: 'https://idp.example/fedcm.json',
           clientId: 'rp-client-id-123',
-          nonce: 'a_secure_random_nonce_value',
-        },
-      ],
-    },
+          nonce: 'a_secure_random_nonce_value'
+        }
+      ]
+    }
   });
   authenticateWithBackend(credential.token);
 } catch (error) {

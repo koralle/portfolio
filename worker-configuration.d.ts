@@ -383,12 +383,12 @@ interface ServiceWorkerGlobalScope extends WorkerGlobalScope {
 declare function addEventListener<Type extends keyof WorkerGlobalScopeEventMap>(
   type: Type,
   handler: EventListenerOrEventListenerObject<WorkerGlobalScopeEventMap[Type]>,
-  options?: EventTargetAddEventListenerOptions | boolean,
+  options?: EventTargetAddEventListenerOptions | boolean
 ): void;
 declare function removeEventListener<Type extends keyof WorkerGlobalScopeEventMap>(
   type: Type,
   handler: EventListenerOrEventListenerObject<WorkerGlobalScopeEventMap[Type]>,
-  options?: EventTargetEventListenerOptions | boolean,
+  options?: EventTargetEventListenerOptions | boolean
 ): void;
 /**
  * The **`dispatchEvent()`** method of the EventTarget sends an Event to the object, (synchronously) invoking the affected event listeners in the appropriate order.
@@ -396,7 +396,7 @@ declare function removeEventListener<Type extends keyof WorkerGlobalScopeEventMa
  * [MDN Reference](https://developer.mozilla.org/docs/Web/API/EventTarget/dispatchEvent)
  */
 declare function dispatchEvent(
-  event: WorkerGlobalScopeEventMap[keyof WorkerGlobalScopeEventMap],
+  event: WorkerGlobalScopeEventMap[keyof WorkerGlobalScopeEventMap]
 ): boolean;
 /* [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/btoa) */
 declare function btoa(data: string): string;
@@ -431,7 +431,7 @@ declare function reportError(error: any): void;
 /* [MDN Reference](https://developer.mozilla.org/docs/Web/API/Window/fetch) */
 declare function fetch(
   input: RequestInfo | URL,
-  init?: RequestInit<RequestInitCfProperties>,
+  init?: RequestInit<RequestInitCfProperties>
 ): Promise<Response>;
 declare const self: ServiceWorkerGlobalScope;
 /**
@@ -472,48 +472,48 @@ interface ExecutionContext<Props = unknown> {
 type ExportedHandlerFetchHandler<Env = unknown, CfHostMetadata = unknown, Props = unknown> = (
   request: Request<CfHostMetadata, IncomingRequestCfProperties<CfHostMetadata>>,
   env: Env,
-  ctx: ExecutionContext<Props>,
+  ctx: ExecutionContext<Props>
 ) => Response | Promise<Response>;
 type ExportedHandlerConnectHandler<Env = unknown, Props = unknown> = (
   socket: Socket,
   env: Env,
-  ctx: ExecutionContext<Props>,
+  ctx: ExecutionContext<Props>
 ) => void | Promise<void>;
 type ExportedHandlerTailHandler<Env = unknown, Props = unknown> = (
   events: TraceItem[],
   env: Env,
-  ctx: ExecutionContext<Props>,
+  ctx: ExecutionContext<Props>
 ) => void | Promise<void>;
 type ExportedHandlerTraceHandler<Env = unknown, Props = unknown> = (
   traces: TraceItem[],
   env: Env,
-  ctx: ExecutionContext<Props>,
+  ctx: ExecutionContext<Props>
 ) => void | Promise<void>;
 type ExportedHandlerTailStreamHandler<Env = unknown, Props = unknown> = (
   event: TailStream.TailEvent<TailStream.Onset>,
   env: Env,
-  ctx: ExecutionContext<Props>,
+  ctx: ExecutionContext<Props>
 ) => TailStream.TailEventHandlerType | Promise<TailStream.TailEventHandlerType>;
 type ExportedHandlerScheduledHandler<Env = unknown, Props = unknown> = (
   controller: ScheduledController,
   env: Env,
-  ctx: ExecutionContext<Props>,
+  ctx: ExecutionContext<Props>
 ) => void | Promise<void>;
 type ExportedHandlerQueueHandler<Env = unknown, Message = unknown, Props = unknown> = (
   batch: MessageBatch<Message>,
   env: Env,
-  ctx: ExecutionContext<Props>,
+  ctx: ExecutionContext<Props>
 ) => void | Promise<void>;
 type ExportedHandlerTestHandler<Env = unknown, Props = unknown> = (
   controller: TestController,
   env: Env,
-  ctx: ExecutionContext<Props>,
+  ctx: ExecutionContext<Props>
 ) => void | Promise<void>;
 interface ExportedHandler<
   Env = unknown,
   QueueHandlerMessage = unknown,
   CfHostMetadata = unknown,
-  Props = unknown,
+  Props = unknown
 > {
   fetch?: ExportedHandlerFetchHandler<Env, CfHostMetadata, Props>;
   connect?: ExportedHandlerConnectHandler<Env, Props>;
@@ -574,7 +574,7 @@ interface DurableObject {
     ws: WebSocket,
     code: number,
     reason: string,
-    wasClean: boolean,
+    wasClean: boolean
   ): void | Promise<void>;
   webSocketError?(ws: WebSocket, error: unknown): void | Promise<void>;
 }
@@ -592,18 +592,18 @@ interface DurableObjectId {
   readonly jurisdiction?: string;
 }
 declare abstract class DurableObjectNamespace<
-  T extends Rpc.DurableObjectBranded | undefined = undefined,
+  T extends Rpc.DurableObjectBranded | undefined = undefined
 > {
   newUniqueId(options?: DurableObjectNamespaceNewUniqueIdOptions): DurableObjectId;
   idFromName(name: string): DurableObjectId;
   idFromString(id: string): DurableObjectId;
   get(
     id: DurableObjectId,
-    options?: DurableObjectNamespaceGetDurableObjectOptions,
+    options?: DurableObjectNamespaceGetDurableObjectOptions
   ): DurableObjectStub<T>;
   getByName(
     name: string,
-    options?: DurableObjectNamespaceGetDurableObjectOptions,
+    options?: DurableObjectNamespaceGetDurableObjectOptions
   ): DurableObjectStub<T>;
   jurisdiction(jurisdiction: DurableObjectJurisdiction): DurableObjectNamespace<T>;
 }
@@ -705,7 +705,7 @@ declare class WebSocketRequestResponsePair {
 interface DurableObjectFacets {
   get<T extends Rpc.DurableObjectBranded | undefined = undefined>(
     name: string,
-    getStartupOptions: () => FacetStartupOptions<T> | Promise<FacetStartupOptions<T>>,
+    getStartupOptions: () => FacetStartupOptions<T> | Promise<FacetStartupOptions<T>>
   ): Fetcher<T>;
   abort(name: string, reason: any): void;
   delete(name: string): void;
@@ -873,7 +873,7 @@ declare class EventTarget<EventMap extends Record<string, Event> = Record<string
   addEventListener<Type extends keyof EventMap>(
     type: Type,
     handler: EventListenerOrEventListenerObject<EventMap[Type]>,
-    options?: EventTargetAddEventListenerOptions | boolean,
+    options?: EventTargetAddEventListenerOptions | boolean
   ): void;
   /**
    * The **`removeEventListener()`** method of the EventTarget interface removes an event listener previously registered with EventTarget.addEventListener() from the target.
@@ -883,7 +883,7 @@ declare class EventTarget<EventMap extends Record<string, Event> = Record<string
   removeEventListener<Type extends keyof EventMap>(
     type: Type,
     handler: EventListenerOrEventListenerObject<EventMap[Type]>,
-    options?: EventTargetEventListenerOptions | boolean,
+    options?: EventTargetEventListenerOptions | boolean
   ): void;
   /**
    * The **`dispatchEvent()`** method of the EventTarget sends an Event to the object, (synchronously) invoking the affected event listeners in the appropriate order.
@@ -1072,7 +1072,7 @@ declare class File extends Blob {
   constructor(
     bits: ((ArrayBuffer | ArrayBufferView) | string | Blob)[] | undefined,
     name: string,
-    options?: FileOptions,
+    options?: FileOptions
   );
   /**
    * The **`name`** read-only property of the File interface returns the name of the file represented by a File object.
@@ -1151,7 +1151,7 @@ declare abstract class Crypto {
       | Int32Array
       | Uint32Array
       | BigInt64Array
-      | BigUint64Array,
+      | BigUint64Array
   >(buffer: T): T;
   /**
    * The **`randomUUID()`** method of the Crypto interface is used to generate a v4 UUID using a cryptographically secure random number generator.
@@ -1177,7 +1177,7 @@ declare abstract class SubtleCrypto {
   encrypt(
     algorithm: string | SubtleCryptoEncryptAlgorithm,
     key: CryptoKey,
-    plainText: ArrayBuffer | ArrayBufferView,
+    plainText: ArrayBuffer | ArrayBufferView
   ): Promise<ArrayBuffer>;
   /**
    * The **`decrypt()`** method of the SubtleCrypto interface decrypts some encrypted data.
@@ -1187,7 +1187,7 @@ declare abstract class SubtleCrypto {
   decrypt(
     algorithm: string | SubtleCryptoEncryptAlgorithm,
     key: CryptoKey,
-    cipherText: ArrayBuffer | ArrayBufferView,
+    cipherText: ArrayBuffer | ArrayBufferView
   ): Promise<ArrayBuffer>;
   /**
    * The **`sign()`** method of the SubtleCrypto interface generates a digital signature.
@@ -1197,7 +1197,7 @@ declare abstract class SubtleCrypto {
   sign(
     algorithm: string | SubtleCryptoSignAlgorithm,
     key: CryptoKey,
-    data: ArrayBuffer | ArrayBufferView,
+    data: ArrayBuffer | ArrayBufferView
   ): Promise<ArrayBuffer>;
   /**
    * The **`verify()`** method of the SubtleCrypto interface verifies a digital signature.
@@ -1208,7 +1208,7 @@ declare abstract class SubtleCrypto {
     algorithm: string | SubtleCryptoSignAlgorithm,
     key: CryptoKey,
     signature: ArrayBuffer | ArrayBufferView,
-    data: ArrayBuffer | ArrayBufferView,
+    data: ArrayBuffer | ArrayBufferView
   ): Promise<boolean>;
   /**
    * The **`digest()`** method of the SubtleCrypto interface generates a _digest_ of the given data, using the specified hash function.
@@ -1217,7 +1217,7 @@ declare abstract class SubtleCrypto {
    */
   digest(
     algorithm: string | SubtleCryptoHashAlgorithm,
-    data: ArrayBuffer | ArrayBufferView,
+    data: ArrayBuffer | ArrayBufferView
   ): Promise<ArrayBuffer>;
   /**
    * The **`generateKey()`** method of the SubtleCrypto interface is used to generate a new key (for symmetric algorithms) or key pair (for public-key algorithms).
@@ -1227,7 +1227,7 @@ declare abstract class SubtleCrypto {
   generateKey(
     algorithm: string | SubtleCryptoGenerateKeyAlgorithm,
     extractable: boolean,
-    keyUsages: string[],
+    keyUsages: string[]
   ): Promise<CryptoKey | CryptoKeyPair>;
   /**
    * The **`deriveKey()`** method of the SubtleCrypto interface can be used to derive a secret key from a master key.
@@ -1239,7 +1239,7 @@ declare abstract class SubtleCrypto {
     baseKey: CryptoKey,
     derivedKeyAlgorithm: string | SubtleCryptoImportKeyAlgorithm,
     extractable: boolean,
-    keyUsages: string[],
+    keyUsages: string[]
   ): Promise<CryptoKey>;
   /**
    * The **`deriveBits()`** method of the key.
@@ -1249,7 +1249,7 @@ declare abstract class SubtleCrypto {
   deriveBits(
     algorithm: string | SubtleCryptoDeriveKeyAlgorithm,
     baseKey: CryptoKey,
-    length?: number | null,
+    length?: number | null
   ): Promise<ArrayBuffer>;
   /**
    * The **`importKey()`** method of the SubtleCrypto interface imports a key: that is, it takes as input a key in an external, portable format and gives you a CryptoKey object that you can use in the Web Crypto API.
@@ -1261,7 +1261,7 @@ declare abstract class SubtleCrypto {
     keyData: (ArrayBuffer | ArrayBufferView) | JsonWebKey,
     algorithm: string | SubtleCryptoImportKeyAlgorithm,
     extractable: boolean,
-    keyUsages: string[],
+    keyUsages: string[]
   ): Promise<CryptoKey>;
   /**
    * The **`exportKey()`** method of the SubtleCrypto interface exports a key: that is, it takes as input a CryptoKey object and gives you the key in an external, portable format.
@@ -1278,7 +1278,7 @@ declare abstract class SubtleCrypto {
     format: string,
     key: CryptoKey,
     wrappingKey: CryptoKey,
-    wrapAlgorithm: string | SubtleCryptoEncryptAlgorithm,
+    wrapAlgorithm: string | SubtleCryptoEncryptAlgorithm
   ): Promise<ArrayBuffer>;
   /**
    * The **`unwrapKey()`** method of the SubtleCrypto interface 'unwraps' a key.
@@ -1292,7 +1292,7 @@ declare abstract class SubtleCrypto {
     unwrapAlgorithm: string | SubtleCryptoEncryptAlgorithm,
     unwrappedKeyAlgorithm: string | SubtleCryptoImportKeyAlgorithm,
     extractable: boolean,
-    keyUsages: string[],
+    keyUsages: string[]
   ): Promise<CryptoKey>;
   timingSafeEqual(a: ArrayBuffer | ArrayBufferView, b: ArrayBuffer | ArrayBufferView): boolean;
 }
@@ -1666,7 +1666,7 @@ declare class FormData {
   values(): IterableIterator<File | string>;
   forEach<This = unknown>(
     callback: (this: This, value: File | string, key: string, parent: FormData) => void,
-    thisArg?: This,
+    thisArg?: This
   ): void;
   [Symbol.iterator](): IterableIterator<[key: string, value: File | string]>;
 }
@@ -1807,7 +1807,7 @@ declare class Headers {
   delete(name: string): void;
   forEach<This = unknown>(
     callback: (this: This, value: string, key: string, parent: Headers) => void,
-    thisArg?: This,
+    thisArg?: This
   ): void;
   /* Returns an iterator allowing to go through all key/value pairs contained in this object. */
   entries(): IterableIterator<[key: string, value: string]>;
@@ -1931,7 +1931,7 @@ declare var Request: {
   prototype: Request;
   new <CfHostMetadata = unknown, Cf = CfProperties<CfHostMetadata>>(
     input: RequestInfo<CfProperties> | URL,
-    init?: RequestInit<Cf>,
+    init?: RequestInit<Cf>
   ): Request<CfHostMetadata, Cf>;
 };
 /**
@@ -2021,7 +2021,7 @@ type Service<
     | (new (...args: any[]) => Rpc.WorkerEntrypointBranded)
     | Rpc.WorkerEntrypointBranded
     | ExportedHandler<any, any, any>
-    | undefined = undefined,
+    | undefined = undefined
 > = T extends new (...args: any[]) => Rpc.WorkerEntrypointBranded
   ? Fetcher<InstanceType<T>>
   : T extends Rpc.WorkerEntrypointBranded
@@ -2031,7 +2031,7 @@ type Service<
       : Fetcher<undefined>;
 type Fetcher<
   T extends Rpc.EntrypointBranded | undefined = undefined,
-  Reserved extends string = never,
+  Reserved extends string = never
 > = (T extends Rpc.EntrypointBranded
   ? Rpc.Provider<T, Reserved | 'fetch' | 'connect'>
   : unknown) & {
@@ -2064,90 +2064,90 @@ interface KVNamespace<Key extends string = string> {
   get(key: Key, options?: KVNamespaceGetOptions<'text'>): Promise<string | null>;
   get<ExpectedValue = unknown>(
     key: Key,
-    options?: KVNamespaceGetOptions<'json'>,
+    options?: KVNamespaceGetOptions<'json'>
   ): Promise<ExpectedValue | null>;
   get(key: Key, options?: KVNamespaceGetOptions<'arrayBuffer'>): Promise<ArrayBuffer | null>;
   get(key: Key, options?: KVNamespaceGetOptions<'stream'>): Promise<ReadableStream | null>;
   get(key: Array<Key>, type: 'text'): Promise<Map<string, string | null>>;
   get<ExpectedValue = unknown>(
     key: Array<Key>,
-    type: 'json',
+    type: 'json'
   ): Promise<Map<string, ExpectedValue | null>>;
   get(
     key: Array<Key>,
-    options?: Partial<KVNamespaceGetOptions<undefined>>,
+    options?: Partial<KVNamespaceGetOptions<undefined>>
   ): Promise<Map<string, string | null>>;
   get(
     key: Array<Key>,
-    options?: KVNamespaceGetOptions<'text'>,
+    options?: KVNamespaceGetOptions<'text'>
   ): Promise<Map<string, string | null>>;
   get<ExpectedValue = unknown>(
     key: Array<Key>,
-    options?: KVNamespaceGetOptions<'json'>,
+    options?: KVNamespaceGetOptions<'json'>
   ): Promise<Map<string, ExpectedValue | null>>;
   list<Metadata = unknown>(
-    options?: KVNamespaceListOptions,
+    options?: KVNamespaceListOptions
   ): Promise<KVNamespaceListResult<Metadata, Key>>;
   put(
     key: Key,
     value: string | ArrayBuffer | ArrayBufferView | ReadableStream,
-    options?: KVNamespacePutOptions,
+    options?: KVNamespacePutOptions
   ): Promise<void>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    options?: Partial<KVNamespaceGetOptions<undefined>>,
+    options?: Partial<KVNamespaceGetOptions<undefined>>
   ): Promise<KVNamespaceGetWithMetadataResult<string, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    type: 'text',
+    type: 'text'
   ): Promise<KVNamespaceGetWithMetadataResult<string, Metadata>>;
   getWithMetadata<ExpectedValue = unknown, Metadata = unknown>(
     key: Key,
-    type: 'json',
+    type: 'json'
   ): Promise<KVNamespaceGetWithMetadataResult<ExpectedValue, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    type: 'arrayBuffer',
+    type: 'arrayBuffer'
   ): Promise<KVNamespaceGetWithMetadataResult<ArrayBuffer, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    type: 'stream',
+    type: 'stream'
   ): Promise<KVNamespaceGetWithMetadataResult<ReadableStream, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    options: KVNamespaceGetOptions<'text'>,
+    options: KVNamespaceGetOptions<'text'>
   ): Promise<KVNamespaceGetWithMetadataResult<string, Metadata>>;
   getWithMetadata<ExpectedValue = unknown, Metadata = unknown>(
     key: Key,
-    options: KVNamespaceGetOptions<'json'>,
+    options: KVNamespaceGetOptions<'json'>
   ): Promise<KVNamespaceGetWithMetadataResult<ExpectedValue, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    options: KVNamespaceGetOptions<'arrayBuffer'>,
+    options: KVNamespaceGetOptions<'arrayBuffer'>
   ): Promise<KVNamespaceGetWithMetadataResult<ArrayBuffer, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Key,
-    options: KVNamespaceGetOptions<'stream'>,
+    options: KVNamespaceGetOptions<'stream'>
   ): Promise<KVNamespaceGetWithMetadataResult<ReadableStream, Metadata>>;
   getWithMetadata<Metadata = unknown>(
     key: Array<Key>,
-    type: 'text',
+    type: 'text'
   ): Promise<Map<string, KVNamespaceGetWithMetadataResult<string, Metadata>>>;
   getWithMetadata<ExpectedValue = unknown, Metadata = unknown>(
     key: Array<Key>,
-    type: 'json',
+    type: 'json'
   ): Promise<Map<string, KVNamespaceGetWithMetadataResult<ExpectedValue, Metadata>>>;
   getWithMetadata<Metadata = unknown>(
     key: Array<Key>,
-    options?: Partial<KVNamespaceGetOptions<undefined>>,
+    options?: Partial<KVNamespaceGetOptions<undefined>>
   ): Promise<Map<string, KVNamespaceGetWithMetadataResult<string, Metadata>>>;
   getWithMetadata<Metadata = unknown>(
     key: Array<Key>,
-    options?: KVNamespaceGetOptions<'text'>,
+    options?: KVNamespaceGetOptions<'text'>
   ): Promise<Map<string, KVNamespaceGetWithMetadataResult<string, Metadata>>>;
   getWithMetadata<ExpectedValue = unknown, Metadata = unknown>(
     key: Array<Key>,
-    options?: KVNamespaceGetOptions<'json'>,
+    options?: KVNamespaceGetOptions<'json'>
   ): Promise<Map<string, KVNamespaceGetWithMetadataResult<ExpectedValue, Metadata>>>;
   delete(key: Key): Promise<void>;
 }
@@ -2176,7 +2176,7 @@ interface Queue<Body = unknown> {
   send(message: Body, options?: QueueSendOptions): Promise<QueueSendResponse>;
   sendBatch(
     messages: Iterable<MessageSendRequest<Body>>,
-    options?: QueueSendBatchOptions,
+    options?: QueueSendBatchOptions
   ): Promise<QueueSendBatchResponse>;
 }
 interface QueueSendMetrics {
@@ -2272,7 +2272,7 @@ interface R2Bucket {
     key: string,
     options: R2GetOptions & {
       onlyIf: R2Conditional | Headers;
-    },
+    }
   ): Promise<R2ObjectBody | R2Object | null>;
   get(key: string, options?: R2GetOptions): Promise<R2ObjectBody | null>;
   put(
@@ -2280,12 +2280,12 @@ interface R2Bucket {
     value: ReadableStream | ArrayBuffer | ArrayBufferView | string | null | Blob,
     options?: R2PutOptions & {
       onlyIf: R2Conditional | Headers;
-    },
+    }
   ): Promise<R2Object | null>;
   put(
     key: string,
     value: ReadableStream | ArrayBuffer | ArrayBufferView | string | null | Blob,
-    options?: R2PutOptions,
+    options?: R2PutOptions
   ): Promise<R2Object>;
   createMultipartUpload(key: string, options?: R2MultipartOptions): Promise<R2MultipartUpload>;
   resumeMultipartUpload(key: string, uploadId: string): R2MultipartUpload;
@@ -2298,7 +2298,7 @@ interface R2MultipartUpload {
   uploadPart(
     partNumber: number,
     value: ReadableStream | (ArrayBuffer | ArrayBufferView) | string | Blob,
-    options?: R2UploadPartOptions,
+    options?: R2UploadPartOptions
   ): Promise<R2UploadedPart>;
   abort(): Promise<void>;
   complete(uploadedParts: R2UploadedPart[]): Promise<R2Object>;
@@ -2524,7 +2524,7 @@ interface ReadableStream<R = any> {
    */
   pipeThrough<T>(
     transform: ReadableWritablePair<T, R>,
-    options?: StreamPipeOptions,
+    options?: StreamPipeOptions
   ): ReadableStream<T>;
   /**
    * The **`pipeTo()`** method of the ReadableStream interface pipes the current `ReadableStream` to a given WritableStream and returns a Promise that fulfills when the piping process completes successfully, or rejects if any errors were encountered.
@@ -2550,11 +2550,11 @@ declare const ReadableStream: {
   prototype: ReadableStream;
   new (
     underlyingSource: UnderlyingByteSource,
-    strategy?: QueuingStrategy<Uint8Array>,
+    strategy?: QueuingStrategy<Uint8Array>
   ): ReadableStream<Uint8Array>;
   new <R = any>(
     underlyingSource?: UnderlyingSource<R>,
-    strategy?: QueuingStrategy<R>,
+    strategy?: QueuingStrategy<R>
   ): ReadableStream<R>;
 };
 /**
@@ -2602,7 +2602,7 @@ declare class ReadableStreamBYOBReader {
   releaseLock(): void;
   readAtLeast<T extends ArrayBufferView>(
     minElements: number,
-    view: T,
+    view: T
   ): Promise<ReadableStreamReadResult<T>>;
 }
 interface ReadableStreamBYOBReaderReadableStreamBYOBReaderReadOptions {
@@ -2860,7 +2860,7 @@ declare class TransformStream<I = any, O = any> {
   constructor(
     transformer?: Transformer<I, O>,
     writableStrategy?: QueuingStrategy<I>,
-    readableStrategy?: QueuingStrategy<O>,
+    readableStrategy?: QueuingStrategy<O>
   );
   /**
    * The **`readable`** read-only property of the TransformStream interface returns the ReadableStream instance controlled by this `TransformStream`.
@@ -2878,7 +2878,7 @@ declare class TransformStream<I = any, O = any> {
 declare class FixedLengthStream extends IdentityTransformStream {
   constructor(
     expectedLength: number | bigint,
-    queuingStrategy?: IdentityTransformStreamQueuingStrategy,
+    queuingStrategy?: IdentityTransformStreamQueuingStrategy
   );
 }
 declare class IdentityTransformStream extends TransformStream<
@@ -3339,7 +3339,7 @@ declare class URLSearchParams {
   values(): IterableIterator<string>;
   forEach<This = unknown>(
     callback: (this: This, value: string, key: string, parent: URLSearchParams) => void,
-    thisArg?: This,
+    thisArg?: This
   ): void;
   /*function toString() { [native code] }*/
   toString(): string;
@@ -3349,7 +3349,7 @@ declare class URLPattern {
   constructor(
     input?: string | URLPatternInit,
     baseURL?: string | URLPatternOptions,
-    patternOptions?: URLPatternOptions,
+    patternOptions?: URLPatternOptions
   );
   get protocol(): string;
   get username(): string;
@@ -3653,7 +3653,7 @@ interface Container {
   interceptOutboundHttp(addr: string, binding: Fetcher): Promise<void>;
   interceptAllOutboundHttp(binding: Fetcher): Promise<void>;
   snapshotDirectory(
-    options: ContainerDirectorySnapshotOptions,
+    options: ContainerDirectorySnapshotOptions
   ): Promise<ContainerDirectorySnapshot>;
   snapshotContainer(options: ContainerSnapshotOptions): Promise<ContainerSnapshot>;
   interceptOutboundHttps(addr: string, binding: Fetcher): Promise<void>;
@@ -3722,7 +3722,7 @@ interface MessagePortPostMessageOptions {
 type LoopbackForExport<
   T extends
     (new (...args: any[]) => Rpc.EntrypointBranded) | ExportedHandler<any, any, any> | undefined =
-    undefined,
+    undefined
 > = T extends new (...args: any[]) => Rpc.WorkerEntrypointBranded
   ? LoopbackServiceStub<InstanceType<T>>
   : T extends new (...args: any[]) => Rpc.DurableObjectBranded
@@ -3759,11 +3759,11 @@ interface SyncKvListOptions {
 interface WorkerStub {
   getEntrypoint<T extends Rpc.WorkerEntrypointBranded | undefined>(
     name?: string,
-    options?: WorkerStubEntrypointOptions,
+    options?: WorkerStubEntrypointOptions
   ): Fetcher<T>;
   getDurableObjectClass<T extends Rpc.DurableObjectBranded | undefined>(
     name?: string,
-    options?: WorkerStubEntrypointOptions,
+    options?: WorkerStubEntrypointOptions
   ): DurableObjectClass<T>;
 }
 interface WorkerStubEntrypointOptions {
@@ -3773,7 +3773,7 @@ interface WorkerStubEntrypointOptions {
 interface WorkerLoader {
   get(
     name: string | null,
-    getCode: () => WorkerLoaderWorkerCode | Promise<WorkerLoaderWorkerCode>,
+    getCode: () => WorkerLoaderWorkerCode | Promise<WorkerLoaderWorkerCode>
   ): WorkerStub;
   load(code: WorkerLoaderWorkerCode): WorkerStub;
 }
@@ -4639,7 +4639,7 @@ declare abstract class AiSearchItems {
   upload(
     name: string,
     content: ReadableStream | Blob | string,
-    options?: AiSearchUploadItemOptions,
+    options?: AiSearchUploadItemOptions
   ): Promise<AiSearchItemInfo>;
   /**
    * Upload a file and poll until processing completes.
@@ -4658,7 +4658,7 @@ declare abstract class AiSearchItems {
       pollIntervalMs?: number;
       /** Maximum time to wait in milliseconds (default 30000). */
       timeoutMs?: number;
-    },
+    }
   ): Promise<AiSearchItemInfo>;
   /**
    * Get an item by ID.
@@ -4747,7 +4747,7 @@ declare abstract class AiSearchInstance {
   chatCompletions(
     params: AiSearchChatCompletionsRequest & {
       stream: true;
-    },
+    }
   ): Promise<ReadableStream>;
   /**
    * Generate chat completions with AI Search context.
@@ -4858,7 +4858,7 @@ declare abstract class AiSearchNamespace {
   chatCompletions(
     params: AiSearchMultiChatCompletionsRequest & {
       stream: true;
-    },
+    }
   ): Promise<ReadableStream>;
   /**
    * Generate chat completions across multiple instances within the bound namespace.
@@ -4867,7 +4867,7 @@ declare abstract class AiSearchNamespace {
    * @returns Chat completion response with choices, chunks tagged by instance_id, and optional partial-failure errors.
    */
   chatCompletions(
-    params: AiSearchMultiChatCompletionsRequest,
+    params: AiSearchMultiChatCompletionsRequest
   ): Promise<AiSearchMultiChatCompletionsResponse>;
 }
 type AiImageClassificationInput = {
@@ -10879,7 +10879,7 @@ declare abstract class Ai<AiModelList extends AiModelListType = AiModels> {
     },
     options: AiOptions & {
       queueRequest: true;
-    },
+    }
   ): Promise<AiAsyncBatchResponse>;
   // Raw response
   run<Name extends keyof AiModelList>(
@@ -10887,7 +10887,7 @@ declare abstract class Ai<AiModelList extends AiModelListType = AiModels> {
     inputs: AiModelList[Name]['inputs'],
     options: AiOptions & {
       returnRawResponse: true;
-    },
+    }
   ): Promise<Response>;
   // WebSocket
   run<Name extends keyof AiModelList>(
@@ -10895,7 +10895,7 @@ declare abstract class Ai<AiModelList extends AiModelListType = AiModels> {
     inputs: AiModelList[Name]['inputs'],
     options: AiOptions & {
       websocket: true;
-    },
+    }
   ): Promise<Response>;
   // Streaming
   run<Name extends keyof AiModelList>(
@@ -10903,13 +10903,13 @@ declare abstract class Ai<AiModelList extends AiModelListType = AiModels> {
     inputs: AiModelList[Name]['inputs'] & {
       stream: true;
     },
-    options?: AiOptions,
+    options?: AiOptions
   ): Promise<ReadableStream>;
   // Normal (default) - known model
   run<Name extends keyof AiModelList>(
     model: Name,
     inputs: AiModelList[Name]['inputs'],
-    options?: AiOptions,
+    options?: AiOptions
   ): Promise<AiModelList[Name]['postProcessedOutputs']>;
   // Unknown model (fallback).
   //
@@ -10922,17 +10922,17 @@ declare abstract class Ai<AiModelList extends AiModelListType = AiModels> {
   run<Model extends string>(
     model: Model extends keyof AiModelList ? never : Model,
     inputs: Record<string, unknown>,
-    options?: AiOptions,
+    options?: AiOptions
   ): Promise<Record<string, unknown>>;
   models(params?: AiModelsSearchParams): Promise<AiModelsSearchObject[]>;
   toMarkdown(): ToMarkdownService;
   toMarkdown(
     files: MarkdownDocument[],
-    options?: ConversionRequestOptions,
+    options?: ConversionRequestOptions
   ): Promise<ConversionResponse[]>;
   toMarkdown(
     files: MarkdownDocument,
-    options?: ConversionRequestOptions,
+    options?: ConversionRequestOptions
   ): Promise<ConversionResponse>;
 }
 type GatewayRetries = {
@@ -11051,7 +11051,7 @@ declare abstract class AiGateway {
       gateway?: UniversalGatewayOptions;
       extraHeaders?: object;
       signal?: AbortSignal;
-    },
+    }
   ): Promise<Response>;
   getUrl(provider?: AIGatewayProviders | string): Promise<string>; // eslint-disable-line
 }
@@ -11181,7 +11181,7 @@ interface ArtifactsRepo extends ArtifactsRepoInfo {
       description?: string;
       readOnly?: boolean;
       defaultBranchOnly?: boolean;
-    },
+    }
   ): Promise<ArtifactsCreateRepoResult>;
 }
 // ── Error types ──────────────────────────────────────────────────────────────
@@ -11238,7 +11238,7 @@ interface Artifacts {
       readOnly?: boolean;
       description?: string;
       setDefaultBranch?: string;
-    },
+    }
   ): Promise<ArtifactsCreateRepoResult>;
   /**
    * Get a handle to an existing repository.
@@ -13315,7 +13315,7 @@ declare abstract class EmailEvent extends ExtendableEvent {
 declare type EmailExportedHandler<Env = unknown, Props = unknown> = (
   message: ForwardableEmailMessage,
   env: Env,
-  ctx: ExecutionContext<Props>,
+  ctx: ExecutionContext<Props>
 ) => void | Promise<void>;
 declare module 'cloudflare:email' {
   let _EmailMessage: {
@@ -13367,7 +13367,7 @@ declare abstract class Flagship {
   get(
     flagKey: string,
     defaultValue?: unknown,
-    context?: FlagshipEvaluationContext,
+    context?: FlagshipEvaluationContext
   ): Promise<unknown>;
   /**
    * Get a boolean flag value.
@@ -13378,7 +13378,7 @@ declare abstract class Flagship {
   getBooleanValue(
     flagKey: string,
     defaultValue: boolean,
-    context?: FlagshipEvaluationContext,
+    context?: FlagshipEvaluationContext
   ): Promise<boolean>;
   /**
    * Get a string flag value.
@@ -13389,7 +13389,7 @@ declare abstract class Flagship {
   getStringValue(
     flagKey: string,
     defaultValue: string,
-    context?: FlagshipEvaluationContext,
+    context?: FlagshipEvaluationContext
   ): Promise<string>;
   /**
    * Get a number flag value.
@@ -13400,7 +13400,7 @@ declare abstract class Flagship {
   getNumberValue(
     flagKey: string,
     defaultValue: number,
-    context?: FlagshipEvaluationContext,
+    context?: FlagshipEvaluationContext
   ): Promise<number>;
   /**
    * Get an object flag value.
@@ -13411,7 +13411,7 @@ declare abstract class Flagship {
   getObjectValue<T extends object>(
     flagKey: string,
     defaultValue: T,
-    context?: FlagshipEvaluationContext,
+    context?: FlagshipEvaluationContext
   ): Promise<T>;
   /**
    * Get a boolean flag value with full evaluation details.
@@ -13422,7 +13422,7 @@ declare abstract class Flagship {
   getBooleanDetails(
     flagKey: string,
     defaultValue: boolean,
-    context?: FlagshipEvaluationContext,
+    context?: FlagshipEvaluationContext
   ): Promise<FlagshipEvaluationDetails<boolean>>;
   /**
    * Get a string flag value with full evaluation details.
@@ -13433,7 +13433,7 @@ declare abstract class Flagship {
   getStringDetails(
     flagKey: string,
     defaultValue: string,
-    context?: FlagshipEvaluationContext,
+    context?: FlagshipEvaluationContext
   ): Promise<FlagshipEvaluationDetails<string>>;
   /**
    * Get a number flag value with full evaluation details.
@@ -13444,7 +13444,7 @@ declare abstract class Flagship {
   getNumberDetails(
     flagKey: string,
     defaultValue: number,
-    context?: FlagshipEvaluationContext,
+    context?: FlagshipEvaluationContext
   ): Promise<FlagshipEvaluationDetails<number>>;
   /**
    * Get an object flag value with full evaluation details.
@@ -13455,7 +13455,7 @@ declare abstract class Flagship {
   getObjectDetails<T extends object>(
     flagKey: string,
     defaultValue: T,
-    context?: FlagshipEvaluationContext,
+    context?: FlagshipEvaluationContext
   ): Promise<FlagshipEvaluationDetails<T>>;
 }
 /**
@@ -13696,7 +13696,7 @@ interface HostedImagesBinding {
    */
   upload(
     image: ReadableStream<Uint8Array> | ArrayBuffer,
-    options?: ImageUploadOptions,
+    options?: ImageUploadOptions
   ): Promise<ImageMetadata>;
   /**
    * List hosted images with pagination
@@ -13739,7 +13739,7 @@ interface ImageTransformer {
    */
   draw(
     image: ReadableStream<Uint8Array> | ImageTransformer,
-    options?: ImageDrawOptions,
+    options?: ImageDrawOptions
   ): ImageTransformer;
   /**
    * Retrieve the image that results from applying the transforms to the
@@ -13911,7 +13911,7 @@ type EventContext<Env, P extends string, Data> = {
 type PagesFunction<
   Env = unknown,
   Params extends string = any,
-  Data extends Record<string, unknown> = Record<string, unknown>,
+  Data extends Record<string, unknown> = Record<string, unknown>
 > = (context: EventContext<Env, Params, Data>) => Response | Promise<Response>;
 type EventPluginContext<Env, P extends string, Data, PluginArgs> = {
   request: Request<unknown, IncomingRequestCfProperties<unknown>>;
@@ -13932,7 +13932,7 @@ type PagesPluginFunction<
   Env = unknown,
   Params extends string = any,
   Data extends Record<string, unknown> = Record<string, unknown>,
-  PluginArgs = unknown,
+  PluginArgs = unknown
 > = (context: EventPluginContext<Env, Params, Data, PluginArgs>) => Response | Promise<Response>;
 declare module 'assets:*' {
   export const onRequest: PagesFunction;
@@ -13944,7 +13944,7 @@ declare module 'cloudflare:pipelines' {
   export abstract class PipelineTransformationEntrypoint<
     Env = unknown,
     I extends PipelineRecord = PipelineRecord,
-    O extends PipelineRecord = PipelineRecord,
+    O extends PipelineRecord = PipelineRecord
   > {
     protected env: Env;
     protected ctx: ExecutionContext;
@@ -14145,7 +14145,7 @@ declare namespace Rpc {
   // `Reserved` names (e.g. stub method names like `dup()`) and symbols can't be accessed over RPC.
   export type Provider<
     T extends object,
-    Reserved extends string = never,
+    Reserved extends string = never
   > = MaybeCallableProvider<T> &
     Pick<
       {
@@ -14226,7 +14226,7 @@ declare namespace CloudflareWorkersModule {
     scheduled?(controller: ScheduledController): void | Promise<void>;
     tail?(events: TraceItem[]): void | Promise<void>;
     tailStream?(
-      event: TailStream.TailEvent<TailStream.Onset>,
+      event: TailStream.TailEvent<TailStream.Onset>
     ): TailStream.TailEventHandlerType | Promise<TailStream.TailEventHandlerType>;
     test?(controller: TestController): void | Promise<void>;
     trace?(traces: TraceItem[]): void | Promise<void>;
@@ -14246,7 +14246,7 @@ declare namespace CloudflareWorkersModule {
       ws: WebSocket,
       code: number,
       reason: string,
-      wasClean: boolean,
+      wasClean: boolean
     ): void | Promise<void>;
     webSocketError?(ws: WebSocket, error: unknown): void | Promise<void>;
   }
@@ -14259,7 +14259,7 @@ declare namespace CloudflareWorkersModule {
     error: Error;
   };
   export type WorkflowDelayFunction = (
-    input: WorkflowDynamicDelayContext,
+    input: WorkflowDynamicDelayContext
   ) => WorkflowDelayDuration | Promise<WorkflowDelayDuration>;
   export type WorkflowTimeoutDuration = WorkflowSleepDuration;
   export type WorkflowRetentionDuration = WorkflowSleepDuration;
@@ -14321,7 +14321,7 @@ declare namespace CloudflareWorkersModule {
     stepName: string;
   };
   export type WorkflowRollbackHandler<T = unknown> = (
-    ctx: WorkflowRollbackContext<T>,
+    ctx: WorkflowRollbackContext<T>
   ) => Promise<void>;
   export type WorkflowStepRollbackOptions<T = unknown> = {
     rollback: WorkflowRollbackHandler<T>;
@@ -14331,7 +14331,7 @@ declare namespace CloudflareWorkersModule {
     do<T extends Rpc.Serializable<T>>(
       name: string,
       callback: (ctx: WorkflowStepContext) => Promise<T>,
-      rollbackOptions?: WorkflowStepRollbackOptions<T>,
+      rollbackOptions?: WorkflowStepRollbackOptions<T>
     ): Promise<T>;
     do<T extends Rpc.Serializable<T>, const C extends WorkflowStepConfig>(
       name: string,
@@ -14343,9 +14343,9 @@ declare namespace CloudflareWorkersModule {
           }
             ? D
             : WorkflowDelayDuration | number
-        >,
+        >
       ) => Promise<T>,
-      rollbackOptions?: WorkflowStepRollbackOptions<T>,
+      rollbackOptions?: WorkflowStepRollbackOptions<T>
     ): Promise<T>;
     sleep: (name: string, duration: WorkflowSleepDuration) => Promise<void>;
     sleepUntil: (name: string, timestamp: Date | number) => Promise<void>;
@@ -14354,7 +14354,7 @@ declare namespace CloudflareWorkersModule {
       options: {
         type: string;
         timeout?: WorkflowTimeoutDuration | number;
-      },
+      }
     ): Promise<WorkflowStepEvent<T>>;
   }
   export type WorkflowInstanceStatus =
@@ -14369,7 +14369,7 @@ declare namespace CloudflareWorkersModule {
     | 'unknown';
   export abstract class WorkflowEntrypoint<
     Env = unknown,
-    T extends Rpc.Serializable<T> | unknown = unknown,
+    T extends Rpc.Serializable<T> | unknown = unknown
   >
     implements Rpc.WorkflowEntrypointBranded
   {
@@ -14385,7 +14385,7 @@ declare namespace CloudflareWorkersModule {
   export function withEnvAndExports(
     newEnv: unknown,
     newExports: unknown,
-    fn: () => unknown,
+    fn: () => unknown
   ): unknown;
   export const env: Cloudflare.Env;
   export const exports: Cloudflare.Exports;
@@ -15194,11 +15194,11 @@ type SupportedFileFormat = {
 declare abstract class ToMarkdownService {
   transform(
     files: MarkdownDocument[],
-    options?: ConversionRequestOptions,
+    options?: ConversionRequestOptions
   ): Promise<ConversionResponse[]>;
   transform(
     files: MarkdownDocument,
-    options?: ConversionRequestOptions,
+    options?: ConversionRequestOptions
   ): Promise<ConversionResponse>;
   supported(): Promise<SupportedFileFormat[]>;
 }
@@ -15417,7 +15417,7 @@ declare namespace TailStream {
     readonly event: Event;
   }
   type TailEventHandler<Event extends EventType = EventType> = (
-    event: TailEvent<Event>,
+    event: TailEvent<Event>
   ) => void | Promise<void>;
   type TailEventHandlerObject = {
     outcome?: TailEventHandler<Outcome>;
@@ -15608,7 +15608,7 @@ declare abstract class VectorizeIndex {
    */
   public query(
     vector: VectorFloatArray | number[],
-    options?: VectorizeQueryOptions,
+    options?: VectorizeQueryOptions
   ): Promise<VectorizeMatches>;
   /**
    * Insert a list of vectors into the index dataset. If a provided id exists, an error will be thrown.
@@ -15654,7 +15654,7 @@ declare abstract class Vectorize {
    */
   public query(
     vector: VectorFloatArray | number[],
-    options?: VectorizeQueryOptions,
+    options?: VectorizeQueryOptions
   ): Promise<VectorizeMatches>;
   /**
    * Use the provided vector-id to perform a similarity search across the index.
@@ -15832,7 +15832,7 @@ interface DispatchNamespace {
     args?: {
       [key: string]: any;
     },
-    options?: DynamicDispatchOptions,
+    options?: DynamicDispatchOptions
   ): Fetcher;
 }
 declare module 'cloudflare:workflows' {

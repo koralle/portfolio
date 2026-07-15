@@ -20,9 +20,9 @@ await document.modelContext.registerTool(
       const prefs = localStorage.getItem('user_prefs');
       return prefs ? JSON.parse(prefs) : { theme: 'light' };
     },
-    annotations: { readOnlyHint: true },
+    annotations: { readOnlyHint: true }
   },
-  { signal: controller.signal },
+  { signal: controller.signal }
 );
 
 // To unregister the tool (e.g., on component unmount):
@@ -41,15 +41,15 @@ await document.modelContext.registerTool({
     type: 'object',
     properties: {
       width: { type: 'number', description: 'The width of the rectangle.' },
-      height: { type: 'number', description: 'The height of the rectangle.' },
+      height: { type: 'number', description: 'The height of the rectangle.' }
     },
-    required: ['width', 'height'],
+    required: ['width', 'height']
   },
   execute(input) {
     // input is { width: 10, height: 20 }
     return input.width * input.height;
   },
-  annotations: { readOnlyHint: true },
+  annotations: { readOnlyHint: true }
 });
 ```
 
@@ -96,7 +96,7 @@ export function createInventoryTool(inventoryManager) {
     execute() {
       return inventoryManager.getItems();
     },
-    annotations: { readOnlyHint: true },
+    annotations: { readOnlyHint: true }
   };
 }
 ```

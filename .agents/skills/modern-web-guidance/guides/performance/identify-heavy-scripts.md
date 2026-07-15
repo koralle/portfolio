@@ -28,12 +28,12 @@ const observer = new PerformanceObserver(list => {
   const scriptSource = [...new Set(allScripts.map(script => script.sourceURL))];
   const scriptsBySource = scriptSource.map(sourceURL => [
     sourceURL,
-    allScripts.filter(script => script.sourceURL === sourceURL),
+    allScripts.filter(script => script.sourceURL === sourceURL)
   ]);
   const processedScripts = scriptsBySource.map(([sourceURL, scripts]) => ({
     sourceURL,
     count: scripts.length,
-    totalDuration: scripts.reduce((subtotal, script) => subtotal + script.duration, 0),
+    totalDuration: scripts.reduce((subtotal, script) => subtotal + script.duration, 0)
   }));
 
   // Only include scripts above a certain threshold to reduce noise.

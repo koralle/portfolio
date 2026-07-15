@@ -295,7 +295,7 @@ import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 // 1. HTML Documents: Network First
 registerRoute(
   ({ request }) => request.mode === 'navigate',
-  new NetworkFirst({ cacheName: 'pages-cache' }),
+  new NetworkFirst({ cacheName: 'pages-cache' })
 );
 
 // 2. Static Assets (JS, CSS, Fonts): Cache First
@@ -305,9 +305,9 @@ registerRoute(
     cacheName: 'static-resources',
     plugins: [
       new CacheableResponsePlugin({ statuses: [0, 200] }),
-      new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 }),
-    ],
-  }),
+      new ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 30 * 24 * 60 * 60 })
+    ]
+  })
 );
 
 // 3. API Responses: Stale While Revalidate
@@ -315,8 +315,8 @@ registerRoute(
   ({ url }) => url.pathname.startsWith('/api/v1/content'),
   new StaleWhileRevalidate({
     cacheName: 'api-cache',
-    plugins: [new CacheableResponsePlugin({ statuses: [0, 200] })],
-  }),
+    plugins: [new CacheableResponsePlugin({ statuses: [0, 200] })]
+  })
 );
 ```
 

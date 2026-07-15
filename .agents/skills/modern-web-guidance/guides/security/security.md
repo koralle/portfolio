@@ -255,7 +255,7 @@ Trusted Types enforces the §1.2 source-level guidance at runtime: once enabled,
 ```javascript
 if (window.trustedTypes && trustedTypes.createPolicy) {
   const policy = trustedTypes.createPolicy('escapePolicy', {
-    createHTML: str => str.replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+    createHTML: str => str.replace(/</g, '&lt;').replace(/>/g, '&gt;')
   });
   el.innerHTML = policy.createHTML(untrustedString);
 }

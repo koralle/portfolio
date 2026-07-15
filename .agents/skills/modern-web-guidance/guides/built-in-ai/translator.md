@@ -32,7 +32,7 @@ To run Gemini Nano and associated models, the system needs:
 ```javascript
 const options = {
   sourceLanguage: 'es',
-  targetLanguage: 'fr',
+  targetLanguage: 'fr'
 };
 
 const availability = await Translator.availability(options);
@@ -46,7 +46,7 @@ if (availability === 'available' || availability === 'downloadable') {
         m.addEventListener('downloadprogress', e => {
           console.log(`Downloaded ${Math.round(e.loaded * 100)}%`);
         });
-      },
+      }
     });
   });
 }
@@ -61,7 +61,7 @@ The API supports both static and streaming responses.
 ```javascript
 const translator = await Translator.create({
   sourceLanguage: 'en',
-  targetLanguage: 'fr',
+  targetLanguage: 'fr'
 });
 
 const result = await translator.translate('Where is the next bus stop, please?');

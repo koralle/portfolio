@@ -211,7 +211,7 @@ if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) 
         }
       });
     },
-    { threshold: 0 },
+    { threshold: 0 }
   );
 
   observer.observe(wrapper);

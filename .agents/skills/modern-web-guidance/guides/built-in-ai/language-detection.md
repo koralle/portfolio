@@ -33,7 +33,7 @@ if (availability !== 'unavailable') {
         m.addEventListener('downloadprogress', e => {
           console.log(`Downloaded ${e.loaded * 100}%`);
         });
-      },
+      }
     });
   });
 }

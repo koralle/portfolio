@@ -48,29 +48,29 @@ const options = {
   user: {
     id: userBase64UrlId, // Unique base64url string identifying the account
     name: 'user@example.com',
-    displayName: 'Jane Doe',
+    displayName: 'Jane Doe'
   },
   pubKeyCredParams: [
     {
       type: 'public-key',
-      alg: -7,
+      alg: -7
     },
     {
       type: 'public-key',
-      alg: -257,
-    },
+      alg: -257
+    }
   ],
   excludeCredentials: userExistingCredentials.map(cred => ({
     type: 'public-key',
     id: cred.id,
-    transports: cred.transports,
+    transports: cred.transports
   })),
   authenticatorSelection: {
     residentKey: 'required',
     requireResidentKey: true,
     userVerification: 'preferred',
-    ...(isPromotionFlow && { authenticatorAttachment: 'platform' }),
-  },
+    ...(isPromotionFlow && { authenticatorAttachment: 'platform' })
+  }
 };
 ```
 
@@ -139,14 +139,14 @@ async function registerPasskey(isPromotion = false) {
       // Server verification failed to verify/authenticate the credential (orphaned)
       await PublicKeyCredential.signalUnknownCredential({
         rpId, // RP ID must match the one defined on the server
-        credentialId: encodedResponse.id, // Base64URL-encoded credential ID
+        credentialId: encodedResponse.id // Base64URL-encoded credential ID
       });
     }
   } catch (serverErr) {
     console.error('Server verification network failure:', serverErr);
     await publickeycredential.signalunknowncredential({
       rpId, // RP ID must match the one defined on the server
-      credentialid: encodedresponse.id, // base64url-encoded credential id
+      credentialid: encodedresponse.id // base64url-encoded credential id
     });
   }
 }

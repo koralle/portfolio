@@ -18,7 +18,7 @@ fetch('/api/analytics', {
   method: 'POST',
   body: JSON.stringify(eventData),
   // Lower the priority to prevent network contention
-  priority: 'low',
+  priority: 'low'
 });
 ```
 

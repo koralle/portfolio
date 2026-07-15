@@ -145,7 +145,7 @@ If you are not using a package manager, dynamically import the polyfill directly
     import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover-fn.js').then(
       ({ apply }) => {
         apply();
-      },
+      }
     );
   }
 </script>

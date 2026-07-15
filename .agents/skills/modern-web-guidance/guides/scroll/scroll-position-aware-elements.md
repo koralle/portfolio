@@ -125,7 +125,7 @@ if (!CSS.supports('container-type', 'scroll-state')) {
         }
       });
     },
-    { root: scroller },
+    { root: scroller }
   );
 
   observer.observe(sentinel);

@@ -640,7 +640,7 @@ if (!('onscrollsnapchange' in HTMLElement.prototype)) {
         }
       }
     },
-    { root: stack, threshold: 1 },
+    { root: stack, threshold: 1 }
   );
 
   // Auto-observe every .Stack-view as it's added to the stack, and stop

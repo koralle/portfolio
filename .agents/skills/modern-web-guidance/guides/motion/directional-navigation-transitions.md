@@ -85,7 +85,7 @@ const updateDOM = yourUpdateDOMLogic();
 
 document.startViewTransition({
   update: updateDOM,
-  types: [transitionType], // Matches the CSS :active-view-transition-type() selectors
+  types: [transitionType] // Matches the CSS :active-view-transition-type() selectors
 });
 ```
 
@@ -126,7 +126,7 @@ function navigate(updateDOM, direction) {
   // Start transition with the specific navigation type
   document.startViewTransition({
     update: updateDOM,
-    types: [direction], // Matches the CSS :active-view-transition-type() selectors
+    types: [direction] // Matches the CSS :active-view-transition-type() selectors
   });
 }
 ```

@@ -23,7 +23,7 @@ const ANALYTICS_ENDPOINT = '/path/to/analytics/endpoint';
 
 const sessionData = {
   duration: 0,
-  id: crypto.randomUUID(),
+  id: crypto.randomUUID()
 };
 
 let fetchLaterController = null;
@@ -45,7 +45,7 @@ function queueBeacon() {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(sessionData),
-      signal: fetchLaterController.signal,
+      signal: fetchLaterController.signal
     });
   } catch (error) {
     // Handle errors as needed.
@@ -125,7 +125,7 @@ globalThis.fetchLater ??= function fetchLater(url, init = {}) {
   return {
     get activated() {
       return activated;
-    },
+    }
   };
 };
 ```
