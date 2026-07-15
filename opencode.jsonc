@@ -9,6 +9,11 @@
     "chrome-devtools-mcp": {
       "type": "local",
       "command": ["npx", "-y", "chrome-devtools-mcp@latest"]
+    },
+    "MDN docs": {
+      "type": "remote",
+      "url": "https://mcp.mdn.mozilla.net/",
+      "enabled": true
     }
   }
 }
