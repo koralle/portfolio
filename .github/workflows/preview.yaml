@@ -1,0 +1,70 @@
+name: Preview Deploy
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - ready_for_review
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy Cloudflare Pages preview
+    runs-on: ubuntu-24.04
+    if: ${{ !github.event.pull_request.draft }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup
+        uses: ./.github/composite-actions/cache-and-install
+
+      - name: Build
+        shell: bash
+        run: |
+          pnpm astro build
+
+      - name: Deploy Pages preview
+        id: deploy-pages-preview
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >-
+            pages deploy ./dist
+            --project-name portfolio
+            --branch=${{ github.head_ref }}
+
+      - name: Create preview comment
+        env:
+          DEPLOYMENT_URL: ${{ steps.deploy-pages-preview.outputs.deployment-url }}
+          DEPLOYMENT_ALIAS_URL: ${{ steps.deploy-pages-preview.outputs.deployment-alias-url }}
+        shell: bash
+        run: |
+          cat <<EOF_COMMENT > comment.md
+          ## Cloudflare Pages Preview
+
+          | Item | URL |
+          | --- | --- |
+          | Preview deployment | <$DEPLOYMENT_URL> |
+          | Branch alias | <$DEPLOYMENT_ALIAS_URL> |
+          EOF_COMMENT
+
+      - name: Comment on pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} --body-file comment.md
