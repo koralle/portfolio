@@ -1,18 +1,21 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { Hero } from '../components/Hero';
-import { About } from '../components/About';
-import { Skills } from '../components/Skills';
-import { Projects } from '../components/Projects';
-import { GetInTouch } from '../components/GetInTouch';
+import { ContentSection } from '../components/ContentSection';
 import { Footer } from '../components/Footer';
+import { defaultLocale } from '../i18n/config';
+import { getUi } from '../i18n/ui';
+
+const locale = defaultLocale;
+const messages = getUi(locale);
+const sections = (await getCollection('home', ({ data }) => data.locale === locale)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 ---
 
-<Layout>
-  <Hero />
-  <About />
-  <Skills />
-  <Projects />
-  <GetInTouch />
-  <Footer />
+<Layout locale={locale} title={messages.siteTitle} description={messages.description}>
+  <Hero messages={messages} />
+  {sections.map((entry) => <ContentSection entry={entry} />)}
+  <Footer locale={locale} messages={messages} />
 </Layout>
