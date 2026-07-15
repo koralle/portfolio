@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import { Hero } from '../components/Hero';
 import { ContentSection } from '../components/ContentSection';
@@ -7,15 +7,17 @@ import { Footer } from '../components/Footer';
 import { defaultLocale } from '../i18n/config';
 import { getUi } from '../i18n/ui';
 
+type HomeEntry = CollectionEntry<'home'>;
+
 const locale = defaultLocale;
 const messages = getUi(locale);
-const sections = (await getCollection('home', ({ data }) => data.locale === locale)).sort(
-  (a, b) => a.data.order - b.data.order,
-);
+const sections = (
+  await getCollection('home', (entry: HomeEntry) => entry.data.locale === locale)
+).sort((a: HomeEntry, b: HomeEntry) => a.data.order - b.data.order);
 ---
 
 <Layout locale={locale} title={messages.siteTitle} description={messages.description}>
   <Hero messages={messages} />
-  {sections.map((entry) => <ContentSection entry={entry} />)}
+  {sections.map((entry: HomeEntry) => <ContentSection entry={entry} />)}
   <Footer locale={locale} messages={messages} />
 </Layout>

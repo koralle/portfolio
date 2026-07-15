@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { defaultLocale } from '../i18n/config';
 ---
 
-<Layout>
+<Layout locale={defaultLocale} title="404 Not Found" description="Page not found">
   <h1>404 Not Found</h1>
 </Layout>
