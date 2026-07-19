@@ -7,7 +7,7 @@ export default {
   useTabs: false,
   semi: true,
   singleQuote: true,
-  trailingComma: 'all',
+  trailingComma: 'none',
   bracketSpacing: true,
   bracketSameLine: false,
   arrowParens: 'avoid',
@@ -16,8 +16,8 @@ export default {
     {
       files: '*.astro',
       options: {
-        parser: 'astro',
-      },
-    },
-  ],
+        parser: 'astro'
+      }
+    }
+  ]
 } as const satisfies Config;

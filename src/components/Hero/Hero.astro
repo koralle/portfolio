@@ -22,7 +22,7 @@ const { messages } = Astro.props;
     paddingInline: { base: '16px', sm: '24px', md: '32px' },
     paddingBlock: '64px',
     visibility: 'hidden',
-    opacity: 0,
+    opacity: 0
   })}
 >
   <div
@@ -32,7 +32,7 @@ const { messages } = Astro.props;
       alignItems: 'center',
       width: '100%',
       maxWidth: '1440px',
-      height: '100%',
+      height: '100%'
     })}
   >
     <hgroup>
@@ -40,14 +40,14 @@ const { messages } = Astro.props;
         id="greeting"
         class={css({
           fontSize: { base: '1.5em', sm: '2.75em', md: '3.25em' },
-          fontWeight: 700,
+          fontWeight: 700
         })}
       >
         {messages.heroGreetingPrefix}{' '}
         <span
           id="my-name"
           class={css({
-            color: 'primary',
+            color: 'primary'
           })}
         >
           {messages.heroName}
@@ -59,7 +59,7 @@ const { messages } = Astro.props;
         class={css({
           fontSize: { base: '1em', sm: '1.5em' },
           color: 'oklch(0.872 0.01 258.338)',
-          fontWeight: 400,
+          fontWeight: 400
         })}
       >
         {messages.heroLead}
@@ -70,7 +70,7 @@ const { messages } = Astro.props;
       class={css({
         display: 'grid',
         placeItems: 'center',
-        width: { base: '192px', md: '320px', lg: '480px', xl: '640px' },
+        width: { base: '192px', md: '320px', lg: '480px', xl: '640px' }
       })}
     >
       <Image src={SleepingMugicha} alt="" />
@@ -86,7 +86,7 @@ const { messages } = Astro.props;
 
   const startHeroAnimation = () => {
     const splitGreeting = SplitText.create('#greeting', {
-      type: 'words,chars',
+      type: 'words,chars'
     });
 
     gsap.set('#hero', { visibility: 'visible' });
@@ -98,12 +98,12 @@ const { messages } = Astro.props;
         opacity: 0,
         y: 20,
         stagger: 0.05,
-        duration: 1,
+        duration: 1
       })
       .from('#self-introduction', { opacity: 0, x: -20, duration: 0.5 });
   };
 
   document.addEventListener('loader-animation-finished', startHeroAnimation, {
-    once: true,
+    once: true
   });
 </script>

@@ -22,7 +22,7 @@
     "lint:inspect": "eslint-config-inspector",
     "lint": "pnpm run lint:check",
     "format:check": "prettier --check . --cache --cache-location node_modules/.cache/prettier --cache-strategy content",
-    "format": "prettier --check . --cache --cache-location node_modules/.cache/prettier --cache-strategy content",
+    "format": "prettier --write . --cache --cache-location node_modules/.cache/prettier --cache-strategy content",
     "typecheck": "astro check"
   },
   "dependencies": {
@@ -60,5 +60,5 @@
     "typescript-eslint": "catalog:eslint",
     "wrangler": "catalog:cloudflare"
   },
-  "packageManager": "pnpm@11.13.0"
+  "packageManager": "pnpm@11.14.0"
 }

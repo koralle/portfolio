@@ -62,13 +62,13 @@ const shareUrl = getShareUrl(Astro.url.pathname);
     gsap
       .timeline({
         repeat: -1,
-        repeatDelay: 1,
+        repeatDelay: 1
       })
       .from(split.chars, {
         y: '100%',
         stagger: 0.05,
         duration: 1,
-        ease: 'power4.out',
+        ease: 'power4.out'
       })
       .to(
         loaderText,
@@ -80,9 +80,9 @@ const shareUrl = getShareUrl(Astro.url.pathname);
           delay: 0.5,
           onComplete: () => {
             document.dispatchEvent(new CustomEvent('loader-animation-finished'));
-          },
+          }
         },
-        '-=0.5',
+        '-=0.5'
       )
       .to(
         '#loader',
@@ -95,9 +95,9 @@ const shareUrl = getShareUrl(Astro.url.pathname);
             if (loader) {
               loader.style.display = 'none';
             }
-          },
+          }
         },
-        '-=0.5',
+        '-=0.5'
       );
   };
 

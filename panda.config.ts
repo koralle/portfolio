@@ -2,8 +2,8 @@ import { defineConfig, defineGlobalStyles } from '@pandacss/dev';
 
 const globalStyles = defineGlobalStyles({
   ':root, body': {
-    color: '#e0e0e0',
-  },
+    color: '#e0e0e0'
+  }
 });
 
 export default defineConfig({
@@ -22,9 +22,9 @@ export default defineConfig({
     semanticTokens: {
       colors: {
         primary: {
-          value: '#ec93a1',
-        },
-      },
+          value: '#ec93a1'
+        }
+      }
     },
     extend: {
       breakpoints: {
@@ -33,12 +33,12 @@ export default defineConfig({
         md: '768px',
         lg: '1024px',
         xl: '1280px',
-        '2xl': '1536px',
-      },
-    },
+        '2xl': '1536px'
+      }
+    }
   },
 
   globalCss: globalStyles,
   // The output directory for your css system
-  outdir: 'styled-system',
+  outdir: 'styled-system'
 });

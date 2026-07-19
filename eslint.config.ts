@@ -13,35 +13,35 @@ export default defineConfig([
       '**/styled-system/*',
       '**/dist/*',
       'postcss.config.cjs',
-      'worker-configuration.d.ts',
-    ],
+      'worker-configuration.d.ts'
+    ]
   },
   {
     files: ['**/*.ts', '**/*.tsx'],
     extends: [
       js.configs.recommended,
       tseslint.configs.strictTypeChecked,
-      tseslint.configs.stylisticTypeChecked,
+      tseslint.configs.stylisticTypeChecked
     ],
     languageOptions: {
       parserOptions: {
-        project: './tsconfig.json',
-      },
-    },
+        project: './tsconfig.json'
+      }
+    }
   },
   ...eslintPluginAstro.configs.recommended,
   ...eslintPluginAstro.configs['jsx-a11y-strict'],
   {
     files: ['**/*.astro/*.ts'],
-    ...tseslint.configs.disableTypeChecked,
+    ...tseslint.configs.disableTypeChecked
   },
   {
     files: ['src/**/*.astro'],
     languageOptions: {
       parserOptions: {
-        project: './tsconfig.json',
-      },
-    },
+        project: './tsconfig.json'
+      }
+    }
   },
-  eslintConfigPrettier,
+  eslintConfigPrettier
 ]);
