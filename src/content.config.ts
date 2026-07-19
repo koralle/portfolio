@@ -10,8 +10,8 @@ const home = defineCollection({
     section: z.enum(['about', 'skills', 'projects', 'contact']),
     title: z.string(),
     order: z.number().int().nonnegative(),
-    tone: z.enum(['dark', 'darker']).default('dark'),
-  }),
+    tone: z.enum(['dark', 'darker']).default('dark')
+  })
 });
 
 export const collections = { home };

@@ -11,8 +11,8 @@ export default defineConfig({
     locales: ['en', 'ja'],
     routing: {
       prefixDefaultLocale: false,
-      redirectToDefaultLocale: false,
-    },
+      redirectToDefaultLocale: false
+    }
   },
   image: {
     service: passthroughImageService()

@@ -5,7 +5,7 @@ export type Locale = (typeof locales)[number];
 
 export const localeLabels = {
   en: 'English',
-  ja: '日本語',
+  ja: '日本語'
 } satisfies Record<Locale, string>;
 
 export const isLocale = (value: string): value is Locale => locales.includes(value as Locale);
