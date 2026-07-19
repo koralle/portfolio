@@ -11,7 +11,7 @@ export const ui = {
     heroLead: 'A seal and a front-end developer.',
     footerHeading: 'Feel free to contact me!',
     copyright: '© Copyright 2025, koralle. All Rights Reserved.',
-    languageSwitcherLabel: 'Language',
+    languageSwitcherLabel: 'Language'
   },
   ja: {
     siteTitle: "koralle's Portfolio",
@@ -21,10 +21,10 @@ export const ui = {
     heroName: 'koralle',
     heroGreetingSuffix: '!',
     heroLead: 'A seal and a front-end developer.',
-    footerHeading: 'お気軽にご連絡ください！',
+    footerHeading: 'Feel free to contact me!',
     copyright: '© Copyright 2025, koralle. All Rights Reserved.',
-    languageSwitcherLabel: '言語',
-  },
+    languageSwitcherLabel: '言語'
+  }
 } satisfies Record<Locale, Record<string, string>>;
 
 export const getUi = (locale: Locale) => ui[locale];
