@@ -1,7 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { defaultLocale } from '../i18n/config';
+import { getUi } from '../i18n/ui';
+
+const locale = defaultLocale;
+const messages = getUi(locale);
 ---
 
-<Layout>
+<Layout locale={locale} title="404 - Not Found" description={messages.description}>
   <h1>404 Not Found</h1>
 </Layout>

@@ -19,6 +19,7 @@
     "astro.config.mts",
     "prettier.config.ts",
     "panda.config.ts",
-    "eslint.config.ts"
+    "eslint.config.ts",
+    "tests"
   ]
 }

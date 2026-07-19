@@ -2,6 +2,13 @@
 import { css } from '../../../styled-system/css';
 import { Image } from 'astro:assets';
 import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
+import type { getUi } from '../../i18n/ui';
+
+interface Props {
+  messages: ReturnType<typeof getUi>;
+}
+
+const { messages } = Astro.props;
 ---
 
 <section
@@ -36,16 +43,16 @@ import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
           fontWeight: 700
         })}
       >
-        Hi! I'm{' '}
+        {messages.heroGreetingPrefix}{' '}
         <span
           id="my-name"
           class={css({
             color: 'primary'
           })}
         >
-          koralle
+          {messages.heroName}
         </span>
-        !
+        {messages.heroGreetingSuffix}
       </h1>
       <p
         id="self-introduction"
@@ -55,7 +62,7 @@ import SleepingMugicha from '../../../public/images/sleeping-mugicha.webp';
           fontWeight: 400
         })}
       >
-        A seal and a front-end developer.
+        {messages.heroLead}
       </p>
     </hgroup>
     <div
