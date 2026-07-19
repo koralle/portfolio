@@ -1,5 +1,6 @@
 ---
 import Loader from '../components/Loader.astro';
+import { getShareUrl } from '../lib/share-url';
 import '../styles/index.css';
 import '../styles/preflight.css';
 
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const { locale, title, description } = Astro.props;
+const shareUrl = getShareUrl(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -27,12 +29,12 @@ const { locale, title, description } = Astro.props;
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://me.koralle-mgmg.com" />
+    <meta property="og:url" content={shareUrl} />
     <meta property="og:image" content="https://me.koralle-mgmg.com/images/ogp-card.webp" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:site" content="@koralle_tech" />
     <meta property="twitter:title" content={title} />
-    <meta property="twitter:url" content="https://me.koralle-mgmg.com" />
+    <meta property="twitter:url" content={shareUrl} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content="https://me.koralle-mgmg.com/images/ogp-card.webp" />
     <title>{title}</title>
