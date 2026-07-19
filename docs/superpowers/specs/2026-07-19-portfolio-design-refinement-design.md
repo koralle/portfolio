@@ -1,145 +1,145 @@
-# Portfolio Design Refinement
+# ポートフォリオデザイン洗練
 
-## Goal
+## ゴール
 
-Refine koralle's Astro portfolio so the first impression is unmistakably **brand-forward (koralle / seal personality)**, while hiring-oriented proof (skills, projects, contact) remains easy to find. Keep the existing visual identity and polish composition, hierarchy, motion, and accessibility. When visual polish conflicts with accessibility, **accessibility wins**.
+koralle の Astro ポートフォリオを、第一印象がはっきりと **ブランド先行（koralle / アザラシの個性）** になるよう洗練する。同時に、採用向けの証明（Skills / Projects / Contact）へ迷わず辿れるようにする。既存のビジュアルアイデンティティは維持し、構成・階層・モーション・アクセシビリティを磨く。見た目の洗練とアクセシビリティが衝突する場合は、**アクセシビリティを優先**する。
 
-## Decisions
+## 決定事項
 
-| Topic | Decision |
+| 項目 | 決定 |
 | --- | --- |
-| Primary goals | Brand/personality (B) weighted over hiring (A); both in scope |
-| Visual identity | Keep dark base, pink accent `#ec93a1`, Rounded M Plus 1c, Mugicha |
-| Approach | Brand-first composition + clearer proof path (Craft + IA), not surface-only polish and not heavy scroll storytelling |
-| Hero layout | Brand-first full-bleed: `koralle` as hero-level signal; Mugicha as dominant edge-to-edge visual plane |
-| Content system | Keep MDX-driven home sections; strengthen Projects frontmatter shape |
-| Out of scope | Full rebrand, fake project content, immersive scroll narrative |
+| 主な目標 | 個性・ブランド（B）を採用・信頼（A）より重視。ただし両方とも対象 |
+| ビジュアルアイデンティティ | ダーク基調、ピンクアクセント `#ec93a1`、Rounded M Plus 1c、Mugicha を維持 |
+| アプローチ | ブランド先行の構図 + 証明導線の明確化（Craft + IA）。サーフェス磨きだけでも、重いスクロール物語でもない |
+| Hero レイアウト | ブランド先行フルブリード。`koralle` をヒーロー級の信号に、Mugicha を端まで効く主視覚に |
+| コンテンツシステム | MDX 駆動の home セクションを維持。Projects はコレクション形を強化 |
+| スコープ外 | 全面リブランド、偽のプロジェクト実績、没入型スクロールストーリー |
 
-## Page narrative
+## ページの物語
 
-Single-page story in this order:
+1 ページの流れを次の順にする。
 
-1. **Hero** — brand and personality land immediately
-2. **About** — short stance / values (not a tech laundry list)
-3. **Skills** — scannable capability map for hiring readers
-4. **Projects** — primary trust surface; structure first, real content when ready
-5. **Contact + Footer** — clear outreach; footer no longer forced to full viewport height
+1. **Hero** — ブランドと個性がすぐ立つ
+2. **About** — 短いスタンス / 価値観（技術の羅列にしない）
+3. **Skills** — 採用担当がスキャンできる能力の地図
+4. **Projects** — 信頼の本体。型を先に作り、実コンテンツは揃い次第
+5. **Contact + Footer** — 連絡手段を明確に。Footer をフルビューポート高さに固定しない
 
-### Navigation
+### ナビゲーション
 
-- Light in-page anchor nav: About / Skills / Projects / Contact
-- Language switcher reachable near the top (not footer-only)
-- Skip link to `#main-content`
+- ページ内アンカーナビ: About / Skills / Projects / Contact
+- 言語切替は上部付近でも届くようにする（フッターのみにしない）
+- `#main-content` へのスキップリンク
 
 ## Hero
 
-### Content budget (first viewport)
+### ファーストビューの予算
 
-- Brand name `koralle` as the strongest signal (not only nav/eyebrow text)
-- One short greeting / lead line (seal + front-end)
-- One supporting sentence bridging to craft values
-- CTA group: primary **Projects**, secondary **Contact** (in-page anchors)
-- One dominant Mugicha visual — no cards, badges, chips, or promo stickers over the hero
+- ブランド名 `koralle` を最大の信号にする（ナビやアイブロウだけにしない）
+- 短い挨拶 / リード（seal + front-end）を 1 つ
+- クラフトの価値観へ橋渡しする補足を 1 文
+- CTA: 主ボタン **Projects**、副ボタン **Contact**（ページ内アンカー）
+- Mugicha を 1 つのドミナント視覚にする — Hero 上にカード、バッジ、チップ、プロモステッカーを重ねない
 
-### Atmosphere
+### 雰囲気
 
-- Base `#1a1a1a` with a subtle pink radial wash (avoid flat single-color emptiness)
-- Desktop: copy on the readable side; Mugicha dominates toward the opposite edge / background plane
-- Mobile: brand + copy first; Mugicha below or recessed so text contrast stays primary
+- ベース `#1a1a1a` に、ごく薄いピンクの放射グラデーション（フラット一色だけにしない）
+- デスクトップ: コピーを読みやすい側に、Mugicha を反対側〜背景面で支配的に
+- モバイル: ブランドとコピーを先に。Mugicha は下または背景に下げ、文字コントラストを優先
 
-### Motion
+### モーション
 
-- Keep Loader → Hero GSAP sequence
-- Choreography: brand → lead → Mugicha/CTA
-- `prefers-reduced-motion: reduce`: no SplitText character choreography; short fade or immediate show
+- 既存の Loader → Hero の GSAP シーケンスを残す
+- 順序: ブランド → リード → Mugicha / CTA
+- `prefers-reduced-motion: reduce`: SplitText の文字分解をやめる。短いフェードまたは即時表示
 
-## Mid sections
+## 中盤セクション
 
-### Shared rules
+### 共通ルール
 
-- Keep alternating section tones (`#1a1a1a` / `#212121`)
-- Each section: one heading, one short lead, then body
-- Prose measure ~960px; project media rows may widen slightly
+- 交互トーン（`#1a1a1a` / `#212121`）は維持
+- 各セクション: 見出し 1 + 短いリード 1 文 + 本体
+- 本文幅はおおよそ 960px。Projects のメディア行だけ少し広げてもよい
 
 ### About
 
-- Short MDX prose about accessible UI, interaction quality, and maintainable front-end craft
-- Move stack lists to Skills
+- アクセシブルな UI、インタラクション品質、育てられるフロントエンド、についての短い MDX 本文
+- 技術スタックの羅列は Skills へ寄せる
 
 ### Skills
 
-- No decorative cards
-- Grouped scannable lists (e.g. Front-end / Accessibility & UX / Delivery)
-- Dense enough to scan in seconds
+- 装飾カードは使わない
+- スキャンしやすいグループリスト（例: Front-end / Accessibility & UX / Delivery）
+- 数秒で「何ができるか」分かる密度
 
 ### Projects
 
-Split section chrome from items:
+セクションの枠と項目を分ける。
 
-- Home MDX entry `section: projects` keeps **title + lead + tone** only
-- Add a `projects` content collection for items, with required frontmatter:
-  - `locale`, `title`, `summary`, `tags` (string array), `links` (label + href), `order`
-  - optional `image`
-- Present items as **row-based case entries** (interactive link containers allowed)
-- Avoid decorative card grids
-- If the collection is empty for the active locale: honest “準備中 / coming soon” — no fabricated case studies
-- Deeper multi-page case studies are out of scope; listing rows are enough for this pass
+- home MDX の `section: projects` は **タイトル + リード + tone** のみ
+- 項目用に `projects` コンテンツコレクションを追加する。必須 frontmatter:
+  - `locale`, `title`, `summary`, `tags`（文字列配列）, `links`（label + href）, `order`
+  - 任意: `image`
+- 項目は **行ベースのケース行** として出す（クリック可能なリンク容器は可）
+- 装飾だけのカードグリッドにはしない
+- 当該ロケールのコレクションが空なら、誠実に「準備中 / coming soon」を出す。偽の実績は作らない
+- 複数ページの詳細ケーススタディはスコープ外。このパスでは一覧行までで十分
 
 ### Contact / Footer
 
-- Contact: invitation copy
-- Footer: GitHub, X, language switcher, copyright
-- Remove full-viewport footer height; size to content
-- Fix invalid footer id (`id="#footer"` → `id="footer"`)
+- Contact: 呼びかけのコピー
+- Footer: GitHub、X、言語切替、コピーライト
+- Footer のフルビューポート高さはやめ、内容に応じた高さにする
+- 不正な Footer id（`id="#footer"` → `id="footer"`）を修正する
 
-## Accessibility requirements
+## アクセシビリティ要件
 
-- Contrast: body, links, and pink headings checked to WCAG AA; if primary pink fails, raise lightness and/or limit pink to large heading text
-- Visible focus rings on all interactive controls
-- Skip link to main content
-- `prefers-reduced-motion` honored for Loader and Hero
-- Decorative Mugicha may keep empty `alt`; meaningful images need descriptive `alt`
-- Correct landmarks and section ids; language switcher keeps `aria-current` for the active locale
+- コントラスト: 本文・リンク・ピンク見出しを WCAG AA で確認。primary ピンクが足りなければ明度を上げる、および／またはピンクを大見出しに限定する
+- すべてのインタラクティブ要素に見えるフォーカスリング
+- メインコンテンツへのスキップリンク
+- Loader / Hero で `prefers-reduced-motion` を尊重する
+- 装飾の Mugicha は空の `alt` でよい。意味のある画像には説明的な `alt`
+- ランドマークとセクション id を正しくする。言語切替は現在言語を `aria-current` で示す
 
-## Design tokens (Panda)
+## デザイントークン（Panda）
 
-Introduce semantic tokens instead of scattered hex where practical:
+散在する hex を、実務的な範囲でセマンティックトークンへ寄せる。
 
-- Surfaces: `bg.base`, `bg.raised`
-- Text: `text`, `text.muted`
-- Brand: `primary` (and `primary.accessible` if a contrast-safe variant is needed)
-- Shared spacing, max-width, and focus color tokens
+- サーフェス: `bg.base`, `bg.raised`
+- テキスト: `text`, `text.muted`
+- ブランド: `primary`（必要ならコントラスト用の `primary.accessible`）
+- 余白、最大幅、フォーカス色の共有トークン
 
-Font family remains Rounded M Plus 1c.
+フォントは Rounded M Plus 1c のまま。
 
-## Motion inventory (intentional, limited)
+## モーション一覧（意図的に少なく）
 
-1. Loader entrance (existing, reduced-motion safe)
-2. Hero reveal sequence (brand → copy → visual/CTA)
-3. Subtle scroll entrance for section headings only — no heavy parallax or scroll-jacking
+1. Loader 入場（既存を reduced-motion 対応で残す）
+2. Hero の順次表示（ブランド → コピー → 視覚 / CTA）
+3. セクション見出しだけの控えめなスクロール入場 — 重いパララックスやスクロールジャックはしない
 
-All three respect `prefers-reduced-motion: reduce` (skip choreography; keep content visible).
+3 つとも `prefers-reduced-motion: reduce` では振り付けを省略し、内容は見える状態を保つ。
 
-## Architecture notes (implementation boundaries)
+## アーキテクチャメモ（実装の境界）
 
-- Keep Astro + Panda CSS + GSAP + MDX content collections
-- Prefer evolving `Hero`, `ContentSection` / section rendering, `Footer`, `Layout`, `content.config.ts`, and `panda.config.ts`
-- Add a dedicated Projects list component fed by the `projects` collection; wire it from the home projects section path
-- Unused stub section components (`About.astro`, `Projects.astro`, `Skills.astro`, `GetInTouch.astro` that are not on the page path) stay untouched in this pass unless deleting them is required to avoid confusion
-- i18n (`src/i18n`, locale routes) stays; copy refinements may touch `ui.ts` and home MDX entries
-- Anchor nav + skip link live in `Layout` (or a small header component introduced for that purpose)
+- Astro + Panda CSS + GSAP + MDX コンテンツコレクションは維持
+- 主に触るのは `Hero`、`ContentSection` / セクション描画、`Footer`、`Layout`、`content.config.ts`、`panda.config.ts`
+- `projects` コレクションを読む専用の Projects 一覧コンポーネントを追加し、home の projects セクション経路からつなぐ
+- ページ経路に乗っていないスタブ（`About.astro`, `Projects.astro`, `Skills.astro`, `GetInTouch.astro`）は、混乱回避のための削除が必要でない限りこのパスでは触らない
+- i18n（`src/i18n`、ロケールルート）は維持。コピー調整は `ui.ts` と home MDX に及んでよい
+- アンカーナビとスキップリンクは `Layout`（またはそのための小さなヘッダーコンポーネント）に置く
 
-## Success criteria
+## 成功条件
 
-- Removing the nav still leaves an obvious koralle brand in the first viewport
-- A hiring reader can reach Skills / Projects / Contact without hunting
-- No known AA contrast or keyboard regressions introduced by the polish
-- Reduced-motion users get a complete, non-broken experience
-- Projects can be filled later via MDX without another layout redesign
+- ナビを除いても、ファーストビューで koralle ブランドが一目で分かる
+- 採用担当が Skills / Projects / Contact へ迷わず到達できる
+- 洗練によって既知の AA コントラストやキーボード操作の退行を入れない
+- reduced-motion 利用者でも欠けのない体験になる
+- あとから MDX で Projects を増やしても、レイアウトを作り直さなくてよい
 
-## Non-goals
+## 非ゴール
 
-- Purple/glow/dark-mode trend restyle unrelated to the current brand
-- Replacing Rounded M Plus or retiring Mugicha
-- Building a multi-page case-study system in this pass
-- Inventing project portfolio entries without real work to show
+- 現行ブランドと無関係な紫 / グロー / 流行りのダークモード寄せ
+- Rounded M Plus の置き換えや Mugicha の引退
+- このパスでの複数ページケーススタディシステム構築
+- 実物のないプロジェクト実績の捏造
