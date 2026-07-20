@@ -57,7 +57,7 @@
   - `contrastRatio(foregroundHex: string, backgroundHex: string): number`
   - Panda semantic tokens: `colors.bg.base`, `colors.bg.raised`, `colors.text`, `colors.text.muted`, `colors.primary`, `colors.focus`
 
-- [ ] **Step 1: 失敗するコントラストテストを書く**
+- [x] **Step 1: 失敗するコントラストテストを書く**
 
 `tests/contrast.test.ts`:
 
@@ -79,7 +79,7 @@ void test('muted text on base dark meets WCAG AA', () => {
 });
 ```
 
-- [ ] **Step 2: テストを実行して失敗を確認する**
+- [x] **Step 2: テストを実行して失敗を確認する**
 
 Run:
 
@@ -89,7 +89,7 @@ node --experimental-strip-types --test tests/contrast.test.ts
 
 Expected: FAIL（`contrastRatio` 未定義）
 
-- [ ] **Step 3: 最小実装を書く**
+- [x] **Step 3: 最小実装を書く**
 
 `src/lib/contrast.ts`:
 
@@ -123,7 +123,7 @@ export const contrastRatio = (foregroundHex: string, backgroundHex: string) => {
 };
 ```
 
-- [ ] **Step 4: テストを通す**
+- [x] **Step 4: テストを通す**
 
 Run:
 
@@ -133,7 +133,7 @@ node --experimental-strip-types --test tests/contrast.test.ts
 
 Expected: PASS（primary は約 7.67:1）
 
-- [ ] **Step 5: Panda セマンティックトークンを定義する**
+- [x] **Step 5: Panda セマンティックトークンを定義する**
 
 `panda.config.ts` を次の形へ更新する（`defineConfig` の `theme.semanticTokens`）:
 
@@ -193,7 +193,7 @@ export default defineConfig({
 
 メモ: `#ec93a1` on `#1a1a1a` は AA を満たすため `primary.accessible` は作らない。将来色を変えるとき Task 1 のテストが退行を検知する。
 
-- [ ] **Step 6: codegen して型確認する**
+- [x] **Step 6: codegen して型確認する**
 
 Run:
 
@@ -204,7 +204,7 @@ pnpm typecheck
 
 Expected: 両方 exit `0`
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/lib/contrast.ts tests/contrast.test.ts panda.config.ts
@@ -225,7 +225,7 @@ git commit -m "feat: add contrast helpers and semantic color tokens"
 - Produces: `ui[locale]` に次のキーを追加  
   `navAbout`, `navSkills`, `navProjects`, `navContact`, `heroSupporting`, `ctaProjects`, `ctaContact`, `projectsEmpty`, `skipToContent`, `navLabel`
 
-- [ ] **Step 1: 失敗する UI テストを追加する**
+- [x] **Step 1: 失敗する UI テストを追加する**
 
 `tests/ui.test.ts` を次で置き換え（既存アサーションも維持）:
 
@@ -262,7 +262,7 @@ void test('exposes navigation and hero CTA copy in both locales', () => {
 });
 ```
 
-- [ ] **Step 2: テストを実行して失敗を確認する**
+- [x] **Step 2: テストを実行して失敗を確認する**
 
 Run:
 
@@ -272,7 +272,7 @@ node --experimental-strip-types --test tests/ui.test.ts
 
 Expected: FAIL（キー欠落）
 
-- [ ] **Step 3: `ui.ts` にキーを追加する**
+- [x] **Step 3: `ui.ts` にキーを追加する**
 
 `src/i18n/ui.ts` の各ロケールに追加（既存キーは維持）:
 
@@ -304,7 +304,7 @@ projectsEmpty: '準備中 — プロジェクト紹介を整えています。',
 
 `heroName` は引き続き `koralle`。`heroGreetingPrefix` / `heroLead` は残してよいが、Hero 実装ではブランド名を最大信号として再配置する。
 
-- [ ] **Step 4: テストを通す**
+- [x] **Step 4: テストを通す**
 
 Run:
 
@@ -314,7 +314,7 @@ node --experimental-strip-types --test tests/ui.test.ts
 
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/i18n/ui.ts tests/ui.test.ts
