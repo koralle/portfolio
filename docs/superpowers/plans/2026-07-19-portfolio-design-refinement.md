@@ -44,12 +44,14 @@
 ### Task 1: コントラストヘルパーとデザイントークン
 
 **Files:**
+
 - Create: `src/lib/contrast.ts`
 - Create: `tests/contrast.test.ts`
 - Modify: `panda.config.ts`
 - Test: `tests/contrast.test.ts`
 
 **Interfaces:**
+
 - Consumes: なし
 - Produces:
   - `hexToRgb(hex: string): { r: number; g: number; b: number }`
@@ -216,11 +218,13 @@ git commit -m "feat: add contrast helpers and semantic color tokens"
 ### Task 2: UI コピー（ナビ / CTA / Hero 補足 / 準備中）
 
 **Files:**
+
 - Modify: `src/i18n/ui.ts`
 - Modify: `tests/ui.test.ts`
 - Test: `tests/ui.test.ts`
 
 **Interfaces:**
+
 - Consumes: 既存 `getUi(locale)`
 - Produces: `ui[locale]` に次のキーを追加  
   `navAbout`, `navSkills`, `navProjects`, `navContact`, `heroSupporting`, `ctaProjects`, `ctaContact`, `projectsEmpty`, `skipToContent`, `navLabel`
@@ -326,6 +330,7 @@ git commit -m "feat: add nav, CTA, and empty-projects UI copy"
 ### Task 3: スキップリンクと SiteHeader
 
 **Files:**
+
 - Create: `src/components/SiteHeader/SiteHeader.astro`
 - Create: `src/components/SiteHeader/index.ts`
 - Modify: `src/layouts/Layout.astro`
@@ -333,6 +338,7 @@ git commit -m "feat: add nav, CTA, and empty-projects UI copy"
 - Modify: `src/pages/[...locale]/index.astro`（同上）
 
 **Interfaces:**
+
 - Consumes: `Locale`, `getUi` の戻り、`pathForLocale`, `localeLabels`
 - Produces: `<SiteHeader locale messages />` — `#about` `#skills` `#projects` `#contact` へのリンク、言語切替
 
@@ -391,7 +397,10 @@ const links = [
   >
     koralle
   </a>
-  <nav aria-label={messages.navLabel} class={css({ display: 'flex', flexWrap: 'wrap', gap: '12px' })}>
+  <nav
+    aria-label={messages.navLabel}
+    class={css({ display: 'flex', flexWrap: 'wrap', gap: '12px' })}
+  >
     {
       links.map(link => (
         <a
@@ -488,9 +497,11 @@ git commit -m "feat: add skip link and sticky site header"
 ### Task 4: Hero をブランド先行フルブリードへ
 
 **Files:**
+
 - Modify: `src/components/Hero/Hero.astro`
 
 **Interfaces:**
+
 - Consumes: `messages.heroName`, `messages.heroLead`, `messages.heroSupporting`, `messages.ctaProjects`, `messages.ctaContact`
 - Produces: `#hero` セクション。ブランド名が最大の視覚信号。CTA は `#projects` / `#contact`
 
@@ -541,6 +552,7 @@ pnpm build
 Expected: 両方 exit `0`
 
 手動確認（`pnpm dev`）:
+
 - ナビを除いても `koralle` が第一印象
 - CTA で `#projects` / `#contact` へ移動できる
 - モバイルで文字が画像に埋もれない
@@ -557,10 +569,12 @@ git commit -m "feat: redesign hero as brand-first full-bleed"
 ### Task 5: Loader の reduced-motion 対応
 
 **Files:**
+
 - Modify: `src/layouts/Layout.astro`（Loader 用 script）
 - Modify: `src/components/Loader.astro`（色をトークン化できるなら）
 
 **Interfaces:**
+
 - Consumes: `loader-animation-finished` CustomEvent（既存）
 - Produces: reduced-motion 時は短いフェードまたは即時非表示のあと、同じイベントを一度だけ dispatch
 
@@ -610,6 +624,7 @@ git commit -m "fix(a11y): honor reduced motion in loader"
 ### Task 6: Projects コレクションと一覧ロジック
 
 **Files:**
+
 - Modify: `src/content.config.ts`
 - Create: `src/lib/projects.ts`
 - Create: `tests/projects.test.ts`
@@ -617,6 +632,7 @@ git commit -m "fix(a11y): honor reduced motion in loader"
 - Create: `src/components/ProjectList/index.ts`
 
 **Interfaces:**
+
 - Consumes: `Locale`
 - Produces:
   - collection `projects` with zod schema below
@@ -779,6 +795,7 @@ git commit -m "feat: add projects collection and empty-state list"
 ### Task 7: ContentSection の洗練と Projects 差し込み
 
 **Files:**
+
 - Modify: `src/components/ContentSection/ContentSection.astro`
 - Modify: `src/pages/index.astro`
 - Modify: `src/pages/[...locale]/index.astro`
@@ -786,6 +803,7 @@ git commit -m "feat: add projects collection and empty-state list"
 - Modify: `src/content/home/ja.projects.mdx`
 
 **Interfaces:**
+
 - Consumes: `CollectionEntry<'home'>`, optional `projects: CollectionEntry<'projects'>[]`, `messages`
 - Produces: セクション描画。`section === 'projects'` のとき MDX リードの下に `<ProjectList />`
 
@@ -858,9 +876,11 @@ git commit -m "feat: wire projects list into content sections"
 ### Task 8: セクション見出しのスクロール入場
 
 **Files:**
+
 - Modify: `src/layouts/Layout.astro` または `src/components/ContentSection/ContentSection.astro` 内 script
 
 **Interfaces:**
+
 - Consumes: `[data-section-heading]`
 - Produces: ScrollTrigger による控えめな fade/slide。reduced-motion では何もしない（要素は最初から可視）
 
@@ -919,12 +939,14 @@ git commit -m "feat: add reduced-motion-safe section heading reveals"
 ### Task 9: About / Skills / Contact コピー整理と Footer 修正
 
 **Files:**
+
 - Modify: `src/content/home/en.about.mdx`, `ja.about.mdx`
 - Modify: `src/content/home/en.skills.mdx`, `ja.skills.mdx`
 - Modify: `src/content/home/en.contact.mdx`, `ja.contact.mdx`
 - Modify: `src/components/Footer/Footer.astro`
 
 **Interfaces:**
+
 - Consumes: 既存 Footer props
 - Produces: グループ化された Skills、短い About、高さ自動の Footer、`id="footer"`
 
@@ -938,12 +960,15 @@ git commit -m "feat: add reduced-motion-safe section heading reveals"
 Front-end craft I use to ship clear, durable interfaces.
 
 ### Front-end
+
 - Astro, TypeScript, modern CSS
 
 ### Accessibility & UX
+
 - Keyboard flows, contrast-aware UI, motion that respects preferences
 
 ### Delivery
+
 - Static-first pages, content collections, low-ops hosting
 ```
 
@@ -990,6 +1015,7 @@ git commit -m "content: refine section copy and fix footer layout"
 ### Task 10: 最終検証と仕様照合
 
 **Files:**
+
 - 変更なし（検証のみ）。問題があれば該当 Task に戻って修正コミット
 
 - [ ] **Step 1: 全テスト再実行**
