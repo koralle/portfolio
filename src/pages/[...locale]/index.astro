@@ -21,7 +21,12 @@ const sections = (
 ).sort((a: CollectionEntry<'home'>, b: CollectionEntry<'home'>) => a.data.order - b.data.order);
 ---
 
-<Layout locale={locale} title={messages.siteTitle} description={messages.description}>
+<Layout
+  locale={locale}
+  title={messages.siteTitle}
+  description={messages.description}
+  messages={messages}
+>
   <Hero messages={messages} />
   {sections.map((entry: CollectionEntry<'home'>) => <ContentSection entry={entry} />)}
   <Footer locale={locale} messages={messages} />

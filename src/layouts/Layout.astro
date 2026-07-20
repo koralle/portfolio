@@ -1,18 +1,22 @@
 ---
 import Loader from '../components/Loader.astro';
+import { SiteHeader } from '../components/SiteHeader';
 import { getShareUrl } from '../lib/share-url';
 import '../styles/index.css';
 import '../styles/preflight.css';
 
 import type { Locale } from '../i18n/config';
+import type { getUi } from '../i18n/ui';
+import { css } from '../../styled-system/css';
 
 interface Props {
   locale: Locale;
   title: string;
   description: string;
+  messages: ReturnType<typeof getUi>;
 }
 
-const { locale, title, description } = Astro.props;
+const { locale, title, description, messages } = Astro.props;
 const shareUrl = getShareUrl(Astro.url.pathname);
 ---
 
@@ -40,7 +44,25 @@ const shareUrl = getShareUrl(Astro.url.pathname);
     <title>{title}</title>
   </head>
   <body>
+    <a
+      href="#main-content"
+      class={css({
+        position: 'absolute',
+        left: '16px',
+        top: '16px',
+        zIndex: 10000,
+        transform: 'translateY(-200%)',
+        backgroundColor: 'bg.raised',
+        color: 'text',
+        paddingInline: '12px',
+        paddingBlock: '8px',
+        _focus: { transform: 'translateY(0)' }
+      })}
+    >
+      {messages.skipToContent}
+    </a>
     <Loader />
+    <SiteHeader locale={locale} messages={messages} />
     <main id="main-content">
       <slot />
     </main>
