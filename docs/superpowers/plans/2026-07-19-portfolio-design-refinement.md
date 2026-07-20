@@ -1006,15 +1006,15 @@ Expected: すべて成功
 
 - [ ] **Step 2: 仕様チェックリストを確認する**
 
-| 仕様項目 | 確認方法 |
-| --- | --- |
-| ブランド先行 Hero | `/` で `koralle` が最大信号、Mugicha ドミナント |
-| 証明導線 | ヘッダーから About/Skills/Projects/Contact に到達 |
-| Projects 空状態 | ダミー無しで準備中コピー |
-| AA コントラスト | `tests/contrast.test.ts` PASS |
-| reduced-motion | OS 設定または DevTools で Loader/Hero が壊れない |
-| Footer id | DOM に `id="footer"` |
-| スタブ非接触 | `git diff` で `About.astro` 等が変わっていない |
+| 仕様項目          | 確認方法                                          |
+| ----------------- | ------------------------------------------------- |
+| ブランド先行 Hero | `/` で `koralle` が最大信号、Mugicha ドミナント   |
+| 証明導線          | ヘッダーから About/Skills/Projects/Contact に到達 |
+| Projects 空状態   | ダミー無しで準備中コピー                          |
+| AA コントラスト   | `tests/contrast.test.ts` PASS                     |
+| reduced-motion    | OS 設定または DevTools で Loader/Hero が壊れない  |
+| Footer id         | DOM に `id="footer"`                              |
+| スタブ非接触      | `git diff` で `About.astro` 等が変わっていない    |
 
 - [ ] **Step 3: 必要ならフォーマット差分を commit**
 
