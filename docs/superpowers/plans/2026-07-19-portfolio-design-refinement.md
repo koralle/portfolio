@@ -336,7 +336,7 @@ git commit -m "feat: add nav, CTA, and empty-projects UI copy"
 - Consumes: `Locale`, `getUi` の戻り、`pathForLocale`, `localeLabels`
 - Produces: `<SiteHeader locale messages />` — `#about` `#skills` `#projects` `#contact` へのリンク、言語切替
 
-- [ ] **Step 1: SiteHeader を作成する**
+- [x] **Step 1: SiteHeader を作成する**
 
 `src/components/SiteHeader/index.ts`:
 
@@ -431,7 +431,7 @@ const links = [
 
 Panda で `bg.base/90` が使えない場合は `backgroundColor: 'bg.base'` に落とす。
 
-- [ ] **Step 2: Layout にスキップリンクと SiteHeader を入れる**
+- [x] **Step 2: Layout にスキップリンクと SiteHeader を入れる**
 
 `Layout.astro` の Props に `messages` を追加し、body 先頭を次の順にする:
 
@@ -462,11 +462,11 @@ Panda で `bg.base/90` が使えない場合は `backgroundColor: 'bg.base'` に
 </a>
 ```
 
-- [ ] **Step 3: 両ページから `messages` を Layout に渡す**
+- [x] **Step 3: 両ページから `messages` を Layout に渡す**
 
 `src/pages/index.astro` と `src/pages/[...locale]/index.astro` の `<Layout ...>` に `messages={messages}` を追加する。
 
-- [ ] **Step 4: 型チェック**
+- [x] **Step 4: 型チェック**
 
 Run:
 
@@ -476,7 +476,7 @@ pnpm typecheck
 
 Expected: exit `0`
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/components/SiteHeader src/layouts/Layout.astro src/pages/index.astro src/pages/[...locale]/index.astro
