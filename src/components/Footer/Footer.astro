@@ -1,5 +1,5 @@
 ---
-import { css } from '../../../styled-system/css';
+import { Footer as FooterView } from '../../ui/Footer';
 import { localeLabels, pathForLocale, type Locale } from '../../i18n/config';
 import type { getUi } from '../../i18n/ui';
 
@@ -9,45 +9,16 @@ interface Props {
 }
 
 const { locale, messages } = Astro.props;
+
+const locales = Object.entries(localeLabels).map(([targetLocale, label]) => ({
+  href: pathForLocale(targetLocale as Locale),
+  label,
+  current: targetLocale === locale
+}));
 ---
 
-<footer
-  id="footer"
-  class={css({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '16px',
-    width: '100svi',
-    backgroundColor: 'bg.raised',
-    paddingInline: { base: '16px', sm: '24px', md: '32px' },
-    paddingBlock: { base: '32px', md: '40px' }
-  })}
->
-  <nav aria-label={messages.languageSwitcherLabel} class={css({ display: 'flex', gap: '12px' })}>
-    {
-      Object.entries(localeLabels).map(([targetLocale, label]) => (
-        <a
-          href={pathForLocale(targetLocale as Locale)}
-          aria-current={targetLocale === locale ? 'page' : undefined}
-          class={css({
-            color: targetLocale === locale ? 'primary' : 'text.muted',
-            textDecoration: 'underline',
-            textUnderlineOffset: '0.2em'
-          })}
-        >
-          {label}
-        </a>
-      ))
-    }
-  </nav>
-  <p
-    class={css({
-      margin: 0,
-      fontSize: { base: '0.75em', md: '0.875em' },
-      color: 'text.muted'
-    })}
-  >
-    {messages.copyright}
-  </p>
-</footer>
+<FooterView
+  languageSwitcherLabel={messages.languageSwitcherLabel}
+  copyright={messages.copyright}
+  locales={locales}
+/>

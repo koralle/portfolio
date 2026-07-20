@@ -1,10 +1,10 @@
 ---
-import { css } from '../../../styled-system/css';
+import { ContentSection as ContentSectionView } from '../../ui/ContentSection';
+import { SectionHeading } from '../../ui/ContentSection';
 import { render, type CollectionEntry } from 'astro:content';
 import type { getUi } from '../../i18n/ui';
 import { ContactLinks } from '../ContactLinks';
 import { ProjectList } from '../ProjectList';
-import SectionHeading from './SectionHeading.astro';
 
 interface Props {
   entry: CollectionEntry<'home'>;
@@ -16,51 +16,18 @@ const { entry, projects = [], messages } = Astro.props;
 const { Content } = await render(entry);
 const isProjects = entry.data.section === 'projects';
 const isContact = entry.data.section === 'contact';
+const tone = entry.data.tone === 'darker' ? 'darker' : 'raised';
 ---
 
-<section
-  id={entry.data.section}
-  class={css({
-    display: 'grid',
-    placeItems: 'center',
-    width: '100svi',
-    minHeight: '100svb',
-    backgroundColor: entry.data.tone === 'darker' ? 'bg.base' : 'bg.raised',
-    paddingInline: { base: '16px', sm: '24px', md: '32px' },
-    paddingBlock: '64px'
-  })}
->
-  <article
-    class={css({
-      display: 'flex',
-      flexDir: 'column',
-      gap: '24px',
-      width: '100%',
-      maxWidth: 'sizes.content',
-      '& h2': { color: 'primary', fontSize: { base: '2em', md: '3em' }, fontWeight: 700 },
-      '& h3': {
-        color: 'text.muted',
-        fontSize: { base: '1.25em', md: '1.5em' },
-        fontWeight: 700
-      },
-      '& p, & li': {
-        color: 'text.muted',
-        lineHeight: 1.8,
-        fontSize: { base: '1em', md: '1.125em' }
-      },
-      '& ul': { display: 'grid', gap: '12px', paddingInlineStart: '1.25em' },
-      '& a': { color: 'primary', textDecoration: 'underline', textUnderlineOffset: '0.2em' }
-    })}
-  >
-    <Content components={{ h2: SectionHeading }} />
-    {
-      isContact && messages && (
-        <>
-          <p>{messages.contactLead}</p>
-          <ContactLinks />
-        </>
-      )
-    }
-    {isProjects && messages && <ProjectList projects={projects} messages={messages} />}
-  </article>
-</section>
+<ContentSectionView id={entry.data.section} tone={tone}>
+  <Content components={{ h2: SectionHeading }} />
+  {
+    isContact && messages && (
+      <>
+        <p>{messages.contactLead}</p>
+        <ContactLinks />
+      </>
+    )
+  }
+  {isProjects && messages && <ProjectList projects={projects} messages={messages} />}
+</ContentSectionView>
