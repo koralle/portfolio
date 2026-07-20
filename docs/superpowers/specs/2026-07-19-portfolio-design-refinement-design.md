@@ -23,7 +23,7 @@ koralle の Astro ポートフォリオを、第一印象がはっきりと **�
 2. **About** — 短いスタンス / 価値観（技術の羅列にしない）
 3. **Skills** — 採用担当がスキャンできる能力の地図
 4. **Projects** — 信頼の本体。型を先に作り、実コンテンツは揃い次第
-5. **Contact + Footer** — 連絡手段を明確に。Footer をフルビューポート高さに固定しない
+5. **Contact + Footer** — Contact に呼びかけと SNS リンクを集約。Footer は言語切替とコピーライトの薄い帯にし、フルビューポート高さに固定しない
 
 ### ナビゲーション
 
@@ -87,8 +87,8 @@ koralle の Astro ポートフォリオを、第一印象がはっきりと **�
 
 ### Contact / Footer
 
-- Contact: 呼びかけのコピー
-- Footer: GitHub、X、言語切替、コピーライト
+- Contact: 見出し `Get in touch` + リード `Feel free to contact me.` + GitHub / X リンク（連絡の本体）
+- Footer: 言語切替とコピーライトのみの薄い帯。見出しや SNS は持たない
 - Footer のフルビューポート高さはやめ、内容に応じた高さにする
 - 不正な Footer id（`id="#footer"` → `id="footer"`）を修正する
 

@@ -2,6 +2,7 @@
 import { css } from '../../../styled-system/css';
 import { render, type CollectionEntry } from 'astro:content';
 import type { getUi } from '../../i18n/ui';
+import { ContactLinks } from '../ContactLinks';
 import { ProjectList } from '../ProjectList';
 import SectionHeading from './SectionHeading.astro';
 
@@ -14,6 +15,7 @@ interface Props {
 const { entry, projects = [], messages } = Astro.props;
 const { Content } = await render(entry);
 const isProjects = entry.data.section === 'projects';
+const isContact = entry.data.section === 'contact';
 ---
 
 <section
@@ -51,6 +53,14 @@ const isProjects = entry.data.section === 'projects';
     })}
   >
     <Content components={{ h2: SectionHeading }} />
+    {
+      isContact && messages && (
+        <>
+          <p>{messages.contactLead}</p>
+          <ContactLinks />
+        </>
+      )
+    }
     {isProjects && messages && <ProjectList projects={projects} messages={messages} />}
   </article>
 </section>

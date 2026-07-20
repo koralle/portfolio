@@ -12,12 +12,13 @@ const requiredKeys = [
   'ctaContact',
   'projectsEmpty',
   'skipToContent',
-  'navLabel'
+  'navLabel',
+  'contactLead'
 ] as const;
 
-void test('uses the English contact heading in both locales', () => {
-  assert.equal(ui.en.footerHeading, 'Feel free to contact me!');
-  assert.equal(ui.ja.footerHeading, ui.en.footerHeading);
+void test('uses the English contact lead in both locales', () => {
+  assert.equal(ui.en.contactLead, 'Feel free to contact me.');
+  assert.equal(ui.ja.contactLead, ui.en.contactLead);
 });
 
 void test('exposes navigation and hero CTA copy in both locales', () => {
