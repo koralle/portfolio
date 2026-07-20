@@ -1,0 +1,7 @@
+---
+const { id: _ignoredId, ...props } = Astro.props;
+---
+
+<h2 data-section-heading {...props}>
+  <slot />
+</h2>

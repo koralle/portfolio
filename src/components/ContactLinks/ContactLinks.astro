@@ -1,0 +1,53 @@
+---
+import { css } from '../../../styled-system/css';
+import { Image } from 'astro:assets';
+import GitHubLogo from '../../../public/images/github-mark-white.webp';
+import XLogo from '../../../public/images/x-logo-white.webp';
+---
+
+<nav
+  aria-label="Social"
+  class={css({
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '16px',
+    marginBlockStart: '8px'
+  })}
+>
+  <a
+    href="https://github.com/koralle"
+    target="_blank"
+    rel="noopener noreferrer"
+    class={css({
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: '8px',
+      fontWeight: 700,
+      color: 'text.muted',
+      textDecoration: 'none',
+      _hover: { color: 'primary' }
+    })}
+  >
+    <Image src={GitHubLogo} alt="" width={20} height={20} decoding="async" loading="lazy" />
+    GitHub
+  </a>
+  <a
+    href="https://x.com/koralle_tech"
+    target="_blank"
+    rel="noopener noreferrer"
+    class={css({
+      display: 'inline-flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: '8px',
+      fontWeight: 700,
+      color: 'text.muted',
+      textDecoration: 'none',
+      _hover: { color: 'primary' }
+    })}
+  >
+    <Image src={XLogo} alt="" width={20} height={20} decoding="async" loading="lazy" />
+    X (Twitter)
+  </a>
+</nav>

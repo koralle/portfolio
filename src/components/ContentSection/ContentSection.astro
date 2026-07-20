@@ -1,13 +1,21 @@
 ---
 import { css } from '../../../styled-system/css';
 import { render, type CollectionEntry } from 'astro:content';
+import type { getUi } from '../../i18n/ui';
+import { ContactLinks } from '../ContactLinks';
+import { ProjectList } from '../ProjectList';
+import SectionHeading from './SectionHeading.astro';
 
 interface Props {
   entry: CollectionEntry<'home'>;
+  projects?: CollectionEntry<'projects'>[];
+  messages?: ReturnType<typeof getUi>;
 }
 
-const { entry } = Astro.props;
+const { entry, projects = [], messages } = Astro.props;
 const { Content } = await render(entry);
+const isProjects = entry.data.section === 'projects';
+const isContact = entry.data.section === 'contact';
 ---
 
 <section
@@ -17,7 +25,7 @@ const { Content } = await render(entry);
     placeItems: 'center',
     width: '100svi',
     minHeight: '100svb',
-    backgroundColor: entry.data.tone === 'darker' ? '#1a1a1a' : '#212121',
+    backgroundColor: entry.data.tone === 'darker' ? 'bg.base' : 'bg.raised',
     paddingInline: { base: '16px', sm: '24px', md: '32px' },
     paddingBlock: '64px'
   })}
@@ -28,15 +36,15 @@ const { Content } = await render(entry);
       flexDir: 'column',
       gap: '24px',
       width: '100%',
-      maxWidth: '960px',
+      maxWidth: 'sizes.content',
       '& h2': { color: 'primary', fontSize: { base: '2em', md: '3em' }, fontWeight: 700 },
       '& h3': {
-        color: 'oklch(0.872 0.01 258.338)',
+        color: 'text.muted',
         fontSize: { base: '1.25em', md: '1.5em' },
         fontWeight: 700
       },
       '& p, & li': {
-        color: 'oklch(0.872 0.01 258.338)',
+        color: 'text.muted',
         lineHeight: 1.8,
         fontSize: { base: '1em', md: '1.125em' }
       },
@@ -44,6 +52,15 @@ const { Content } = await render(entry);
       '& a': { color: 'primary', textDecoration: 'underline', textUnderlineOffset: '0.2em' }
     })}
   >
-    <Content />
+    <Content components={{ h2: SectionHeading }} />
+    {
+      isContact && messages && (
+        <>
+          <p>{messages.contactLead}</p>
+          <ContactLinks />
+        </>
+      )
+    }
+    {isProjects && messages && <ProjectList projects={projects} messages={messages} />}
   </article>
 </section>

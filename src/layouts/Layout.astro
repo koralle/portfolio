@@ -1,18 +1,22 @@
 ---
 import Loader from '../components/Loader.astro';
+import { SiteHeader } from '../components/SiteHeader';
 import { getShareUrl } from '../lib/share-url';
 import '../styles/index.css';
 import '../styles/preflight.css';
 
 import type { Locale } from '../i18n/config';
+import type { getUi } from '../i18n/ui';
+import { css } from '../../styled-system/css';
 
 interface Props {
   locale: Locale;
   title: string;
   description: string;
+  messages: ReturnType<typeof getUi>;
 }
 
-const { locale, title, description } = Astro.props;
+const { locale, title, description, messages } = Astro.props;
 const shareUrl = getShareUrl(Astro.url.pathname);
 ---
 
@@ -40,7 +44,25 @@ const shareUrl = getShareUrl(Astro.url.pathname);
     <title>{title}</title>
   </head>
   <body>
+    <a
+      href="#main-content"
+      class={css({
+        position: 'absolute',
+        left: '16px',
+        top: '16px',
+        zIndex: 10000,
+        transform: 'translateY(-200%)',
+        backgroundColor: 'bg.raised',
+        color: 'text',
+        paddingInline: '12px',
+        paddingBlock: '8px',
+        _focus: { transform: 'translateY(0)' }
+      })}
+    >
+      {messages.skipToContent}
+    </a>
     <Loader />
+    <SiteHeader locale={locale} messages={messages} />
     <main id="main-content">
       <slot />
     </main>
@@ -54,8 +76,17 @@ const shareUrl = getShareUrl(Astro.url.pathname);
   gsap.registerPlugin(SplitText);
 
   const onDomContentsLoaded = () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const loader = document.querySelector<HTMLElement>('#loader');
     const loaderText = document.querySelector('#loader-text-inner');
-    if (!loaderText) return;
+
+    if (!loader || !loaderText) return;
+
+    if (prefersReducedMotion) {
+      loader.style.display = 'none';
+      document.dispatchEvent(new CustomEvent('loader-animation-finished'));
+      return;
+    }
 
     const split = new SplitText(loaderText, { type: 'words,chars' });
 
@@ -91,10 +122,7 @@ const shareUrl = getShareUrl(Astro.url.pathname);
           duration: 1,
           ease: 'power4.inOut',
           onComplete: () => {
-            const loader = document.querySelector<HTMLElement>('#loader');
-            if (loader) {
-              loader.style.display = 'none';
-            }
+            loader.style.display = 'none';
           }
         },
         '-=0.5'
@@ -102,4 +130,30 @@ const shareUrl = getShareUrl(Astro.url.pathname);
   };
 
   document.addEventListener('DOMContentLoaded', onDomContentsLoaded);
+</script>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const headings = document.querySelectorAll('[data-section-heading]');
+
+  if (!prefersReducedMotion) {
+    headings.forEach(heading => {
+      gsap.from(heading, {
+        opacity: 0,
+        y: 16,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top 85%',
+          once: true
+        }
+      });
+    });
+  }
 </script>

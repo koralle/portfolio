@@ -7,6 +7,11 @@ const locale = defaultLocale;
 const messages = getUi(locale);
 ---
 
-<Layout locale={locale} title="404 - Not Found" description={messages.description}>
+<Layout
+  locale={locale}
+  title="404 - Not Found"
+  description={messages.description}
+  messages={messages}
+>
   <h1>404 Not Found</h1>
 </Layout>

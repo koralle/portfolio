@@ -14,4 +14,22 @@ const home = defineCollection({
   })
 });
 
-export const collections = { home };
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
+  schema: z.object({
+    locale: z.enum(locales),
+    title: z.string(),
+    summary: z.string(),
+    tags: z.array(z.string()),
+    links: z.array(
+      z.object({
+        label: z.string(),
+        href: z.url()
+      })
+    ),
+    order: z.number().int().nonnegative(),
+    image: z.string().optional()
+  })
+});
+
+export const collections = { home, projects };

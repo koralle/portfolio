@@ -6,6 +6,10 @@ import { ContentSection } from '../../components/ContentSection';
 import { Footer } from '../../components/Footer';
 import { locales, defaultLocale, normalizeLocale, type Locale } from '../../i18n/config';
 import { getUi } from '../../i18n/ui';
+import { filterProjectsByLocale, sortProjects } from '../../lib/projects';
+
+type HomeEntry = CollectionEntry<'home'>;
+type ProjectEntry = CollectionEntry<'projects'>;
 
 export function getStaticPaths() {
   return locales
@@ -17,12 +21,24 @@ const locale = normalizeLocale(Astro.props.locale as Locale | undefined);
 
 const messages = getUi(locale);
 const sections = (
-  await getCollection('home', ({ data }: CollectionEntry<'home'>) => data.locale === locale)
-).sort((a: CollectionEntry<'home'>, b: CollectionEntry<'home'>) => a.data.order - b.data.order);
+  await getCollection('home', ({ data }: HomeEntry) => data.locale === locale)
+).sort((a: HomeEntry, b: HomeEntry) => a.data.order - b.data.order);
+const projectEntries = sortProjects(
+  filterProjectsByLocale<ProjectEntry>(await getCollection('projects'), locale)
+);
 ---
 
-<Layout locale={locale} title={messages.siteTitle} description={messages.description}>
+<Layout
+  locale={locale}
+  title={messages.siteTitle}
+  description={messages.description}
+  messages={messages}
+>
   <Hero messages={messages} />
-  {sections.map((entry: CollectionEntry<'home'>) => <ContentSection entry={entry} />)}
+  {
+    sections.map((entry: HomeEntry) => (
+      <ContentSection entry={entry} projects={projectEntries} messages={messages} />
+    ))
+  }
   <Footer locale={locale} messages={messages} />
 </Layout>

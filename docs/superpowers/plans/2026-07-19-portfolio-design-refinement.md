@@ -59,7 +59,7 @@
   - `contrastRatio(foregroundHex: string, backgroundHex: string): number`
   - Panda semantic tokens: `colors.bg.base`, `colors.bg.raised`, `colors.text`, `colors.text.muted`, `colors.primary`, `colors.focus`
 
-- [ ] **Step 1: 失敗するコントラストテストを書く**
+- [x] **Step 1: 失敗するコントラストテストを書く**
 
 `tests/contrast.test.ts`:
 
@@ -81,7 +81,7 @@ void test('muted text on base dark meets WCAG AA', () => {
 });
 ```
 
-- [ ] **Step 2: テストを実行して失敗を確認する**
+- [x] **Step 2: テストを実行して失敗を確認する**
 
 Run:
 
@@ -91,7 +91,7 @@ node --experimental-strip-types --test tests/contrast.test.ts
 
 Expected: FAIL（`contrastRatio` 未定義）
 
-- [ ] **Step 3: 最小実装を書く**
+- [x] **Step 3: 最小実装を書く**
 
 `src/lib/contrast.ts`:
 
@@ -125,7 +125,7 @@ export const contrastRatio = (foregroundHex: string, backgroundHex: string) => {
 };
 ```
 
-- [ ] **Step 4: テストを通す**
+- [x] **Step 4: テストを通す**
 
 Run:
 
@@ -135,7 +135,7 @@ node --experimental-strip-types --test tests/contrast.test.ts
 
 Expected: PASS（primary は約 7.67:1）
 
-- [ ] **Step 5: Panda セマンティックトークンを定義する**
+- [x] **Step 5: Panda セマンティックトークンを定義する**
 
 `panda.config.ts` を次の形へ更新する（`defineConfig` の `theme.semanticTokens`）:
 
@@ -195,7 +195,7 @@ export default defineConfig({
 
 メモ: `#ec93a1` on `#1a1a1a` は AA を満たすため `primary.accessible` は作らない。将来色を変えるとき Task 1 のテストが退行を検知する。
 
-- [ ] **Step 6: codegen して型確認する**
+- [x] **Step 6: codegen して型確認する**
 
 Run:
 
@@ -206,7 +206,7 @@ pnpm typecheck
 
 Expected: 両方 exit `0`
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add src/lib/contrast.ts tests/contrast.test.ts panda.config.ts
@@ -229,7 +229,7 @@ git commit -m "feat: add contrast helpers and semantic color tokens"
 - Produces: `ui[locale]` に次のキーを追加  
   `navAbout`, `navSkills`, `navProjects`, `navContact`, `heroSupporting`, `ctaProjects`, `ctaContact`, `projectsEmpty`, `skipToContent`, `navLabel`
 
-- [ ] **Step 1: 失敗する UI テストを追加する**
+- [x] **Step 1: 失敗する UI テストを追加する**
 
 `tests/ui.test.ts` を次で置き換え（既存アサーションも維持）:
 
@@ -266,7 +266,7 @@ void test('exposes navigation and hero CTA copy in both locales', () => {
 });
 ```
 
-- [ ] **Step 2: テストを実行して失敗を確認する**
+- [x] **Step 2: テストを実行して失敗を確認する**
 
 Run:
 
@@ -276,7 +276,7 @@ node --experimental-strip-types --test tests/ui.test.ts
 
 Expected: FAIL（キー欠落）
 
-- [ ] **Step 3: `ui.ts` にキーを追加する**
+- [x] **Step 3: `ui.ts` にキーを追加する**
 
 `src/i18n/ui.ts` の各ロケールに追加（既存キーは維持）:
 
@@ -308,7 +308,7 @@ projectsEmpty: '準備中 — プロジェクト紹介を整えています。',
 
 `heroName` は引き続き `koralle`。`heroGreetingPrefix` / `heroLead` は残してよいが、Hero 実装ではブランド名を最大信号として再配置する。
 
-- [ ] **Step 4: テストを通す**
+- [x] **Step 4: テストを通す**
 
 Run:
 
@@ -318,7 +318,7 @@ node --experimental-strip-types --test tests/ui.test.ts
 
 Expected: PASS
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/i18n/ui.ts tests/ui.test.ts
@@ -342,7 +342,7 @@ git commit -m "feat: add nav, CTA, and empty-projects UI copy"
 - Consumes: `Locale`, `getUi` の戻り、`pathForLocale`, `localeLabels`
 - Produces: `<SiteHeader locale messages />` — `#about` `#skills` `#projects` `#contact` へのリンク、言語切替
 
-- [ ] **Step 1: SiteHeader を作成する**
+- [x] **Step 1: SiteHeader を作成する**
 
 `src/components/SiteHeader/index.ts`:
 
@@ -440,7 +440,7 @@ const links = [
 
 Panda で `bg.base/90` が使えない場合は `backgroundColor: 'bg.base'` に落とす。
 
-- [ ] **Step 2: Layout にスキップリンクと SiteHeader を入れる**
+- [x] **Step 2: Layout にスキップリンクと SiteHeader を入れる**
 
 `Layout.astro` の Props に `messages` を追加し、body 先頭を次の順にする:
 
@@ -471,11 +471,11 @@ Panda で `bg.base/90` が使えない場合は `backgroundColor: 'bg.base'` に
 </a>
 ```
 
-- [ ] **Step 3: 両ページから `messages` を Layout に渡す**
+- [x] **Step 3: 両ページから `messages` を Layout に渡す**
 
 `src/pages/index.astro` と `src/pages/[...locale]/index.astro` の `<Layout ...>` に `messages={messages}` を追加する。
 
-- [ ] **Step 4: 型チェック**
+- [x] **Step 4: 型チェック**
 
 Run:
 
@@ -485,7 +485,7 @@ pnpm typecheck
 
 Expected: exit `0`
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/components/SiteHeader src/layouts/Layout.astro src/pages/index.astro src/pages/[...locale]/index.astro
@@ -505,7 +505,7 @@ git commit -m "feat: add skip link and sticky site header"
 - Consumes: `messages.heroName`, `messages.heroLead`, `messages.heroSupporting`, `messages.ctaProjects`, `messages.ctaContact`
 - Produces: `#hero` セクション。ブランド名が最大の視覚信号。CTA は `#projects` / `#contact`
 
-- [ ] **Step 1: Hero マークアップを再構成する**
+- [x] **Step 1: Hero マークアップを再構成する**
 
 要件を満たす構造:
 
@@ -520,7 +520,7 @@ git commit -m "feat: add skip link and sticky site header"
 
 主ボタンの文字色は `#1a1a1a`（`bg.base`）。`contrastRatio('#1a1a1a', '#ec93a1')` は primary-on-base と同じ比で AA を満たす。
 
-- [ ] **Step 2: Hero スクリプトを reduced-motion 対応にする**
+- [x] **Step 2: Hero スクリプトを reduced-motion 対応にする**
 
 `Hero.astro` の script 内:
 
@@ -540,7 +540,7 @@ const startHeroAnimation = () => {
 
 Loader 完了イベント待ちは維持する。ただし reduced-motion 時は Loader 側（Task 5）が即座に完了イベントを飛ばす想定。
 
-- [ ] **Step 3: 目視確認ポイントをメモしつつ typecheck**
+- [x] **Step 3: 目視確認ポイントをメモしつつ typecheck**
 
 Run:
 
@@ -557,7 +557,7 @@ Expected: 両方 exit `0`
 - CTA で `#projects` / `#contact` へ移動できる
 - モバイルで文字が画像に埋もれない
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/components/Hero/Hero.astro
@@ -578,7 +578,7 @@ git commit -m "feat: redesign hero as brand-first full-bleed"
 - Consumes: `loader-animation-finished` CustomEvent（既存）
 - Produces: reduced-motion 時は短いフェードまたは即時非表示のあと、同じイベントを一度だけ dispatch
 
-- [ ] **Step 1: Layout の Loader script を分岐する**
+- [x] **Step 1: Layout の Loader script を分岐する**
 
 `DOMContentLoaded` ハンドラ先頭で:
 
@@ -598,11 +598,11 @@ if (prefersReducedMotion) {
 // 既存の SplitText timeline を続行
 ```
 
-- [ ] **Step 2: Loader 背景/文字色をトークンへ（任意だが推奨）**
+- [x] **Step 2: Loader 背景/文字色をトークンへ（任意だが推奨）**
 
 `Loader.astro` の `#eeeeee` / `#1a1a1a` を、コントラストを保ったままトークンまたは明示 hex のままでもよい。変更するならライトなローダー面は維持（ブランドダークと対比）。無理にダーク化しない。
 
-- [ ] **Step 3: typecheck**
+- [x] **Step 3: typecheck**
 
 Run:
 
@@ -612,7 +612,7 @@ pnpm typecheck
 
 Expected: exit `0`
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add src/layouts/Layout.astro src/components/Loader.astro
@@ -640,7 +640,7 @@ git commit -m "fix(a11y): honor reduced motion in loader"
   - `filterProjectsByLocale<T extends { data: { locale: Locale } }>(entries: T[], locale: Locale): T[]`
   - `<ProjectList projects messages />`
 
-- [ ] **Step 1: 失敗する projects ヘルパーテストを書く**
+- [x] **Step 1: 失敗する projects ヘルパーテストを書く**
 
 `tests/projects.test.ts`:
 
@@ -673,7 +673,7 @@ void test('sorts projects by ascending order', () => {
 });
 ```
 
-- [ ] **Step 2: 失敗を確認する**
+- [x] **Step 2: 失敗を確認する**
 
 Run:
 
@@ -683,7 +683,7 @@ node --experimental-strip-types --test tests/projects.test.ts
 
 Expected: FAIL
 
-- [ ] **Step 3: ヘルパーを実装する**
+- [x] **Step 3: ヘルパーを実装する**
 
 `src/lib/projects.ts`:
 
@@ -699,7 +699,7 @@ export const sortProjects = <T extends { data: { order: number } }>(entries: T[]
   [...entries].sort((a, b) => a.data.order - b.data.order);
 ```
 
-- [ ] **Step 4: テストを通す**
+- [x] **Step 4: テストを通す**
 
 Run:
 
@@ -709,7 +709,7 @@ node --experimental-strip-types --test tests/projects.test.ts
 
 Expected: PASS
 
-- [ ] **Step 5: content collection を追加する**
+- [x] **Step 5: content collection を追加する**
 
 `src/content.config.ts`:
 
@@ -751,14 +751,14 @@ const projects = defineCollection({
 export const collections = { home, projects };
 ```
 
-- [ ] **Step 6: 空ディレクトリを用意する（ダミー項目は作らない）**
+- [x] **Step 6: 空ディレクトリを用意する（ダミー項目は作らない）**
 
 ```bash
 mkdir -p src/content/projects
 touch src/content/projects/.gitkeep
 ```
 
-- [ ] **Step 7: ProjectList コンポーネントを作る**
+- [x] **Step 7: ProjectList コンポーネントを作る**
 
 `src/components/ProjectList/index.ts`:
 
@@ -773,7 +773,7 @@ export { default as ProjectList } from './ProjectList.astro';
 - それ以外は order 済み前提で行リスト。各行: title（リンク可）、summary、tags、links
 - 装飾カードグリッドにしない。行はリンクがあるインタラクション容器としてボーダー区切り程度
 
-- [ ] **Step 8: typecheck**
+- [x] **Step 8: typecheck**
 
 Run:
 
@@ -783,7 +783,7 @@ pnpm typecheck
 
 Expected: exit `0`
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 git add src/content.config.ts src/lib/projects.ts tests/projects.test.ts src/components/ProjectList src/content/projects/.gitkeep
@@ -807,7 +807,7 @@ git commit -m "feat: add projects collection and empty-state list"
 - Consumes: `CollectionEntry<'home'>`, optional `projects: CollectionEntry<'projects'>[]`, `messages`
 - Produces: セクション描画。`section === 'projects'` のとき MDX リードの下に `<ProjectList />`
 
-- [ ] **Step 1: ページで projects を取得して渡す**
+- [x] **Step 1: ページで projects を取得して渡す**
 
 両ページで:
 
@@ -825,7 +825,7 @@ const projectEntries = sortProjects(
 <ContentSection entry={entry} projects={projectEntries} messages={messages} />
 ```
 
-- [ ] **Step 2: ContentSection を更新する**
+- [x] **Step 2: ContentSection を更新する**
 
 - `backgroundColor`: `tone === 'darker' ? 'bg.base' : 'bg.raised'`
 - 見出し色: `primary`、本文: `text.muted`
@@ -834,7 +834,7 @@ const projectEntries = sortProjects(
 - セクション見出しに `data-section-heading` を付与（Task 8 の scroll reveal 用）
 - MDX 内の `h2` と page の重複が見づらい場合、MDX 側の `##` を残しつつスタイルのみ整える（構造破壊しない）
 
-- [ ] **Step 3: projects MDX をリード専用に整える**
+- [x] **Step 3: projects MDX をリード専用に整える**
 
 `en.projects.mdx` 本文例:
 
@@ -854,7 +854,7 @@ Selected work will appear here as structured case rows.
 
 （空コレクション時は ProjectList が「準備中」を追加表示する）
 
-- [ ] **Step 4: build**
+- [x] **Step 4: build**
 
 Run:
 
@@ -864,7 +864,7 @@ pnpm build
 
 Expected: exit `0`。`/projects` セクションに準備中コピーが出る。
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add src/components/ContentSection/ContentSection.astro src/pages/index.astro src/pages/[...locale]/index.astro src/content/home/en.projects.mdx src/content/home/ja.projects.mdx
@@ -884,7 +884,7 @@ git commit -m "feat: wire projects list into content sections"
 - Consumes: `[data-section-heading]`
 - Produces: ScrollTrigger による控えめな fade/slide。reduced-motion では何もしない（要素は最初から可視）
 
-- [ ] **Step 1: 見出し reveal script を追加する**
+- [x] **Step 1: 見出し reveal script を追加する**
 
 GSAP ScrollTrigger を登録し:
 
@@ -916,7 +916,7 @@ if (!prefersReducedMotion) {
 
 初期状態で `opacity: 0` を CSS に固定しない（JS 無効・reduced-motion で消えるのを防ぐ）。`gsap.from` のみ使う。
 
-- [ ] **Step 2: typecheck / build**
+- [x] **Step 2: typecheck / build**
 
 Run:
 
@@ -927,7 +927,7 @@ pnpm build
 
 Expected: exit `0`
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add src/layouts/Layout.astro src/components/ContentSection/ContentSection.astro
@@ -950,7 +950,7 @@ git commit -m "feat: add reduced-motion-safe section heading reveals"
 - Consumes: 既存 Footer props
 - Produces: グループ化された Skills、短い About、高さ自動の Footer、`id="footer"`
 
-- [ ] **Step 1: Skills をグループリストにする**
+- [x] **Step 1: Skills をグループリストにする**
 
 `en.skills.mdx` 例:
 
@@ -974,22 +974,22 @@ Front-end craft I use to ship clear, durable interfaces.
 
 `ja.skills.mdx` も同構造で日本語化。カードは使わない。
 
-- [ ] **Step 2: About からスタック羅列を除く**
+- [x] **Step 2: About からスタック羅列を除く**
 
 価値観・スタンスの短文のみ残す（現行 en/ja をベースに 1〜2 段落）。
 
-- [ ] **Step 3: Contact リードを短く保つ**
+- [x] **Step 3: Contact リードを短く保つ**
 
 呼びかけ 1 段落。実リンクは Footer / ヘッダー言語切替と重複してよい。
 
-- [ ] **Step 4: Footer を修正する**
+- [x] **Step 4: Footer を修正する**
 
 - `id="#footer"` → `id="footer"`
 - `height: '100svb'` を削除し、`paddingBlock` で十分な余白にする（`minHeight` も必須ではない）
 - 色を `bg.raised` / `primary` / `text.muted` トークンへ
 - 言語切替は残す（ヘッダーと重複可）
 
-- [ ] **Step 5: テストと品質ゲート**
+- [x] **Step 5: テストと品質ゲート**
 
 Run:
 
@@ -1003,7 +1003,7 @@ pnpm build
 
 Expected: すべて成功
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add src/content/home src/components/Footer/Footer.astro
@@ -1018,7 +1018,7 @@ git commit -m "content: refine section copy and fix footer layout"
 
 - 変更なし（検証のみ）。問題があれば該当 Task に戻って修正コミット
 
-- [ ] **Step 1: 全テスト再実行**
+- [x] **Step 1: 全テスト再実行**
 
 ```sh
 node --experimental-strip-types --test tests/*.test.ts
@@ -1030,7 +1030,7 @@ pnpm build
 
 Expected: すべて成功
 
-- [ ] **Step 2: 仕様チェックリストを確認する**
+- [x] **Step 2: 仕様チェックリストを確認する**
 
 | 仕様項目          | 確認方法                                          |
 | ----------------- | ------------------------------------------------- |
@@ -1042,7 +1042,7 @@ Expected: すべて成功
 | Footer id         | DOM に `id="footer"`                              |
 | スタブ非接触      | `git diff` で `About.astro` 等が変わっていない    |
 
-- [ ] **Step 3: 必要ならフォーマット差分を commit**
+- [x] **Step 3: 必要ならフォーマット差分を commit**
 
 ```bash
 git add -A

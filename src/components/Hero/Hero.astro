@@ -14,67 +14,152 @@ const { messages } = Astro.props;
 <section
   id="hero"
   class={css({
-    display: 'grid',
-    placeItems: 'center',
-    width: '100svi',
-    height: '100svb',
-    backgroundColor: '#1a1a1a',
-    paddingInline: { base: '16px', sm: '24px', md: '32px' },
-    paddingBlock: '64px',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: { base: 'flex-start', md: 'center' },
+    width: '100%',
+    minHeight: '100svb',
+    backgroundColor: 'bg.base',
+    backgroundImage:
+      'radial-gradient(ellipse 80% 60% at 75% 45%, rgba(236, 147, 161, 0.18), transparent 70%)',
+    overflow: 'hidden',
     visibility: 'hidden',
     opacity: 0
   })}
 >
   <div
     class={css({
+      position: 'relative',
+      zIndex: 1,
       display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      gap: { base: '16px', md: '20px' },
       width: '100%',
-      maxWidth: '1440px',
-      height: '100%'
+      maxWidth: { base: 'sizes.wide', md: 'min(40rem, 46svi)' },
+      marginInline: 'auto',
+      marginInlineStart: { md: 'max(32px, calc((100% - 1440px) / 2 + 32px))' },
+      marginInlineEnd: { md: 'auto' },
+      paddingInline: { base: '16px', sm: '24px', md: '32px' },
+      paddingBlock: { base: '48px', md: '64px' },
+      paddingBlockEnd: { base: '24px', md: '64px' }
     })}
   >
-    <hgroup>
-      <h1
-        id="greeting"
-        class={css({
-          fontSize: { base: '1.5em', sm: '2.75em', md: '3.25em' },
-          fontWeight: 700
-        })}
-      >
-        {messages.heroGreetingPrefix}{' '}
-        <span
-          id="my-name"
-          class={css({
-            color: 'primary'
-          })}
-        >
-          {messages.heroName}
-        </span>
-        {messages.heroGreetingSuffix}
-      </h1>
-      <p
-        id="self-introduction"
-        class={css({
-          fontSize: { base: '1em', sm: '1.5em' },
-          color: 'oklch(0.872 0.01 258.338)',
-          fontWeight: 400
-        })}
-      >
-        {messages.heroLead}
-      </p>
-    </hgroup>
-    <div
-      id="sleeping-mugicha"
+    <h1
+      id="hero-brand"
       class={css({
-        display: 'grid',
-        placeItems: 'center',
-        width: { base: '192px', md: '320px', lg: '480px', xl: '640px' }
+        margin: 0,
+        fontSize: 'clamp(2.5rem, 8svi, 6rem)',
+        fontWeight: 700,
+        lineHeight: 1.05,
+        letterSpacing: '-0.02em',
+        color: 'primary'
       })}
     >
-      <Image src={SleepingMugicha} alt="" />
+      {messages.heroName}
+    </h1>
+    <p
+      id="hero-lead"
+      class={css({
+        margin: 0,
+        fontSize: { base: '1.25rem', md: '1.5rem', lg: '1.75rem' },
+        fontWeight: 500,
+        lineHeight: 1.35,
+        color: 'text'
+      })}
+    >
+      {messages.heroLead}
+    </p>
+    <p
+      id="hero-supporting"
+      class={css({
+        margin: 0,
+        fontSize: { base: '1rem', md: '1.125rem' },
+        fontWeight: 400,
+        lineHeight: 1.55,
+        color: 'text.muted',
+        maxWidth: '34rem'
+      })}
+    >
+      {messages.heroSupporting}
+    </p>
+    <div
+      id="hero-ctas"
+      class={css({
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '12px',
+        marginTop: { base: '8px', md: '12px' }
+      })}
+    >
+      <a
+        href="#projects"
+        class={css({
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingInline: '20px',
+          paddingBlock: '12px',
+          backgroundColor: 'primary',
+          color: 'bg.base',
+          fontWeight: 700,
+          fontSize: '1rem',
+          textDecoration: 'none',
+          borderRadius: '4px',
+          border: '2px solid {colors.primary}',
+          _hover: { filter: 'brightness(1.05)' }
+        })}
+      >
+        {messages.ctaProjects}
+      </a>
+      <a
+        href="#contact"
+        class={css({
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingInline: '20px',
+          paddingBlock: '12px',
+          backgroundColor: 'transparent',
+          color: 'text',
+          fontWeight: 600,
+          fontSize: '1rem',
+          textDecoration: 'none',
+          borderRadius: '4px',
+          border: '2px solid {colors.text.muted}',
+          _hover: { borderColor: 'primary', color: 'primary' }
+        })}
+      >
+        {messages.ctaContact}
+      </a>
     </div>
+  </div>
+
+  <div
+    id="sleeping-mugicha"
+    class={css({
+      pointerEvents: 'none',
+      zIndex: 0,
+      // Mobile: in-flow plane below copy. Desktop: absolute right edge plane.
+      position: { base: 'relative', md: 'absolute' },
+      insetBlock: { md: '0' },
+      insetInlineEnd: { md: '0' },
+      width: { base: '100%', md: '66svi' },
+      minHeight: { base: '42svb', md: '100%' },
+      marginTop: { base: 'auto', md: '0' },
+      display: 'grid',
+      placeItems: { base: 'end center', md: 'center end' },
+      '& img': {
+        width: '100%',
+        height: { base: 'auto', md: '100%' },
+        minHeight: { md: '100%' },
+        objectFit: 'contain',
+        objectPosition: { base: 'center bottom', md: 'right center' }
+      }
+    })}
+  >
+    <Image src={SleepingMugicha} alt="" fetchpriority="high" loading="eager" />
   </div>
 </section>
 
@@ -84,23 +169,50 @@ const { messages } = Astro.props;
 
   gsap.registerPlugin(SplitText);
 
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   const startHeroAnimation = () => {
-    const splitGreeting = SplitText.create('#greeting', {
-      type: 'words,chars'
+    gsap.set('#hero', { visibility: 'visible', opacity: 1 });
+
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    const splitBrand = SplitText.create('#hero-brand', {
+      type: 'chars'
     });
 
-    gsap.set('#hero', { visibility: 'visible' });
+    gsap.set(['#hero-lead', '#hero-supporting', '#hero-ctas', '#sleeping-mugicha'], {
+      opacity: 0
+    });
+
     gsap
       .timeline()
-      .to('#hero', { opacity: 1, duration: 0.4, ease: 'power2.inOut' })
-      .from('#sleeping-mugicha', { opacity: 0, x: 50, duration: 1 })
-      .from(splitGreeting.chars, {
+      .from(splitBrand.chars, {
         opacity: 0,
-        y: 20,
-        stagger: 0.05,
-        duration: 1
+        y: 24,
+        stagger: 0.04,
+        duration: 0.7,
+        ease: 'power2.out'
       })
-      .from('#self-introduction', { opacity: 0, x: -20, duration: 0.5 });
+      .fromTo(
+        '#hero-lead',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' },
+        '-=0.25'
+      )
+      .fromTo(
+        ['#hero-supporting', '#hero-ctas'],
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08 },
+        '-=0.2'
+      )
+      .fromTo(
+        '#sleeping-mugicha',
+        { opacity: 0, x: 40 },
+        { opacity: 1, x: 0, duration: 0.85, ease: 'power2.out' },
+        '-=0.25'
+      );
   };
 
   document.addEventListener('loader-animation-finished', startHeroAnimation, {

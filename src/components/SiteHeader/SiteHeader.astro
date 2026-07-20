@@ -1,0 +1,83 @@
+---
+import { css } from '../../../styled-system/css';
+import { localeLabels, pathForLocale, type Locale } from '../../i18n/config';
+import type { getUi } from '../../i18n/ui';
+
+interface Props {
+  locale: Locale;
+  messages: ReturnType<typeof getUi>;
+}
+
+const { locale, messages } = Astro.props;
+
+const links = [
+  { href: '#about', label: messages.navAbout },
+  { href: '#skills', label: messages.navSkills },
+  { href: '#projects', label: messages.navProjects },
+  { href: '#contact', label: messages.navContact }
+] as const;
+---
+
+<header
+  class={css({
+    position: 'sticky',
+    top: 0,
+    zIndex: 20,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: '16px',
+    width: '100%',
+    maxWidth: 'sizes.wide',
+    marginInline: 'auto',
+    paddingInline: { base: '16px', sm: '24px', md: '32px' },
+    paddingBlock: '12px',
+    backgroundColor: 'bg.base/90',
+    backdropFilter: 'blur(8px)'
+  })}
+>
+  <a
+    href="#hero"
+    class={css({ color: 'primary', fontWeight: 700, fontSize: '1.125rem', textDecoration: 'none' })}
+  >
+    koralle
+  </a>
+  <nav
+    aria-label={messages.navLabel}
+    class={css({ display: 'flex', flexWrap: 'wrap', gap: '12px' })}
+  >
+    {
+      links.map(link => (
+        <a
+          href={link.href}
+          class={css({
+            color: 'text.muted',
+            textDecoration: 'none',
+            fontSize: { base: '0.875rem', md: '1rem' },
+            _hover: { color: 'text' }
+          })}
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+  <nav aria-label={messages.languageSwitcherLabel} class={css({ display: 'flex', gap: '8px' })}>
+    {
+      Object.entries(localeLabels).map(([targetLocale, label]) => (
+        <a
+          href={pathForLocale(targetLocale as Locale)}
+          aria-current={targetLocale === locale ? 'page' : undefined}
+          class={css({
+            color: targetLocale === locale ? 'primary' : 'text.muted',
+            textDecoration: 'underline',
+            textUnderlineOffset: '0.2em',
+            fontSize: '0.875rem'
+          })}
+        >
+          {label}
+        </a>
+      ))
+    }
+  </nav>
+</header>
