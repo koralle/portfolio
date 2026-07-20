@@ -1,0 +1,40 @@
+name: Production Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy Cloudflare Pages production
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Setup
+        uses: ./.github/composite-actions/cache-and-install
+
+      - name: Build
+        shell: bash
+        run: |
+          pnpm astro build
+
+      - name: Deploy production
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: >-
+            pages deploy ./dist
+            --project-name portfolio
+            --branch=main
