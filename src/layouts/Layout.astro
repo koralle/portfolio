@@ -76,8 +76,17 @@ const shareUrl = getShareUrl(Astro.url.pathname);
   gsap.registerPlugin(SplitText);
 
   const onDomContentsLoaded = () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const loader = document.querySelector<HTMLElement>('#loader');
     const loaderText = document.querySelector('#loader-text-inner');
-    if (!loaderText) return;
+
+    if (!loader || !loaderText) return;
+
+    if (prefersReducedMotion) {
+      loader.style.display = 'none';
+      document.dispatchEvent(new CustomEvent('loader-animation-finished'));
+      return;
+    }
 
     const split = new SplitText(loaderText, { type: 'words,chars' });
 
@@ -113,10 +122,7 @@ const shareUrl = getShareUrl(Astro.url.pathname);
           duration: 1,
           ease: 'power4.inOut',
           onComplete: () => {
-            const loader = document.querySelector<HTMLElement>('#loader');
-            if (loader) {
-              loader.style.display = 'none';
-            }
+            loader.style.display = 'none';
           }
         },
         '-=0.5'
