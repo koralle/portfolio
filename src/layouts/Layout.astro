@@ -131,3 +131,29 @@ const shareUrl = getShareUrl(Astro.url.pathname);
 
   document.addEventListener('DOMContentLoaded', onDomContentsLoaded);
 </script>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const headings = document.querySelectorAll('[data-section-heading]');
+
+  if (!prefersReducedMotion) {
+    headings.forEach(heading => {
+      gsap.from(heading, {
+        opacity: 0,
+        y: 16,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: heading,
+          start: 'top 85%',
+          once: true
+        }
+      });
+    });
+  }
+</script>
