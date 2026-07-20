@@ -24,7 +24,7 @@ const projects = defineCollection({
     links: z.array(
       z.object({
         label: z.string(),
-        href: z.string().url()
+        href: z.url()
       })
     ),
     order: z.number().int().nonnegative(),

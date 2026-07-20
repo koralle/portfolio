@@ -15,16 +15,15 @@ const { locale, messages } = Astro.props;
 ---
 
 <footer
-  id="#footer"
+  id="footer"
   class={css({
     position: 'relative',
     display: 'grid',
     placeItems: 'center',
     width: '100svi',
-    height: '100svb',
-    backgroundColor: '#212121',
+    backgroundColor: 'bg.raised',
     paddingInline: { base: '16px', sm: '24px', md: '32px' },
-    paddingBlock: '64px'
+    paddingBlock: { base: '80px', md: '96px' }
   })}
 >
   <div
@@ -66,7 +65,8 @@ const { locale, messages } = Astro.props;
           justifyContent: 'center',
           alignItems: 'center',
           gap: '8px',
-          fontWeight: 700
+          fontWeight: 700,
+          color: 'text.muted'
         })}
       >
         <Image src={GitHubLogo} alt="" width={20} height={20} decoding="async" loading="lazy" />
@@ -80,7 +80,8 @@ const { locale, messages } = Astro.props;
           justifyContent: 'center',
           alignItems: 'center',
           gap: '8px',
-          fontWeight: 700
+          fontWeight: 700,
+          color: 'text.muted'
         })}
       >
         <Image src={XLogo} alt="" width={20} height={20} decoding="async" loading="lazy" />
@@ -95,7 +96,7 @@ const { locale, messages } = Astro.props;
             href={pathForLocale(targetLocale as Locale)}
             aria-current={targetLocale === locale ? 'page' : undefined}
             class={css({
-              color: targetLocale === locale ? 'primary' : 'oklch(0.872 0.01 258.338)',
+              color: targetLocale === locale ? 'primary' : 'text.muted',
               textDecoration: 'underline',
               textUnderlineOffset: '0.2em'
             })}
@@ -110,7 +111,8 @@ const { locale, messages } = Astro.props;
     class={css({
       position: 'absolute',
       fontSize: { base: '0.75em', md: '1em' },
-      bottom: { base: '12px', md: '32px' }
+      bottom: { base: '12px', md: '32px' },
+      color: 'text.muted'
     })}
   >
     {messages.copyright}
