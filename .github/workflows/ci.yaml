@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   lint:
@@ -37,9 +38,57 @@ jobs:
         uses: ./.github/composite-actions/cache-and-install
 
       - name: Format
+        id: format
         shell: bash
         run: |
+          set +e
           pnpm prettier . --check
+          status=$?
+          set -e
+          if [ "$status" -ne 0 ]; then
+            pnpm prettier . --write
+            {
+              echo "### Prettier reported formatting drift"
+              echo
+              echo '```diff'
+              git --no-pager diff -- . ':(exclude)pnpm-lock.yaml'
+              echo '```'
+            } > /tmp/prettier-comment.md
+            echo "failed=true" >> "$GITHUB_OUTPUT"
+            exit "$status"
+          fi
+          echo "failed=false" >> "$GITHUB_OUTPUT"
+
+      - name: Comment Prettier diff
+        if: failure() && steps.format.outputs.failed == 'true'
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('/tmp/prettier-comment.md', 'utf8');
+            const marker = '<!-- prettier-ci-diff -->';
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+            const existing = comments.find((comment) => comment.body?.includes(marker));
+            const payload = `${marker}\n${body}`;
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body: payload
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: payload
+              });
+            }
 
   typecheck:
     runs-on: ubuntu-24.04
@@ -51,7 +100,7 @@ jobs:
       - name: Setup
         uses: ./.github/composite-actions/cache-and-install
 
-      - name: Format
+      - name: Typecheck
         shell: bash
         run: |
           pnpm astro check
