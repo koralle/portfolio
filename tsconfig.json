@@ -6,6 +6,8 @@
     "target": "es2022",
     "module": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
     "types": ["./worker-configuration.d.ts", "node"],
     "plugins": [
       {
@@ -13,6 +15,7 @@
       }
     ]
   },
+
   "include": [
     "src",
     ".astro/types.d.ts",

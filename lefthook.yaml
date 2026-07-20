@@ -6,6 +6,7 @@ pre-commit:
       # Prettier-supported file, including Markdown docs under docs/.
       glob:
         - '*.ts'
+        - '*.tsx'
         - '*.mts'
         - '*.mjs'
         - '*.cjs'
@@ -19,12 +20,13 @@ pre-commit:
         - '*.yml'
         - '*.html'
       run: |
-        pnpm prettier {staged_files} --write --config prettier.config.ts --ignore-unknown
+        NODE_OPTIONS='--experimental-strip-types' pnpm prettier {staged_files} --write --config prettier.config.ts --ignore-unknown
       stage_fixed: true
 
     - name: Lint with ESLint
       glob:
         - 'src/**/*.ts'
+        - 'src/**/*.tsx'
         - 'src/**/*.astro'
         - 'prettier.config.ts'
         - 'panda.config.ts'
@@ -42,6 +44,7 @@ pre-commit:
     - name: Typecheck with Astro (app)
       glob:
         - 'src/**/*.ts'
+        - 'src/**/*.tsx'
         - 'src/**/*.astro'
         - 'astro.config.mts'
         - 'worker-configuration.d.ts'

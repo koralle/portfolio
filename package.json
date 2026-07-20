@@ -28,9 +28,11 @@
   "dependencies": {
     "@astrojs/cloudflare": "catalog:astro",
     "@astrojs/mdx": "catalog:astro",
+    "@astrojs/preact": "catalog:astro",
     "@lucide/astro": "catalog:astro",
     "astro": "catalog:astro",
-    "gsap": "catalog:tooling"
+    "gsap": "catalog:tooling",
+    "preact": "catalog:astro"
   },
   "devDependencies": {
     "@astrojs/check": "catalog:astro",

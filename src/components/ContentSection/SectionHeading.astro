@@ -1,7 +1,9 @@
 ---
+import { SectionHeading as SectionHeadingView } from '../../ui/ContentSection';
+
 const { id: _ignoredId, ...props } = Astro.props;
 ---
 
-<h2 data-section-heading {...props}>
+<SectionHeadingView {...props}>
   <slot />
-</h2>
+</SectionHeadingView>
