@@ -20,7 +20,7 @@ catalogs:
     '@lucide/astro': 1.24.0
     astro: 7.0.7
     astro-eslint-parser: 3.0.0
-    eslint-plugin-astro: 3.0.0
+    eslint-plugin-astro: 3.0.1
     preact: 10.29.7
 
   cloudflare:
