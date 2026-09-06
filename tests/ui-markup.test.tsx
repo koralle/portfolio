@@ -34,7 +34,7 @@ void test('SkipLink points at main content', () => {
 void test('Loader keeps the GSAP hook ids and loading copy', () => {
   assert.equal(
     semanticHtml(<Loader />),
-    '<div id="loader"><h1><div id="loader-text-inner"><span> Now </span><span> Loading... </span></div></h1></div>'
+    '<div id="loader" role="status" aria-busy="true"><p><span id="loader-text-inner"><span> Now </span><span> Loading... </span></span></p></div>'
   );
 });
 

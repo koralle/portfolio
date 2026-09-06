@@ -7,7 +7,7 @@ export interface SectionHeadingProps extends Omit<HTMLAttributes<HTMLHeadingElem
 
 export function SectionHeading(props: SectionHeadingProps) {
   const { children, ...attributes } = props;
-  Reflect.deleteProperty(attributes, 'id');
+  delete attributes.id;
 
   return (
     <h2 data-section-heading {...attributes}>

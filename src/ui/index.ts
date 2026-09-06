@@ -6,4 +6,4 @@ export { Hero } from './Hero';
 export { ContactLinks } from './ContactLinks';
 export { ProjectList } from './ProjectList';
 export { ContentSection, SectionHeading } from './ContentSection';
-export { PlaceholderSection } from './PlaceholderSection';
+export { LocaleSwitcher } from './LocaleSwitcher';
