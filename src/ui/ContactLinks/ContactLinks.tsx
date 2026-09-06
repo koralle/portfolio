@@ -14,43 +14,38 @@ export interface ContactLinksProps {
   links: readonly ContactLinkItem[];
 }
 
+const nav = css({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '16px',
+  marginBlockStart: '8px'
+});
+
+const link = css({
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '8px',
+  fontWeight: 700,
+  color: 'text.muted',
+  textDecoration: 'none',
+  _hover: { color: 'primary' }
+});
+
 export function ContactLinks({ ariaLabel = 'Social', links }: ContactLinksProps) {
   return (
-    <nav
-      aria-label={ariaLabel}
-      class={css({
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '16px',
-        marginBlockStart: '8px'
-      })}
-    >
-      {links.map(link => (
-        <a
-          key={link.href}
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class={css({
-            display: 'inline-flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            gap: '8px',
-            fontWeight: 700,
-            color: 'text.muted',
-            textDecoration: 'none',
-            _hover: { color: 'primary' }
-          })}
-        >
+    <nav aria-label={ariaLabel} class={nav}>
+      {links.map(item => (
+        <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer" class={link}>
           <img
-            src={link.iconSrc}
-            alt={link.iconAlt ?? ''}
-            width={link.iconWidth ?? 20}
-            height={link.iconHeight ?? 20}
+            src={item.iconSrc}
+            alt={item.iconAlt ?? ''}
+            width={item.iconWidth ?? 20}
+            height={item.iconHeight ?? 20}
             decoding="async"
             loading="lazy"
           />
-          {link.label}
+          {item.label}
         </a>
       ))}
     </nav>
