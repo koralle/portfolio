@@ -21,6 +21,7 @@
     "lint:fix": "eslint . --config eslint.config.ts --cache  --cache-location node_modules/.cache/eslint --cache-strategy content --concurrency auto",
     "lint:inspect": "eslint-config-inspector",
     "lint": "pnpm run lint:check",
+    "test": "node tests/run.mjs",
     "format:check": "prettier --check . --cache --cache-location node_modules/.cache/prettier --cache-strategy content",
     "format": "prettier --write . --cache --cache-location node_modules/.cache/prettier --cache-strategy content",
     "typecheck": "astro check"
@@ -45,6 +46,7 @@
     "@tsconfig/strictest": "catalog:typescript",
     "@types/node": "catalog:typescript",
     "astro-eslint-parser": "catalog:astro",
+    "esbuild": "catalog:tooling",
     "eslint": "catalog:eslint",
     "eslint-config-prettier": "catalog:eslint",
     "eslint-plugin-astro": "catalog:astro",
@@ -55,6 +57,7 @@
     "lefthook": "catalog:tooling",
     "npm-run-all2": "catalog:tooling",
     "postcss": "catalog:styling",
+    "preact-render-to-string": "catalog:astro",
     "prettier": "catalog:styling",
     "prettier-plugin-astro": "catalog:styling",
     "rollup-plugin-visualizer": "catalog:tooling",
